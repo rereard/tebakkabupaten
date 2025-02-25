@@ -2,19 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
 import * as turf from "@turf/turf";
 import "leaflet/dist/leaflet.css";
-import { Feature, FeatureCollection, GeoJsonProperties, Geometry, MultiPolygon, Polygon } from 'geojson';
+import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import { useLocation, useNavigate, useParams } from 'react-router';
-
-type GeoJSONModule = { default: FeatureCollection<Geometry, GeoJsonProperties> };
-
-const selector: Record<string, () => Promise<GeoJSONModule>> = {
-  "Jawa Tengah": () => import("../../data/jateng.json") as Promise<GeoJSONModule>,
-  "Jawa Timur": () => import("../../data/jatim.json") as Promise<GeoJSONModule>,
-  "Jawa Barat": () => import("../../data/jabar.json") as Promise<GeoJSONModule>,
-  "Banten": () => import("../../data/banten.json") as Promise<GeoJSONModule>,
-  "Daerah Istimewa Yogyakarta": () => import("../../data/diy.json") as Promise<GeoJSONModule>,
-  "DKI Jakarta": () => import("../../data/jakarta.json") as Promise<GeoJSONModule>,
-};
+import selector from '../../data/selector';
 
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
 
