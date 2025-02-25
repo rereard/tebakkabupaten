@@ -22,6 +22,11 @@ const selector: Record<string, () => Promise<GeoJSONModule>> = {
   "Sumatera Barat": () => import("../data/sumbar.json") as Promise<GeoJSONModule>,
   "Sumatera Utara": () => import("../data/sumut.json") as Promise<GeoJSONModule>,
   "Aceh": () => import("../data/aceh.json") as Promise<GeoJSONModule>,
+  "Kalimantan Barat": () => import("../data/kalbar.json") as Promise<GeoJSONModule>,
+  "Kalimantan Tengah": () => import("../data/kalteng.json") as Promise<GeoJSONModule>,
+  "Kalimantan Selatan": () => import("../data/kalsel.json") as Promise<GeoJSONModule>,
+  "Kalimantan Timur": () => import("../data/kaltim.json") as Promise<GeoJSONModule>,
+  "Kalimantan Utara": () => import("../data/kaltara.json") as Promise<GeoJSONModule>,
 };
 
 export default selector;
