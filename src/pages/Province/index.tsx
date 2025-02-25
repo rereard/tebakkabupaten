@@ -122,15 +122,6 @@ export default function Province(){
     );
   }, [answeredAreas])
 
-  function animateZoom(bounds: L.LatLngBounds) {
-    const map = useMap()
-    map.flyToBounds(bounds, { duration: 1.5 }); // ✅ Smooth zoom-in animation
-
-    setTimeout(() => {
-      navigate(`/`); // ✅ Change route AFTER animation
-    }, 1500);
-  }
-
   return(
     <div className='w-full h-screen relative'>
       <MapContainer 
