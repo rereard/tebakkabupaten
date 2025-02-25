@@ -45,11 +45,11 @@ function Home() {
   };
 
   function animateZoomToProvince(map: L.Map,bounds: L.LatLngBounds, provinceName: string) {
-    map.flyToBounds(bounds, { duration: 1.5 }); // ✅ Smooth zoom-in animation
+    map.flyToBounds(bounds, { duration: 1 }); // ✅ Smooth zoom-in animation
 
     setTimeout(() => {
       navigate(`/${provinceName}`, { state: bounds }); // ✅ Change route AFTER animation
-    }, 1500);
+    }, 1000);
   }
 
   return (

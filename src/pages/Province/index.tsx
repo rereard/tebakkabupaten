@@ -10,6 +10,10 @@ type GeoJSONModule = { default: FeatureCollection<Geometry, GeoJsonProperties> }
 const selector: Record<string, () => Promise<GeoJSONModule>> = {
   "Jawa Tengah": () => import("../../data/jateng.json") as Promise<GeoJSONModule>,
   "Jawa Timur": () => import("../../data/jatim.json") as Promise<GeoJSONModule>,
+  "Jawa Barat": () => import("../../data/jabar.json") as Promise<GeoJSONModule>,
+  "Banten": () => import("../../data/banten.json") as Promise<GeoJSONModule>,
+  "Daerah Istimewa Yogyakarta": () => import("../../data/diy.json") as Promise<GeoJSONModule>,
+  "DKI Jakarta": () => import("../../data/jakarta.json") as Promise<GeoJSONModule>,
 };
 
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
@@ -209,7 +213,7 @@ export default function Province(){
       )}
       {modalIsOpen && (
         <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
-          <div className='bg-white flex flex-col items-center p-6 rounded-lg shadow-lg w-11/12 max-w-lg'>
+          <div className='bg-white flex flex-col items-center p-6 rounded-lg shadow-lg w-fit'>
             <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${provinceName}` : 'Permainan selesai!'}</h2>
             {Object.values(answeredAreas).length === 0 ? (
               <p className="text-lg mt-2">{allAreas.length} Kabupaten/Kota</p>
@@ -219,7 +223,7 @@ export default function Province(){
                 <p className="text-lg">❌Tebakan salah: {Object.values(answeredAreas).filter(v => v === "wrong").length}</p>
               </>
             )}
-            <div className='my-4 h-56 overflow-y-scroll'>
+            <div className='my-4 h-fit max-h-56 overflow-y-auto'>
               <ol className='list-decimal list-inside columns-2 pl-5 text-left'>
                 {Object.keys(answeredAreas).length === 0 ? (
                   allAreas.map((name, index) => (<li className='text-black font-medium' key={index}>{name}</li>))
