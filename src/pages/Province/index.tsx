@@ -2,9 +2,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
 import * as turf from "@turf/turf";
 import "leaflet/dist/leaflet.css";
-import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
+import { Feature, FeatureCollection, GeoJsonProperties, Geometry, MultiPolygon, Polygon } from 'geojson';
 import { useLocation, useNavigate, useParams } from 'react-router';
-import selector from '../../data/selector';
+// import selector from '../../data/selector';
 
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
 
@@ -16,6 +16,12 @@ const expandBBox = (bbox: number[], margin: number) => {
     bbox[3] + margin, // maxLat + margin
   ];
 };
+
+type GeoJSONModule = { default: FeatureCollection<Geometry, GeoJsonProperties> };
+
+const selector = (provinceName: string): () => Promise<GeoJSONModule> => {
+  return () => import(`../../data/${provinceName}`) as Promise<GeoJSONModule>
+}
 
 export default function Province(){
 
@@ -39,8 +45,8 @@ export default function Province(){
     setGeojsonData(null); // Reset while loading new data
     setGeojsonLoaded(false)
 
-    if (selector[provinceName!]) {
-      selector[provinceName!]()
+    if (selector(provinceName!)) {
+      selector(provinceName!)()
         .then((module) => {
           setGeojsonData(module.default)
 
