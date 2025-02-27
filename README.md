@@ -1,50 +1,29 @@
-# React + TypeScript + Vite
+# Tebak Kabupaten & Kota Indonesia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Guess the *Kabupaten & Kota* of Indonesia
 
-Currently, two official plugins are available:
+I'm bored so i made this guessing game website. Try guessing all the *Kabupaten & Kota* in one of the Indonesia's Province. All 38 Indonesia's Provinces included.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Still working on improvement~**
 
-## Expanding the ESLint configuration
+### How to play:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Click "Mulai Main!" button
+- Choose one of the province
+- Click "Main" button to start the game
+- You can review your answer after you guess all the *Kabupaten & Kota*, retry game, or go back to first page
 
-- Configure the top-level `parserOptions` property like this:
+## Run in Your Device
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```console
+npm install
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+*am no designer*
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Credits
+- **GeoJSON Data**: [OpenStreetMap](https://www.openstreetmap.org/copyright) (extracted via [Overpass Turbo](https://overpass-turbo.eu/))
+- **Simplifying GeoJSON Data**: [Mapshaper](https://mapshaper.org/)
+- **Interactive Maps**: [Leaflet](https://leafletjs.com/) | [React Leaflet](https://react-leaflet.js.org/)
+- **Tile Map**: [Carto Voyager (No Labels)](https://carto.com/)

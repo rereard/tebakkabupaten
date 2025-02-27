@@ -16,10 +16,7 @@ function Home() {
   const location = useLocation()
   const fromProvince: boolean = location.state ? location.state?.scrollable : true;
 
-  useEffect(() => {
-    console.log("fromProvince?", location.state)
-  }, []);
-
+  /** function to expand bbox by amount of margin */
   const expandBBox = (bbox: number[], margin: number) => {
     return [
       bbox[0] - margin, // minLng - margin
@@ -33,6 +30,7 @@ function Home() {
   const [scrollable, setScrollable] = useState<boolean>(fromProvince)
   const [zoomIn, setZoomIn] = useState<boolean>(false)
 
+  // setting up map bounds
   useEffect(() => {
     // merge geojson feature to calculate bounds
     const mergedFeatureCollection = turf.combine(geojsonData as FeatureCollection<Polygon | MultiPolygon>)
@@ -45,7 +43,7 @@ function Home() {
     ])
   }, []);
 
-  // Set Style for Each Area
+  /** setting style for each area and hover style */
   const getFeatureStyle = (feature: any) => {
     return { 
       fillColor: HoveredName === feature.properties.name ? "#ff0000" : "transparent",
@@ -55,6 +53,7 @@ function Home() {
     };
   };
 
+  /** zoom animate to bounds and navigate to /provinceName */
   function animateZoomToProvince(map: L.Map,bounds: L.LatLngBounds, provinceName: string) {
     map.flyToBounds(bounds, { duration: 0.7 }); // ✅ Smooth zoom-in animation
     setZoomIn(true)
@@ -148,13 +147,21 @@ function Home() {
           />
         </div>
       )}
-      <footer className='flex p-4 bg-gray-800 text-white'>
-        <p>Created by <a href="https://github.com/rereard" className='hover:underline text-blue-400'>rereardany</a></p>
+      <footer className='flex p-4 bg-gray-800 text-white flex-col items-start gap-y-2'>
+        <p>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a></p>
+        <p className='text-justify'>
+          Website ini menggunakan data dari <a className='hover:underline text-blue-400' href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, 
+          diekstrak menggunakan <a href="https://overpass-turbo.eu/" target="_blank">Overpass Turbo</a>, 
+          disederhanakan dengan <a href="https://mapshaper.org/" target="_blank">Mapshaper</a>, 
+          ditampilkan menggunakan <a href="https://leafletjs.com/" target="_blank">Leaflet</a>, 
+          dan menggunakan map tiles dari <a href="https://carto.com/" target="_blank">Carto Voyager (no labels)</a>.
+        </p>
       </footer>
     </div>
   )
 }
 
+/** map bounds, min and max zoom setting */
 const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> = ({ bounds }) => {
   const map = useMap();
   useEffect(() => {

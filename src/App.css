@@ -9,6 +9,10 @@
   --font-merriweather: 'Merriweather'
 }
 
+a{
+  @apply hover:underline text-blue-400
+}
+
 #root {
   margin: 0 auto;
   text-align: center;

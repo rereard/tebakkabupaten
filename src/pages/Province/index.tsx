@@ -5,12 +5,12 @@ import "leaflet/dist/leaflet.css";
 import { Feature, FeatureCollection, GeoJsonProperties, Geometry, MultiPolygon, Polygon } from 'geojson';
 import { motion } from "motion/react"
 import { useLocation, useNavigate, useParams } from 'react-router';
-import { div } from 'motion/react-client';
 import Button from '../../component/Button';
-// import selector from '../../data/selector';
 
+/** shuffling array */
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
 
+/** function to expand bbox by amount of margin */
 const expandBBox = (bbox: number[], margin: number) => {
   return [
     bbox[0] - margin, // minLng - margin
@@ -20,8 +20,10 @@ const expandBBox = (bbox: number[], margin: number) => {
   ];
 };
 
+
 type GeoJSONModule = { default: FeatureCollection<Geometry, GeoJsonProperties> };
 
+/** selecting province geojson data based on provinceName */
 const selector = (provinceName: string): () => Promise<GeoJSONModule> => {
   return () => import(`../../data/${provinceName}.json`);
 }
@@ -44,6 +46,7 @@ export default function Province(){
   const [modalIsOpen, setIsOpen] = useState<boolean>(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
+  // setting geojson data and map bounds
   useEffect(() => {
 
     setGeojsonData(null); // Reset while loading new data
@@ -78,15 +81,12 @@ export default function Province(){
     }
   }, []);
 
+  // used for state inside MapContainer
   const currentQuestionRef = useRef(currentQuestion);
   const quizListRef = useRef(quizList);
   const answeredAreasRef = useRef(answeredAreas);
   const boundsRef = useRef(bounds);
   const isPlayingRef = useRef(isPlaying);
-
-  useEffect(() => {
-    console.log("bounds", bounds)
-  }, [bounds]);
 
   useEffect(() => {
     currentQuestionRef.current = currentQuestion;
@@ -109,19 +109,13 @@ export default function Province(){
   }, [isPlaying]);
 
   useEffect(() => {
-    console.log("isPlayingref", isPlayingRef.current);
-    
-  }, [isPlaying]);
-
-  useEffect(() => {
-    console.log("quiz length", quizList.length);
     if(geojsonLoaded && quizList.length === 0){
       setIsOpen(true)
       setIsPlaying(false)
     }
   }, [quizList]);
 
-  // Set Style for Each Area
+  /** setting style for each area, hover style, and fill area if wrong or correct */
   const getFeatureStyle = (feature: any) => {
     const name = feature.properties.name;
     if (answeredAreas[name] === "correct") {
@@ -132,6 +126,7 @@ export default function Province(){
     return { fillColor: "transparent", fillOpacity: 0, color: "red", weight: 1 };
   };
 
+  // counting correct and wrong answer
   const { correctCount, wrongCount } = useMemo(() => {
     return Object.values(answeredAreas).reduce(
       (acc, value) => {
@@ -178,11 +173,9 @@ export default function Province(){
                   if(!answeredAreasRef.current[clickedName]){
                     e.target.setStyle(getFeatureStyle(feature))
                   }
-                  // layer.closeTooltip();
-                  layer.unbindTooltip();
+                  layer.unbindTooltip(); // type error when played the game twice, not breaking the apps (see console)
                 },
                 click: () => {
-                  console.log("layer", layer);
                   if(isPlayingRef.current){
                     if(!answeredAreasRef.current[clickedName]){
                       if (clickedName === currentQuestionRef.current) {
@@ -286,6 +279,7 @@ export default function Province(){
   )
 }
 
+/** map bounds, min and max zoom setting */
 const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> = ({ bounds }) => {
   const map = useMap();
   useEffect(() => {
@@ -293,7 +287,7 @@ const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> =
       map.fitBounds(bounds, { padding: [50, 50] }); // Adjust padding for a better fit
       // map.setMaxBounds(null);
       map.setMaxBounds(undefined);
-      map.setMinZoom(1); // ✅ Ensure the map can zoom out fully
+      map.setMinZoom(1);
       map.setMaxZoom(14);
 
       const newMinZoom = map.getBoundsZoom(bounds);
@@ -310,6 +304,7 @@ const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> =
   return null;
 };
 
+/** setting for zoom out animation when going back to Home page */
 const MapZoomHandler = ({ zoomOut, bounds, onZoomComplete }: { zoomOut: boolean; bounds: [[number, number], [number, number]]; onZoomComplete: () => void }) => {
   const map = useMap();
 
@@ -317,7 +312,7 @@ const MapZoomHandler = ({ zoomOut, bounds, onZoomComplete }: { zoomOut: boolean;
     if (zoomOut) {
       map.fitBounds(bounds, { padding: [50, 50] });
       map.setMaxBounds(undefined);
-      map.setMinZoom(1); // ✅ Ensure the map can zoom out fully
+      map.setMinZoom(1);
       map.setMaxZoom(14);
       const newMinZoom = map.getBoundsZoom(bounds);
 
@@ -327,7 +322,7 @@ const MapZoomHandler = ({ zoomOut, bounds, onZoomComplete }: { zoomOut: boolean;
       map.setMaxBounds(bounds)
 
       setTimeout(() => {
-        onZoomComplete(); // ✅ Navigate home after animation
+        onZoomComplete(); // Navigate home after animation
       }, 500)
     }
   }, [zoomOut, map, bounds, onZoomComplete]);
