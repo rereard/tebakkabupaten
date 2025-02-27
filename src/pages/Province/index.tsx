@@ -6,6 +6,7 @@ import { Feature, FeatureCollection, GeoJsonProperties, Geometry, MultiPolygon, 
 import { motion } from "motion/react"
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { div } from 'motion/react-client';
+import Button from '../../component/Button';
 // import selector from '../../data/selector';
 
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
@@ -215,15 +216,15 @@ export default function Province(){
         </>
       )}
       {(!modalIsOpen && !isPlaying && !zoomOut) && (
-        <motion.button
-          whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
-          className='bg-[#2b7fff] p-2 w-32 rounded-lg outline-2 outline-blue-950 shadow-lg cursor-pointer absolute z-[400] bottom-20 text-white'
+        <Button 
+          title='Kembali'
+          className='bottom-20'
+          zIndex={400}
+          position='absolute'
           onClick={() => {
             setIsOpen(true)
           }}
-        >
-          Kembali
-        </motion.button>
+        />
       )}
       {modalIsOpen && (
         <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
@@ -249,9 +250,8 @@ export default function Province(){
               </ol>
             </div>
             <div className='text-white w-11/12 flex justify-between'>
-              <motion.button
-                whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
-                className='bg-[#2b7fff] p-2 w-32 rounded-lg outline-2 outline-blue-950 shadow-lg cursor-pointer'
+              <Button 
+                title='Kembali'
                 onClick={() => {
                   setZoomOut(true)
                   setIsOpen(false)
@@ -260,11 +260,9 @@ export default function Province(){
                   setCurrentQuestion(shuffleAreaList[0])
                   setAnsweredAreas({})
                 }}
-              >
-                Kembali
-              </motion.button>
-              <motion.button
-                whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
+              />
+              <Button 
+                title={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
                 onClick={() => {
                   if(Object.keys(answeredAreas).length === 0){
                     const shuffledAreas = shuffleArray([...allAreas])
@@ -278,11 +276,8 @@ export default function Province(){
                   }
                   setIsOpen(false)
                   setIsPlaying(true)
-                }} 
-                className='bg-[#2b7fff] p-2 w-32 rounded-lg outline-2 outline-blue-950 shadow-lg cursor-pointer'
-              >
-                {Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
-              </motion.button>
+                }}
+              />
             </div>
           </motion.div>
         </div>

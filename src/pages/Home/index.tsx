@@ -7,6 +7,7 @@ import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import IndonesiaJson from '../../data/indonesia.json'
 import { useLocation, useNavigate } from 'react-router';
 import { AnimatePresence, motion } from "motion/react"
+import Button from '../../component/Button';
 
 const geojsonData: FeatureCollection = IndonesiaJson as FeatureCollection
 
@@ -64,7 +65,7 @@ function Home() {
   }
 
   return (
-    <div className='w-full h-screen relative'>
+    <div className={`w-full h-screen relative ${scrollable ? 'overflow-y-visible': 'overflow-y-hidden'}`}>
       <title>Tebak Kabupaten & Kota Indonesia</title>
       <MapContainer 
         zoomControl={true} 
@@ -113,17 +114,21 @@ function Home() {
             >
               TEBAK KABUPATEN & KOTA <p className='border-t-2 bg-white text-[#ff0000]'>INDONESIA</p>
             </motion.h1>
-            <motion.button
-              whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
+            <Button 
+              title='Mulai Main!'
+              onClick={() => {
+                setScrollable(false)
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
               initial={{ opacity: 0, y: 80 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 80 }}
               transition={{ ease: "easeInOut" }}
-              onClick={() => setScrollable(false)}
-              className='absolute z-20 bottom-20 bg-[#2b7fff] text-white p-2 w-54 outline-2 outline-blue-950 rounded-lg border-slate-400 shadow-lg cursor-pointer'
-            >
-              Mulai Main!
-            </motion.button>
+              className='bottom-20'
+              width={216}
+              zIndex={20}
+              position='absolute'
+            />
           </div>
         )}
       </AnimatePresence>
@@ -131,17 +136,20 @@ function Home() {
         <div className='absolute h-screen w-full top-0 flex items-center justify-center'>
           <h2 className='absolute z-[400] text-3xl font-bold top-10 right-0 left-0'>Pilih Provinsi!</h2>
           <h2 className='absolute z-[400] text-3xl font-bold bottom-25 right-0 left-0'>{HoveredName}</h2>
-          <motion.button
-            whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
-            onClick={() => setScrollable(true)}
-            className='absolute z-[400] bottom-10 bg-[#2b7fff] text-white p-2 w-40 outline-2 outline-blue-950 rounded-lg border-slate-400 shadow-lg cursor-pointer'
-          >
-            Kembali
-          </motion.button>
+          <Button 
+            title='Kembali'
+            onClick={() => {
+              setScrollable(true)
+            }}
+            className='bottom-10'
+            width={160}
+            zIndex={9999}
+            position='absolute'
+          />
         </div>
       )}
-      <footer>
-        Ini Footer!
+      <footer className='flex p-4 bg-gray-800 text-white'>
+        <p>Created by <a href="https://github.com/rereard" className='hover:underline text-blue-400'>rereardany</a></p>
       </footer>
     </div>
   )
