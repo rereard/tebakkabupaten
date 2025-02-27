@@ -5,12 +5,20 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import IndonesiaJson from '../../data/indonesia.json'
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { AnimatePresence, motion } from "motion/react"
 
 const geojsonData: FeatureCollection = IndonesiaJson as FeatureCollection
 
 function Home() {
   const navigate = useNavigate();
+  const location = useLocation()
+  const fromProvince: boolean = location.state ? location.state?.scrollable : true;
+
+  useEffect(() => {
+    console.log("fromProvince?", location.state)
+  }, []);
+
   const expandBBox = (bbox: number[], margin: number) => {
     return [
       bbox[0] - margin, // minLng - margin
@@ -21,6 +29,8 @@ function Home() {
   };
   const [HoveredName, setHoveredName] = useState<string | null>(null)
   const [bounds, setBounds] = useState<[[number, number], [number, number]] | null>(null)
+  const [scrollable, setScrollable] = useState<boolean>(fromProvince)
+  const [zoomIn, setZoomIn] = useState<boolean>(false)
 
   useEffect(() => {
     // merge geojson feature to calculate bounds
@@ -37,23 +47,25 @@ function Home() {
   // Set Style for Each Area
   const getFeatureStyle = (feature: any) => {
     return { 
-      fillColor: HoveredName === feature.properties.name ? "red" : "transparent",
+      fillColor: HoveredName === feature.properties.name ? "#ff0000" : "transparent",
       fillOpacity: HoveredName === feature.properties.name ? 0.4 : 0,
-      color: "red",
+      color: "#ff0000",
       weight: 1,
     };
   };
 
   function animateZoomToProvince(map: L.Map,bounds: L.LatLngBounds, provinceName: string) {
-    map.flyToBounds(bounds, { duration: 1 }); // ✅ Smooth zoom-in animation
+    map.flyToBounds(bounds, { duration: 0.7 }); // ✅ Smooth zoom-in animation
+    setZoomIn(true)
 
     setTimeout(() => {
       navigate(`/${provinceName}`, { state: bounds }); // ✅ Change route AFTER animation
-    }, 1000);
+    }, 700);
   }
 
   return (
     <div className='w-full h-screen relative'>
+      <title>Tebak Kabupaten & Kota Indonesia</title>
       <MapContainer 
         zoomControl={true} 
         dragging={true} 
@@ -89,12 +101,48 @@ function Home() {
           )}
         {bounds && <FitMapBounds bounds={bounds} />}
       </MapContainer>
-      {geojsonData && (
-        <>
-          <h2 className='absolute z-[400] text-2xl font-bold top-10 right-0 left-0'>Pilih Provinsi!</h2>
-          <h2 className='absolute z-[9999] text-2xl font-bold bottom-10 right-0 left-0'>{HoveredName}</h2>
-        </>
+      <AnimatePresence>
+        {scrollable && (
+          <div className='absolute z-[9999] h-screen w-full top-0 flex items-center justify-center'>
+            <motion.h1 
+              exit={{ opacity: 0, y: -80 }}
+              initial={{ opacity: 0, y: -80 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ease: "easeInOut" }}
+              className='text-5xl z-20 font-bold absolute top-10 border-y-4 border-black right-0 text-white left-0 bg-[#ff0000]'
+            >
+              TEBAK KABUPATEN & KOTA <p className='border-t-2 bg-white text-[#ff0000]'>INDONESIA</p>
+            </motion.h1>
+            <motion.button
+              whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
+              initial={{ opacity: 0, y: 80 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 80 }}
+              transition={{ ease: "easeInOut" }}
+              onClick={() => setScrollable(false)}
+              className='absolute z-20 bottom-20 bg-[#2b7fff] text-white p-2 w-54 outline-2 outline-blue-950 rounded-lg border-slate-400 shadow-lg cursor-pointer'
+            >
+              Mulai Main!
+            </motion.button>
+          </div>
+        )}
+      </AnimatePresence>
+      {(geojsonData && !scrollable && !zoomIn) && (
+        <div className='absolute h-screen w-full top-0 flex items-center justify-center'>
+          <h2 className='absolute z-[400] text-3xl font-bold top-10 right-0 left-0'>Pilih Provinsi!</h2>
+          <h2 className='absolute z-[400] text-3xl font-bold bottom-25 right-0 left-0'>{HoveredName}</h2>
+          <motion.button
+            whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
+            onClick={() => setScrollable(true)}
+            className='absolute z-[400] bottom-10 bg-[#2b7fff] text-white p-2 w-40 outline-2 outline-blue-950 rounded-lg border-slate-400 shadow-lg cursor-pointer'
+          >
+            Kembali
+          </motion.button>
+        </div>
       )}
+      <footer>
+        Ini Footer!
+      </footer>
     </div>
   )
 }

@@ -3,7 +3,9 @@ import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
 import * as turf from "@turf/turf";
 import "leaflet/dist/leaflet.css";
 import { Feature, FeatureCollection, GeoJsonProperties, Geometry, MultiPolygon, Polygon } from 'geojson';
+import { motion } from "motion/react"
 import { useLocation, useNavigate, useParams } from 'react-router';
+import { div } from 'motion/react-client';
 // import selector from '../../data/selector';
 
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
@@ -20,12 +22,12 @@ const expandBBox = (bbox: number[], margin: number) => {
 type GeoJSONModule = { default: FeatureCollection<Geometry, GeoJsonProperties> };
 
 const selector = (provinceName: string): () => Promise<GeoJSONModule> => {
-  return () => import(`../../data/${provinceName}`) as Promise<GeoJSONModule>
+  return () => import(`../../data/${provinceName}.json`);
 }
 
 export default function Province(){
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const location = useLocation()
   const indonesiaBounds = location.state?.bounds || [[-11, 94], [6, 141]];
   const { provinceName } = useParams<{ provinceName: string }>();
@@ -39,6 +41,7 @@ export default function Province(){
   const [currentQuestion, setCurrentQuestion] = useState<string | null>(quizList[0]); // First question
   const [answeredAreas, setAnsweredAreas] = useState<{ [key: string]: "correct" | "wrong" }>({});
   const [modalIsOpen, setIsOpen] = useState<boolean>(true);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
 
@@ -78,6 +81,7 @@ export default function Province(){
   const quizListRef = useRef(quizList);
   const answeredAreasRef = useRef(answeredAreas);
   const boundsRef = useRef(bounds);
+  const isPlayingRef = useRef(isPlaying);
 
   useEffect(() => {
     console.log("bounds", bounds)
@@ -100,9 +104,19 @@ export default function Province(){
   }, [answeredAreas]);
 
   useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+
+  useEffect(() => {
+    console.log("isPlayingref", isPlayingRef.current);
+    
+  }, [isPlaying]);
+
+  useEffect(() => {
     console.log("quiz length", quizList.length);
     if(geojsonLoaded && quizList.length === 0){
       setIsOpen(true)
+      setIsPlaying(false)
     }
   }, [quizList]);
 
@@ -129,7 +143,8 @@ export default function Province(){
   }, [answeredAreas])
 
   return(
-    <div className='w-full h-screen relative'>
+    <div className='w-full h-screen relative flex items-center justify-center'>
+      <title>{`${provinceName} - Tebak Kabupaten & Kota Indonesia`}</title>
       <MapContainer 
         zoomControl={true} 
         dragging={true} 
@@ -167,21 +182,22 @@ export default function Province(){
                 },
                 click: () => {
                   console.log("layer", layer);
-                  
-                  if(!answeredAreasRef.current[clickedName]){
-                    if (clickedName === currentQuestionRef.current) {
-                      console.log("correct");
-                      const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                      setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
-                      setQuizList(filtered);
-                      setCurrentQuestion(filtered[0] || null); 
-                    } else{
-                      console.log("wrong");
-                      const correctAnswer = currentQuestionRef.current!;
-                      const filtered = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
-                      setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
-                      setQuizList(filtered);
-                      setCurrentQuestion(filtered[0] || null);
+                  if(isPlayingRef.current){
+                    if(!answeredAreasRef.current[clickedName]){
+                      if (clickedName === currentQuestionRef.current) {
+                        console.log("correct");
+                        const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
+                        setQuizList(filtered);
+                        setCurrentQuestion(filtered[0] || null); 
+                      } else{
+                        console.log("wrong");
+                        const correctAnswer = currentQuestionRef.current!;
+                        const filtered = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
+                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
+                        setQuizList(filtered);
+                        setCurrentQuestion(filtered[0] || null);
+                      }
                     }
                   }
                 }   
@@ -190,7 +206,7 @@ export default function Province(){
           />
         )}
         {bounds && <FitMapBounds bounds={bounds} />}
-        <MapZoomHandler zoomOut={zoomOut} bounds={indonesiaBounds} onZoomComplete={() => navigate("/")} />
+        <MapZoomHandler zoomOut={zoomOut} bounds={indonesiaBounds} onZoomComplete={() => navigate("/", { state: { scrollable: false } })} />
       </MapContainer>
       {(geojsonLoaded && !zoomOut) && (
         <>
@@ -198,12 +214,24 @@ export default function Province(){
           <h2 className='absolute z-[9999] text-2xl font-bold bottom-10 right-0 left-0'>{currentQuestion ? currentQuestion+"?" : null}</h2>
         </>
       )}
+      {(!modalIsOpen && !isPlaying && !zoomOut) && (
+        <motion.button
+          whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
+          className='bg-[#2b7fff] p-2 w-32 rounded-lg outline-2 outline-blue-950 shadow-lg cursor-pointer absolute z-[400] bottom-20 text-white'
+          onClick={() => {
+            setIsOpen(true)
+          }}
+        >
+          Kembali
+        </motion.button>
+      )}
       {modalIsOpen && (
         <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
-          <div className='bg-white flex flex-col items-center p-6 rounded-lg shadow-lg w-fit'>
+          <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{  opacity: 1, y:0 }} transition={{ duration: 0.3, ease: "easeOut" }} className='bg-white flex flex-col items-center p-6 rounded-lg shadow-xl w-fit border-4 relative'>
             <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${provinceName}` : 'Permainan selesai!'}</h2>
+            <button className='absolute top-3 right-5 text-2xl font-bold cursor-pointer text-[#ff0000]' onClick={() => setIsOpen(false)}>x</button>
             {Object.values(answeredAreas).length === 0 ? (
-              <p className="text-lg mt-2">{allAreas.length} Kabupaten/Kota</p>
+              <p className="text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
             ) : (
               <>
                 <p className="text-lg mt-2">✅Tebakan benar: {Object.values(answeredAreas).filter(v => v === "correct").length}</p>
@@ -221,9 +249,9 @@ export default function Province(){
               </ol>
             </div>
             <div className='text-white w-11/12 flex justify-between'>
-              <button 
-                type="button"
-                className='bg-blue-400 p-2 w-32 rounded-lg border-b-2 border-slate-400 shadow-lg cursor-pointer'
+              <motion.button
+                whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
+                className='bg-[#2b7fff] p-2 w-32 rounded-lg outline-2 outline-blue-950 shadow-lg cursor-pointer'
                 onClick={() => {
                   setZoomOut(true)
                   setIsOpen(false)
@@ -234,8 +262,9 @@ export default function Province(){
                 }}
               >
                 Kembali
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
                 onClick={() => {
                   if(Object.keys(answeredAreas).length === 0){
                     const shuffledAreas = shuffleArray([...allAreas])
@@ -248,13 +277,14 @@ export default function Province(){
                     setAnsweredAreas({})
                   }
                   setIsOpen(false)
+                  setIsPlaying(true)
                 }} 
-                className='bg-blue-400 p-2 w-32 rounded-lg border-b-2 border-slate-400 shadow-lg cursor-pointer'
+                className='bg-[#2b7fff] p-2 w-32 rounded-lg outline-2 outline-blue-950 shadow-lg cursor-pointer'
               >
                 {Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
     </div>
