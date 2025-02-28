@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
 import * as turf from "@turf/turf";
 import "leaflet/dist/leaflet.css";
-import { Feature, FeatureCollection, GeoJsonProperties, Geometry, MultiPolygon, Polygon } from 'geojson';
+import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import { motion } from "motion/react"
 import { useLocation, useNavigate, useParams } from 'react-router';
 import Button from '../../component/Button';
@@ -20,14 +20,6 @@ const expandBBox = (bbox: number[], margin: number) => {
     bbox[3] + margin, // maxLat + margin
   ];
 };
-
-
-type GeoJSONModule = { default: FeatureCollection<Geometry, GeoJsonProperties> };
-
-/** selecting province geojson data based on provinceName */
-const selector = (provinceName: string): () => Promise<GeoJSONModule> => {
-  return () => import(`../../data/${provinceName}.json`);
-}
 
 export default function Province(){
 
@@ -83,34 +75,6 @@ export default function Province(){
         setAllAreas(areaNames)
       })
       .catch((err) => console.error("Failed to load GeoJSON:", err));
-
-    // if (selector(provinceName!)) {
-    //   selector(provinceName!)()
-    //     .then((module) => {
-    //       setGeojsonData(module.default)
-
-    //       // merge geojson feature to calculate bounds
-    //       const mergedFeatureCollection = turf.combine(module.default as FeatureCollection<Polygon | MultiPolygon>)
-    //       const mergedFeature = mergedFeatureCollection.features[0] as Feature<Polygon | MultiPolygon>;
-    //       if (!mergedFeature) {
-    //         console.error("Failed to merge features.");
-    //         return <p>Error loading map</p>;
-    //       }
-    //       const bbox = turf.bbox(mergedFeature); // [minX, minY, maxX, maxY]
-    //       const expandedBBox = expandBBox(bbox, 0.5);
-    //       setBounds([
-    //         [expandedBBox[1], expandedBBox[0]], // Southwest corner (lat, lon)
-    //         [expandedBBox[3], expandedBBox[2]], // Northeast corner (lat, lon)
-    //       ])
-
-    //       setGeojsonLoaded(true)
-
-    //       // setting quiz list
-    //       const areaNames = module.default.features.map((feature: any) => feature.properties.name || "Unknown")
-    //       setAllAreas(areaNames)
-    //     })
-    //     .catch((err) => console.error("Failed to load GeoJSON:", err));
-    // }
   }, []);
 
   // used for state inside MapContainer
