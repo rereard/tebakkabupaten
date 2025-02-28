@@ -65,7 +65,6 @@ function Home() {
 
   return (
     <div className={`w-full h-screen relative ${scrollable ? 'overflow-y-visible': 'overflow-y-hidden'}`}>
-      <title>Tebak Kabupaten & Kota Indonesia</title>
       <MapContainer 
         zoomControl={true} 
         dragging={true} 
