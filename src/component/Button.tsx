@@ -19,14 +19,17 @@ type ButtonProps = {
   zIndex?: number;
   /** customize button css position, default is undefined */
   position?: PositionType
+  /** change button disabled, default false */
+  disabled?: boolean
 }
 
 type PositionType = "absolute" | "relative" | "fixed" | "static" | "sticky";
 
-export default function Button({ onClick, width = 128, className, animate, exit, transition, initial, title, zIndex = undefined, position = undefined }: ButtonProps){
+export default function Button({ onClick, width = 128, className, animate, exit, transition, initial, title, zIndex = undefined, position = undefined, disabled = false }: ButtonProps){
   return(
     <motion.button
-      whileHover={{ backgroundColor: '#155dfc', scale: 1.05 }}
+      disabled={disabled}
+      whileHover={disabled ? {} : { backgroundColor: '#155dfc', scale: 1.05 }}
       initial={initial}
       animate={animate}
       exit={exit}

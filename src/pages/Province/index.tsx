@@ -6,6 +6,7 @@ import { Feature, FeatureCollection, GeoJsonProperties, Geometry, MultiPolygon, 
 import { motion } from "motion/react"
 import { useLocation, useNavigate, useParams } from 'react-router';
 import Button from '../../component/Button';
+import Spinner from '../../component/Spinner';
 
 /** shuffling array */
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
@@ -48,37 +49,68 @@ export default function Province(){
 
   // setting geojson data and map bounds
   useEffect(() => {
+    if (!provinceName) return;
 
     setGeojsonData(null); // Reset while loading new data
     setGeojsonLoaded(false)
 
-    if (selector(provinceName!)) {
-      selector(provinceName!)()
-        .then((module) => {
-          setGeojsonData(module.default)
+    fetch(`/data/${provinceName}.json`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`Failed to load ${provinceName}.json`);
+        return res.json();
+      })
+      .then((data) => {
+        setGeojsonData(data)
 
-          // merge geojson feature to calculate bounds
-          const mergedFeatureCollection = turf.combine(module.default as FeatureCollection<Polygon | MultiPolygon>)
-          const mergedFeature = mergedFeatureCollection.features[0] as Feature<Polygon | MultiPolygon>;
-          if (!mergedFeature) {
-            console.error("Failed to merge features.");
-            return <p>Error loading map</p>;
-          }
-          const bbox = turf.bbox(mergedFeature); // [minX, minY, maxX, maxY]
-          const expandedBBox = expandBBox(bbox, 0.5);
-          setBounds([
-            [expandedBBox[1], expandedBBox[0]], // Southwest corner (lat, lon)
-            [expandedBBox[3], expandedBBox[2]], // Northeast corner (lat, lon)
-          ])
+        // merge geojson feature to calculate bounds
+        const mergedFeatureCollection = turf.combine(data as FeatureCollection<Polygon | MultiPolygon>)
+        const mergedFeature = mergedFeatureCollection.features[0] as Feature<Polygon | MultiPolygon>;
+        if (!mergedFeature) {
+          console.error("Failed to merge features.");
+          return <p>Error loading map</p>;
+        }
+        const bbox = turf.bbox(mergedFeature); // [minX, minY, maxX, maxY]
+        const expandedBBox = expandBBox(bbox, 0.5);
+        setBounds([
+          [expandedBBox[1], expandedBBox[0]], // Southwest corner (lat, lon)
+          [expandedBBox[3], expandedBBox[2]], // Northeast corner (lat, lon)
+        ])
 
-          setGeojsonLoaded(true)
+        setGeojsonLoaded(true)
 
-          // setting quiz list
-          const areaNames = module.default.features.map((feature: any) => feature.properties.name || "Unknown")
-          setAllAreas(areaNames)
-        })
-        .catch((err) => console.error("Failed to load GeoJSON:", err));
-    }
+        // setting quiz list
+        const areaNames =data.features.map((feature: any) => feature.properties.name || "Unknown")
+        setAllAreas(areaNames)
+      })
+      .catch((err) => console.error("Failed to load GeoJSON:", err));
+
+    // if (selector(provinceName!)) {
+    //   selector(provinceName!)()
+    //     .then((module) => {
+    //       setGeojsonData(module.default)
+
+    //       // merge geojson feature to calculate bounds
+    //       const mergedFeatureCollection = turf.combine(module.default as FeatureCollection<Polygon | MultiPolygon>)
+    //       const mergedFeature = mergedFeatureCollection.features[0] as Feature<Polygon | MultiPolygon>;
+    //       if (!mergedFeature) {
+    //         console.error("Failed to merge features.");
+    //         return <p>Error loading map</p>;
+    //       }
+    //       const bbox = turf.bbox(mergedFeature); // [minX, minY, maxX, maxY]
+    //       const expandedBBox = expandBBox(bbox, 0.5);
+    //       setBounds([
+    //         [expandedBBox[1], expandedBBox[0]], // Southwest corner (lat, lon)
+    //         [expandedBBox[3], expandedBBox[2]], // Northeast corner (lat, lon)
+    //       ])
+
+    //       setGeojsonLoaded(true)
+
+    //       // setting quiz list
+    //       const areaNames = module.default.features.map((feature: any) => feature.properties.name || "Unknown")
+    //       setAllAreas(areaNames)
+    //     })
+    //     .catch((err) => console.error("Failed to load GeoJSON:", err));
+    // }
   }, []);
 
   // used for state inside MapContainer
@@ -224,24 +256,30 @@ export default function Province(){
           <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{  opacity: 1, y:0 }} transition={{ duration: 0.3, ease: "easeOut" }} className='bg-white flex flex-col items-center p-6 rounded-lg shadow-xl w-fit border-4 relative'>
             <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${provinceName}` : 'Permainan selesai!'}</h2>
             <button className='absolute top-3 right-5 text-2xl font-bold cursor-pointer text-[#ff0000]' onClick={() => setIsOpen(false)}>x</button>
-            {Object.values(answeredAreas).length === 0 ? (
-              <p className="text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
-            ) : (
-              <>
-                <p className="text-lg mt-2">✅Tebakan benar: {Object.values(answeredAreas).filter(v => v === "correct").length}</p>
-                <p className="text-lg">❌Tebakan salah: {Object.values(answeredAreas).filter(v => v === "wrong").length}</p>
-              </>
-            )}
-            <div className='my-4 h-fit max-h-56 overflow-y-auto'>
-              <ol className='list-decimal list-inside columns-2 pl-5 text-left'>
-                {Object.keys(answeredAreas).length === 0 ? (
-                  allAreas.map((name, index) => (<li className='text-black font-medium' key={index}>{name}</li>))
-                ) : 
-                Object.keys(answeredAreas).map((key, index) => (
-                  <li className={`${answeredAreas[key] === "wrong" ? 'text-red-600' : answeredAreas[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium`} key={index}>{key}</li>
-                ))}
-              </ol>
-            </div>
+            {!geojsonLoaded ? (
+              <Spinner />
+            ) : 
+            <>
+              {Object.values(answeredAreas).length === 0 ? (
+                <p className="text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
+              ) : (
+                <>
+                  <p className="text-lg mt-2">✅Tebakan benar: {Object.values(answeredAreas).filter(v => v === "correct").length}</p>
+                  <p className="text-lg">❌Tebakan salah: {Object.values(answeredAreas).filter(v => v === "wrong").length}</p>
+                </>
+              )}
+              <div className='my-4 h-fit max-h-56 overflow-y-auto'>
+                <ol className='list-decimal list-inside columns-2 pl-5 text-left'>
+                  {Object.keys(answeredAreas).length === 0 ? (
+                    allAreas.map((name, index) => (<li className='text-black font-medium' key={index}>{name}</li>))
+                  ) : 
+                  Object.keys(answeredAreas).map((key, index) => (
+                    <li className={`${answeredAreas[key] === "wrong" ? 'text-red-600' : answeredAreas[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium`} key={index}>{key}</li>
+                  ))}
+                </ol>
+              </div>
+            </>
+            }
             <div className='text-white w-11/12 flex justify-between'>
               <Button 
                 title='Kembali'
@@ -255,6 +293,8 @@ export default function Province(){
                 }}
               />
               <Button 
+                disabled={!geojsonLoaded}
+                className=' disabled:bg-blue-200 disabled:outline-gray-300 disabled:cursor-auto'
                 title={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
                 onClick={() => {
                   if(Object.keys(answeredAreas).length === 0){
