@@ -147,7 +147,7 @@ function Home() {
         </div>
       )}
       <footer className='flex p-4 bg-gray-800 text-white flex-col items-start gap-y-2'>
-        <p>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a></p>
+        <p>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a> | Project's repo <a href='https://github.com/rereard/tebakkabupaten' target='_blank'>here</a></p>
         <p className='text-justify'>
           Website ini menggunakan data dari <a className='hover:underline text-blue-400' href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, 
           diekstrak menggunakan <a href="https://overpass-turbo.eu/" target="_blank">Overpass Turbo</a>, 
@@ -155,6 +155,7 @@ function Home() {
           ditampilkan menggunakan <a href="https://leafletjs.com/" target="_blank">Leaflet</a>, 
           dan menggunakan map tiles dari <a href="https://carto.com/" target="_blank">Carto Voyager (no labels)</a>.
         </p>
+        <p className='self-center'>Work in Progress~</p>
       </footer>
     </div>
   )
@@ -172,9 +173,6 @@ const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> =
 
       map.setMinZoom(newMinZoom + 0.3);
       map.setMaxBounds(bounds)
-
-      console.log("New Bounds Applied: ", bounds);
-      console.log("Updated Zoom Limits - Min:", newMinZoom, "Max: 14");
     }
   }, [map, bounds]);
   return null;

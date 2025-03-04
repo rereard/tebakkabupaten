@@ -7,6 +7,14 @@ import { motion } from "motion/react"
 import { useLocation, useNavigate, useParams } from 'react-router';
 import Button from '../../component/Button';
 import Spinner from '../../component/Spinner';
+import CheckLabel from '../../component/CheckLabel';
+
+enum GameMode {
+  Casual = 1,
+  SuddenDeath = 2,
+  TimeTrial = 3,
+  Mix = 4,
+}
 
 /** shuffling array */
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
@@ -38,6 +46,11 @@ export default function Province(){
   const [answeredAreas, setAnsweredAreas] = useState<{ [key: string]: "correct" | "wrong" }>({});
   const [modalIsOpen, setIsOpen] = useState<boolean>(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [gameMode, setGameMode] = useState<GameMode>(GameMode.Casual)
+
+  useEffect(() => {
+    console.log("gameMode", gameMode);
+  }, [gameMode]);
 
   // setting geojson data and map bounds
   useEffect(() => {
@@ -83,6 +96,7 @@ export default function Province(){
   const answeredAreasRef = useRef(answeredAreas);
   const boundsRef = useRef(bounds);
   const isPlayingRef = useRef(isPlaying);
+  const gameModeRef = useRef(gameMode)
 
   useEffect(() => {
     currentQuestionRef.current = currentQuestion;
@@ -105,6 +119,10 @@ export default function Province(){
   }, [isPlaying]);
 
   useEffect(() => {
+    gameModeRef.current = gameMode;
+  }, [gameMode]);
+
+  useEffect(() => {
     if(geojsonLoaded && quizList.length === 0){
       setIsOpen(true)
       setIsPlaying(false)
@@ -123,16 +141,16 @@ export default function Province(){
   };
 
   // counting correct and wrong answer
-  const { correctCount, wrongCount } = useMemo(() => {
-    return Object.values(answeredAreas).reduce(
-      (acc, value) => {
-        if (value === "correct") acc.correctCount++;
-        else if (value === "wrong") acc.wrongCount++;
-        return acc;
-      },
-      { correctCount: 0, wrongCount: 0 }
-    );
-  }, [answeredAreas])
+  // const { correctCount, wrongCount } = useMemo(() => {
+  //   return Object.values(answeredAreas).reduce(
+  //     (acc, value) => {
+  //       if (value === "correct") acc.correctCount++;
+  //       else if (value === "wrong") acc.wrongCount++;
+  //       return acc;
+  //     },
+  //     { correctCount: 0, wrongCount: 0 }
+  //   );
+  // }, [answeredAreas])
 
   return(
     <div className='w-full h-screen relative flex items-center justify-center'>
@@ -173,21 +191,49 @@ export default function Province(){
                 },
                 click: () => {
                   if(isPlayingRef.current){
-                    if(!answeredAreasRef.current[clickedName]){
-                      if (clickedName === currentQuestionRef.current) {
-                        console.log("correct");
-                        const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
-                        setQuizList(filtered);
-                        setCurrentQuestion(filtered[0] || null); 
-                      } else{
-                        console.log("wrong");
-                        const correctAnswer = currentQuestionRef.current!;
-                        const filtered = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
-                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
-                        setQuizList(filtered);
-                        setCurrentQuestion(filtered[0] || null);
-                      }
+                    switch (gameModeRef.current) {
+                      case GameMode.Casual:
+                        if(!answeredAreasRef.current[clickedName]){
+                          if (clickedName === currentQuestionRef.current) {
+                            console.log("correct");
+                            const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                            setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
+                            setQuizList(filtered);
+                            setCurrentQuestion(filtered[0] || null); 
+                          } else{
+                            console.log("wrong");
+                            const correctAnswer = currentQuestionRef.current!;
+                            const filtered = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
+                            setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
+                            setQuizList(filtered);
+                            setCurrentQuestion(filtered[0] || null);
+                          }
+                        }
+                        break;
+                      case GameMode.SuddenDeath:
+                        if(!answeredAreasRef.current[clickedName]){
+                          if (clickedName === currentQuestionRef.current) {
+                            console.log("correct");
+                            const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                            setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
+                            setQuizList(filtered);
+                            setCurrentQuestion(filtered[0] || null); 
+                          } else{
+                            console.log("wrong");
+                            const correctAnswer = currentQuestionRef.current!;
+                            const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                            const unsanswered = filtered.reduce((names, key) => {
+                              names[key] = 'unanswered'
+                              return names
+                            }, {} as Record<string, any>)
+                            setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
+                            setQuizList([]);
+                            setCurrentQuestion(null);
+                          }
+                        }
+                        break
+                      default:
+                        break;
                     }
                   }
                 }   
@@ -200,7 +246,7 @@ export default function Province(){
       </MapContainer>
       {(geojsonLoaded && !zoomOut) && (
         <>
-          <h2 className='absolute z-[400] text-2xl font-bold top-10 right-0 left-0'>{Object.values(answeredAreas).length === 0 ? null : `✅${correctCount} ❌${wrongCount}`}</h2>
+          <h2 className='absolute z-[400] text-2xl font-bold top-10 right-0 left-0'>{currentQuestion ? `${Object.values(answeredAreas).length}/${allAreas.length}`: null}</h2>
           <h2 className='absolute z-[9999] text-2xl font-bold bottom-10 right-0 left-0'>{currentQuestion ? currentQuestion+"?" : null}</h2>
         </>
       )}
@@ -215,11 +261,13 @@ export default function Province(){
           }}
         />
       )}
+
+      {/* Modal Component */}
       {modalIsOpen && (
         <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
           <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{  opacity: 1, y:0 }} transition={{ duration: 0.3, ease: "easeOut" }} className='bg-white flex flex-col items-center p-6 rounded-lg shadow-xl w-fit border-4 relative'>
             <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${provinceName}` : 'Permainan selesai!'}</h2>
-            <button className='absolute top-3 right-5 text-2xl font-bold cursor-pointer text-[#ff0000]' onClick={() => setIsOpen(false)}>x</button>
+            <motion.button whileHover={{ scale: 1.07 }} className='absolute top-2 right-2 text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000]' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
             {!geojsonLoaded ? (
               <Spinner />
             ) : 
@@ -228,11 +276,10 @@ export default function Province(){
                 <p className="text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
               ) : (
                 <>
-                  <p className="text-lg mt-2">✅Tebakan benar: {Object.values(answeredAreas).filter(v => v === "correct").length}</p>
-                  <p className="text-lg">❌Tebakan salah: {Object.values(answeredAreas).filter(v => v === "wrong").length}</p>
+                  <p className='text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}</p>
                 </>
               )}
-              <div className='my-4 h-fit max-h-56 overflow-y-auto'>
+              <div className='my-4 h-fit w-full max-h-56 overflow-y-auto'>
                 <ol className='list-decimal list-inside columns-2 pl-5 text-left'>
                   {Object.keys(answeredAreas).length === 0 ? (
                     allAreas.map((name, index) => (<li className='text-black font-medium' key={index}>{name}</li>))
@@ -244,6 +291,47 @@ export default function Province(){
               </div>
             </>
             }
+            <div className='p-2 mb-4 flex flex-col w-full gap-1'>
+              <div className='flex'>
+                <span>Mode:</span>
+                <div className='flex-1 flex justify-around'>
+                  <CheckLabel 
+                    checked={gameMode === GameMode.Casual ? true : false}
+                    onChange={() => setGameMode(GameMode.Casual)}
+                    title='Kasual'
+                  />
+                  <CheckLabel 
+                    checked={(gameMode === GameMode.SuddenDeath || gameMode === GameMode.Mix) ? true : false}
+                    onChange={() => {
+                      if(gameMode === GameMode.TimeTrial){
+                        setGameMode(GameMode.Mix)
+                      } else if(gameMode === GameMode.Mix){
+                        setGameMode(GameMode.TimeTrial)
+                      } else{
+                        setGameMode(GameMode.SuddenDeath)
+                      }
+                    }}
+                    title='Sudden-Death'
+                  />
+                  {/* <CheckLabel 
+                    checked={(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix) ? true : false}
+                    onChange={() => {
+                      if(gameMode === GameMode.SuddenDeath){
+                        setGameMode(GameMode.Mix)
+                      } else if(gameMode === GameMode.Mix){
+                        setGameMode(GameMode.SuddenDeath)
+                      } else{
+                        setGameMode(GameMode.TimeTrial)
+                      }
+                    }}
+                    title='Time Trial'
+                  /> */}
+                </div>
+              </div>
+              <div className='w-full max-w-96 self-center font-bold italic'>
+                <p>{gameMode === GameMode.Casual ? 'Tebak tanpa batasan waktu atau penalti. Cocok untuk belajar sambil santai!' : gameMode === GameMode.SuddenDeath ? 'Satu kesalahan, game over! Uji ketepatan tanpa ruang untuk salah.' : gameMode === GameMode.TimeTrial  ? 'Selesaikan secepat mungkin! Waktu berjalan, jadi jangan sampai kalah cepat.' : 'Ultimate Challenge! Cepat dan tepat, atau game over!'}</p>
+              </div>
+            </div>
             <div className='text-white w-11/12 flex justify-between'>
               <Button 
                 title='Kembali'
@@ -300,9 +388,6 @@ const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> =
 
       map.setMinZoom(newMinZoom + 0.4);
       map.setMaxBounds(bounds)
-
-      console.log("New Bounds Applied: ", bounds);
-      console.log("Updated Zoom Limits - Min:", newMinZoom, "Max: 14");
     }
   }, [map, bounds]);
   return null;
