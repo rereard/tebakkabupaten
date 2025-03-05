@@ -57,9 +57,11 @@ function Home() {
   function animateZoomToProvince(map: L.Map,bounds: L.LatLngBounds, provinceName: string) {
     map.flyToBounds(bounds, { duration: 0.7 }); // ✅ Smooth zoom-in animation
     setZoomIn(true)
-
+    const encodedProvince = provinceName.replace(/ /g, "_");
+    console.log("encodedprov", encodedProvince);
+    
     setTimeout(() => {
-      navigate(`/${provinceName}`, { state: bounds }); // ✅ Change route AFTER animation
+      navigate(`/${encodedProvince}`, { state: bounds }); // ✅ Change route AFTER animation
     }, 700);
   }
 

@@ -35,6 +35,8 @@ export default function Province(){
   const location = useLocation()
   const indonesiaBounds = location.state?.bounds || [[-11, 94], [6, 141]];
   const { provinceName } = useParams<{ provinceName: string }>();
+  const decodedProvince = provinceName?.replace(/_/g, " ");
+  
 
   const [geojsonData, setGeojsonData] = useState<FeatureCollection | null>(null);
   const [bounds, setBounds] = useState<[[number, number], [number, number]] | null>(null)
@@ -54,14 +56,14 @@ export default function Province(){
 
   // setting geojson data and map bounds
   useEffect(() => {
-    if (!provinceName) return;
+    if (!decodedProvince) return;
 
     setGeojsonData(null); // Reset while loading new data
     setGeojsonLoaded(false)
 
-    fetch(`/data/${provinceName}.json`)
+    fetch(`/data/${decodedProvince}.json`)
       .then((res) => {
-        if (!res.ok) throw new Error(`Failed to load ${provinceName}.json`);
+        if (!res.ok) throw new Error(`Failed to load ${decodedProvince}.json`);
         return res.json();
       })
       .then((data) => {
@@ -154,7 +156,7 @@ export default function Province(){
 
   return(
     <div className='w-full h-screen relative flex items-center justify-center'>
-      <title>{`${provinceName} - Tebak Kabupaten & Kota Indonesia`}</title>
+      <title>{`${decodedProvince} - Tebak Kabupaten & Kota Indonesia`}</title>
       <MapContainer 
         zoomControl={true} 
         dragging={true} 
@@ -266,7 +268,7 @@ export default function Province(){
       {modalIsOpen && (
         <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
           <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{  opacity: 1, y:0 }} transition={{ duration: 0.3, ease: "easeOut" }} className='bg-white flex flex-col items-center p-6 rounded-lg shadow-xl w-fit border-4 relative'>
-            <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${provinceName}` : 'Permainan selesai!'}</h2>
+            <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${decodedProvince}` : 'Permainan selesai!'}</h2>
             <motion.button whileHover={{ scale: 1.07 }} className='absolute top-2 right-2 text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000]' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
             {!geojsonLoaded ? (
               <Spinner />
