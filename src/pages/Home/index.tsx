@@ -66,88 +66,90 @@ function Home() {
   }
 
   return (
-    <div className={`w-full h-screen relative ${scrollable ? 'overflow-y-visible': 'overflow-y-hidden'}`}>
-      <MapContainer 
-        zoomControl={true} 
-        dragging={true} 
-        scrollWheelZoom={true}
-        doubleClickZoom={true}
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png'
-          subdomains='abcd'
-        />
-          {geojsonData && (
-            <GeoJSON
-              data={geojsonData}
-              style={getFeatureStyle}
-              onEachFeature={(feature: any, layer: any) => {
-                const name = feature.properties.name;
-                layer.on({
-                  mouseover: () => {
-                    setHoveredName(name)
-                  },
-                  mouseout: () => {
-                    setHoveredName(null)
-                  },
-                  click: () => {
-                    const map = layer._map; // ✅ Get the Leaflet map instance
-                    if (map) animateZoomToProvince(map, layer.getBounds(), name);
-                  }   
-                })
-              }}
-            />
+    <div className={`${scrollable ? 'overflow-y-visible': 'overflow-y-hidden'} w-full h-screen`}>
+      <div className={`w-full h-full relative`}>
+        <MapContainer 
+          zoomControl={true} 
+          dragging={true} 
+          scrollWheelZoom={true}
+          doubleClickZoom={true}
+          style={{ height: "100%", width: "100%" }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+            url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png'
+            subdomains='abcd'
+          />
+            {geojsonData && (
+              <GeoJSON
+                data={geojsonData}
+                style={getFeatureStyle}
+                onEachFeature={(feature: any, layer: any) => {
+                  const name = feature.properties.name;
+                  layer.on({
+                    mouseover: () => {
+                      setHoveredName(name)
+                    },
+                    mouseout: () => {
+                      setHoveredName(null)
+                    },
+                    click: () => {
+                      const map = layer._map; // ✅ Get the Leaflet map instance
+                      if (map) animateZoomToProvince(map, layer.getBounds(), name);
+                    }   
+                  })
+                }}
+              />
+            )}
+          {bounds && <FitMapBounds bounds={bounds} />}
+        </MapContainer>
+        <AnimatePresence>
+          {scrollable && (
+            <div className='absolute z-[9999] h-screen w-full top-0 flex items-center justify-center'>
+              <motion.h1 
+                exit={{ opacity: 0, y: -80 }}
+                initial={{ opacity: 0, y: -80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ease: "easeInOut" }}
+                className='text-5xl z-20 font-bold absolute top-10 border-y-4 border-black right-0 text-white left-0 bg-[#ff0000]'
+              >
+                TEBAK KABUPATEN & KOTA <p className='border-t-2 bg-white text-[#ff0000]'>INDONESIA</p>
+              </motion.h1>
+              <Button 
+                title='Mulai Main!'
+                onClick={() => {
+                  setScrollable(false)
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 80 }}
+                transition={{ ease: "easeInOut" }}
+                className='bottom-20'
+                width={216}
+                zIndex={20}
+                position='absolute'
+              />
+            </div>
           )}
-        {bounds && <FitMapBounds bounds={bounds} />}
-      </MapContainer>
-      <AnimatePresence>
-        {scrollable && (
-          <div className='absolute z-[9999] h-screen w-full top-0 flex items-center justify-center'>
-            <motion.h1 
-              exit={{ opacity: 0, y: -80 }}
-              initial={{ opacity: 0, y: -80 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ease: "easeInOut" }}
-              className='text-5xl z-20 font-bold absolute top-10 border-y-4 border-black right-0 text-white left-0 bg-[#ff0000]'
-            >
-              TEBAK KABUPATEN & KOTA <p className='border-t-2 bg-white text-[#ff0000]'>INDONESIA</p>
-            </motion.h1>
+        </AnimatePresence>
+        {(geojsonData && !scrollable && !zoomIn) && (
+          <div className='absolute h-screen w-full top-0 flex items-center justify-center'>
+            <h2 className='absolute z-[400] text-3xl font-bold top-10 right-0 left-0'>Pilih Provinsi!</h2>
+            <h2 className='absolute z-[400] text-3xl font-bold bottom-25 right-0 left-0'>{HoveredName}</h2>
             <Button 
-              title='Mulai Main!'
+              title='Kembali'
               onClick={() => {
-                setScrollable(false)
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                setScrollable(true)
               }}
-              initial={{ opacity: 0, y: 80 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 80 }}
-              transition={{ ease: "easeInOut" }}
-              className='bottom-20'
-              width={216}
-              zIndex={20}
+              className='bottom-10'
+              width={160}
+              zIndex={9999}
               position='absolute'
             />
           </div>
         )}
-      </AnimatePresence>
-      {(geojsonData && !scrollable && !zoomIn) && (
-        <div className='absolute h-screen w-full top-0 flex items-center justify-center'>
-          <h2 className='absolute z-[400] text-3xl font-bold top-10 right-0 left-0'>Pilih Provinsi!</h2>
-          <h2 className='absolute z-[400] text-3xl font-bold bottom-25 right-0 left-0'>{HoveredName}</h2>
-          <Button 
-            title='Kembali'
-            onClick={() => {
-              setScrollable(true)
-            }}
-            className='bottom-10'
-            width={160}
-            zIndex={9999}
-            position='absolute'
-          />
-        </div>
-      )}
+      </div>
       <footer className='flex p-4 bg-gray-800 text-white flex-col items-start gap-y-2'>
         <p>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a> | Project's repo <a href='https://github.com/rereard/tebakkabupaten' target='_blank'>here</a></p>
         <p className='text-justify'>

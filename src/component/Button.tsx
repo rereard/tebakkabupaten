@@ -29,14 +29,14 @@ export default function Button({ onClick, width = 128, className, animate, exit,
   return(
     <motion.button
       disabled={disabled}
-      whileHover={disabled ? {} : { backgroundColor: '#155dfc', scale: 1.05 }}
+      whileHover={disabled ? {} : { scale: 1.1 }}
       initial={initial}
       animate={animate}
       exit={exit}
       transition={transition}
       onClick={onClick}
       style={{ width, zIndex, position }}
-      className={`bg-[#2b7fff] text-white p-2 outline-2 outline-blue-950 rounded-lg border-slate-400 shadow-lg cursor-pointer ${className}`}
+      className={`bg-white text-[#ff0000] p-2 outline-2 outline-[#ff0000] rounded-lg shadow-2xl cursor-pointer ${className}`}
     >
       {title}
     </motion.button>
