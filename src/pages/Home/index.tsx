@@ -113,7 +113,7 @@ function Home() {
                 transition={{ ease: "easeInOut" }}
                 className='text-xl md:text-2xl lg:text-5xl z-20 font-bold absolute top-10 right-0 text-black left-0 flex justify-center items-center'
               >
-                <img src="/thumbnail.png" alt="Website's Icon" className='w-24 md:w-36 lg:w-52' /> <span className='text-left'><p>TEBAK KABUPATEN & KOTA</p><p>INDONESIA</p></span>
+                <img loading='lazy' src="/thumbnail.png" alt="Website's Icon" className='w-24 md:w-36 lg:w-52' /> <span className='text-left'><p>TEBAK KABUPATEN & KOTA</p><p>INDONESIA</p></span>
               </motion.h1>
               <Button 
                 title='Mulai Main!'

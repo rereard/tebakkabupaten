@@ -365,8 +365,8 @@ export default function Province(){
                 }}
               />
               <Button 
-                disabled={!geojsonLoaded}
-                className=' disabled:bg-blue-200 disabled:outline-gray-300 disabled:cursor-auto'
+                disabled={!geojsonLoaded || gameMode === GameMode.Mix}
+                className=' disabled:bg-sky-200 disabled:cursor-auto disabled:border-sky-900'
                 title={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
                 onClick={() => {
                   const shuffleAreaList = shuffleArray([...allAreas])
