@@ -47,7 +47,7 @@ function Home() {
   const getFeatureStyle = (feature: any) => {
     return { 
       fillColor: HoveredName === feature.properties.name ? "#ff0000" : "transparent",
-      fillOpacity: HoveredName === feature.properties.name ? 0.4 : 0,
+      fillOpacity: HoveredName === feature.properties.name ? 0.3 : 0,
       color: "#ff0000",
       weight: 1,
     };
@@ -67,7 +67,7 @@ function Home() {
 
   return (
     <div className={`${scrollable ? 'overflow-y-visible': 'overflow-y-hidden'} w-full h-screen`}>
-      <div className={`w-full h-full relative`}>
+      <section className={`w-full h-full relative`}>
         <MapContainer 
           zoomControl={true} 
           dragging={true} 
@@ -111,9 +111,9 @@ function Home() {
                 initial={{ opacity: 0, y: -80 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeInOut" }}
-                className='text-5xl z-20 font-bold absolute top-10 border-y-4 border-black right-0 text-white left-0 bg-[#ff0000]'
+                className='text-xl md:text-2xl lg:text-5xl z-20 font-bold absolute top-10 right-0 text-black left-0 flex justify-center items-center'
               >
-                TEBAK KABUPATEN & KOTA <p className='border-t-2 bg-white text-[#ff0000]'>INDONESIA</p>
+                <img src="/thumbnail.png" alt="Website's Icon" className='w-24 md:w-36 lg:w-52' /> <span className='text-left'><p>TEBAK KABUPATEN & KOTA</p><p>INDONESIA</p></span>
               </motion.h1>
               <Button 
                 title='Mulai Main!'
@@ -149,7 +149,7 @@ function Home() {
             />
           </div>
         )}
-      </div>
+      </section>
       <footer className='flex p-4 bg-gray-800 text-white flex-col items-start gap-y-2'>
         <p>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a> | Project's repo <a href='https://github.com/rereard/tebakkabupaten' target='_blank'>here</a></p>
         <p className='text-justify'>

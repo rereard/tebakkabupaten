@@ -1,12 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-quantico: 'Quantico';
-  --font-fredoka: 'Fredoka';
-  --font-merriweather: 'Merriweather'
+  --font-parkinsans: 'Parkinsans';
 }
 
 a{
@@ -16,9 +12,7 @@ a{
 #root {
   margin: 0 auto;
   text-align: center;
-  @apply font-quantico;
-  /* @apply font-fredoka; */
-  /* @apply font-merriweather */
+  @apply font-parkinsans;
 }
 
 .leaflet-tooltip {
