@@ -1,198 +1,237 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
-      <loc>https://tebakkabupaten.pages.dev/</loc>
-      <priority>1.0</priority>
-      <changefreq>daily</changefreq>
-    </url>
+    <loc>https://tebakkabupaten.pages.dev/</loc>
+    <priority>1.0</priority>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Bali</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Nusa_Tenggara_Barat</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Banten</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Jawa_Tengah</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Jawa_Barat</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Kalimantan_Tengah</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Kalimantan_Selatan</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Kalimantan_Barat</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sulawesi_Tengah</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Gorontalo</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sulawesi_Utara</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sulawesi_Selatan</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sulawesi_Tenggara</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sulawesi_Barat</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Aceh</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Bengkulu</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Jambi</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Lampung</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Riau</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sumatera_Barat</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sumatera_Selatan</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Sumatera_Utara</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Nusa_Tenggara_Timur</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Maluku</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Maluku_Utara</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Jawa_Timur</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Kepulauan_Bangka_Belitung</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Kepulauan_Riau</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Papua</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Papua_Barat</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Kalimantan_Timur</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Kalimantan_Utara</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Daerah_Istimewa_Yogyakarta</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/DKI_Jakarta</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Papua_Pegunungan</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Papua_Selatan</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Papua_Tengah</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     <url>
       <loc>https://tebakkabupaten.pages.dev/Papua_Barat_Daya</loc>
       <priority>0.8</priority>
+      <lastmod>2025-03-09</lastmod>
       <changefreq>weekly</changefreq>
     </url>
   </urlset>
