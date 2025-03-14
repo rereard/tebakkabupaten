@@ -9,6 +9,7 @@ import Button from '../../component/Button';
 import Spinner from '../../component/Spinner';
 import CheckLabel from '../../component/CheckLabel';
 import useStopwatch from '../../utils/useStopwatch';
+import expandBBox from '../../utils/expandBbox';
 
 enum GameMode {
   Casual = 1,
@@ -19,16 +20,6 @@ enum GameMode {
 
 /** shuffling array */
 const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
-
-/** function to expand bbox by amount of margin */
-const expandBBox = (bbox: number[], margin: number) => {
-  return [
-    bbox[0] - margin, // minLng - margin
-    bbox[1] - margin, // minLat - margin
-    bbox[2] + margin, // maxLng + margin
-    bbox[3] + margin, // maxLat + margin
-  ];
-};
 
 export default function Province(){
 
@@ -130,7 +121,7 @@ export default function Province(){
     if(geojsonLoaded && quizList.length === 0){
       setIsOpen(true)
       setIsPlaying(false)
-      if(gameMode === GameMode.TimeTrial){
+      if(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix){
         stopwatch.stop()
         setSavedTime(stopwatch.formattedTime)
       }
@@ -245,6 +236,28 @@ export default function Province(){
                         stopwatch.addTime(10)
                       }
                       break
+                    case GameMode.Mix:
+                      if(!answeredAreasRef.current[clickedName]){
+                        if (clickedName === currentQuestionRef.current) {
+                          console.log("correct");
+                          const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                          setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
+                          setQuizList(filtered);
+                          setCurrentQuestion(filtered[0] || null); 
+                        } else{
+                          console.log("wrong");
+                          const correctAnswer = currentQuestionRef.current!;
+                          const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                          const unsanswered = filtered.reduce((names, key) => {
+                            names[key] = 'unanswered'
+                            return names
+                          }, {} as Record<string, any>)
+                          setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
+                          setQuizList([]);
+                          setCurrentQuestion(null);
+                        }
+                      }
+                      break
                     default:
                       break;
                   }
@@ -267,7 +280,7 @@ export default function Province(){
         <>
           <h2 className='absolute z-[400] text-2xl font-bold top-10 right-0 left-0'>{currentQuestion ? `${Object.values(answeredAreas).length}/${allAreas.length}`: null}</h2>
           <h2 className='absolute z-[9999] text-2xl font-bold bottom-10 right-0 left-0'>{currentQuestion ? currentQuestion+"?" : null}</h2>
-          {(gameMode === GameMode.TimeTrial && isPlaying) && <h2 className='absolute z-[400] text-2xl font-bold top-20 right-0 left-0'>{stopwatch.formattedTime}</h2>}
+          {((gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix) && isPlaying) && <h2 className='absolute z-[400] text-2xl font-bold top-20 right-0 left-0'>{stopwatch.formattedTime}</h2>}
         </>
       )}
       {(!modalIsOpen && !isPlaying && !zoomOut) && (
@@ -365,7 +378,7 @@ export default function Province(){
                 }}
               />
               <Button 
-                disabled={!geojsonLoaded || gameMode === GameMode.Mix}
+                // disabled={!geojsonLoaded || gameMode === GameMode.Mix}
                 className=' disabled:bg-sky-200 disabled:cursor-auto disabled:border-sky-900'
                 title={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
                 onClick={() => {
@@ -378,7 +391,7 @@ export default function Province(){
                   }
                   setIsOpen(false)
                   setIsPlaying(true)
-                  if(gameMode === GameMode.TimeTrial){
+                  if(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix){
                     stopwatch.reset()
                     stopwatch.start()
                   }

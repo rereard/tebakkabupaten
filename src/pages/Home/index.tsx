@@ -8,6 +8,7 @@ import IndonesiaJson from '../../data/indonesia.json'
 import { useLocation, useNavigate } from 'react-router';
 import { AnimatePresence, motion } from "motion/react"
 import Button from '../../component/Button';
+import expandBBox from '../../utils/expandBbox';
 
 const geojsonData: FeatureCollection = IndonesiaJson as FeatureCollection
 
@@ -16,15 +17,6 @@ function Home() {
   const location = useLocation()
   const fromProvince: boolean = location.state ? location.state?.scrollable : true;
 
-  /** function to expand bbox by amount of margin */
-  const expandBBox = (bbox: number[], margin: number) => {
-    return [
-      bbox[0] - margin, // minLng - margin
-      bbox[1] - margin, // minLat - margin
-      bbox[2] + margin, // maxLng + margin
-      bbox[3] + margin, // maxLat + margin
-    ];
-  };
   const [HoveredName, setHoveredName] = useState<string | null>(null)
   const [bounds, setBounds] = useState<[[number, number], [number, number]] | null>(null)
   const [scrollable, setScrollable] = useState<boolean>(fromProvince)
