@@ -378,7 +378,7 @@ export default function Province(){
                 }}
               />
               <Button 
-                // disabled={!geojsonLoaded || gameMode === GameMode.Mix}
+                disabled={!geojsonLoaded}
                 className=' disabled:bg-sky-200 disabled:cursor-auto disabled:border-sky-900'
                 title={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
                 onClick={() => {
