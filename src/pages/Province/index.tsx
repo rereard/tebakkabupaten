@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
 import * as turf from "@turf/turf";
 import "leaflet/dist/leaflet.css";
 import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
@@ -10,6 +10,8 @@ import Spinner from '../../component/Spinner';
 import CheckLabel from '../../component/CheckLabel';
 import useStopwatch from '../../utils/useStopwatch';
 import expandBBox from '../../utils/expandBbox';
+import FitMapBounds from './FitMapBounds';
+import MapZoomHandler from './MapZoomHandler';
 
 enum GameMode {
   Casual = 1,
@@ -41,16 +43,11 @@ export default function Province(){
   const [modalIsOpen, setIsOpen] = useState<boolean>(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [gameMode, setGameMode] = useState<GameMode>(GameMode.Casual)
-  const[savedTime, setSavedTime] = useState<string | null>(null)
+  const [savedTime, setSavedTime] = useState<string | null>(null)
+  const [isError, setIsError] = useState<boolean>(false)
+  const [mapKey, setMapKey] = useState(0)
 
-  useEffect(() => {
-    console.log("gameMode", gameMode);
-  }, [gameMode]);
-
-  // setting geojson data and map bounds
-  useEffect(() => {
-    if (!decodedProvince) return;
-
+  const fetchData = () => {
     setGeojsonData(null); // Reset while loading new data
     setGeojsonLoaded(false)
 
@@ -77,12 +74,22 @@ export default function Province(){
         ])
 
         setGeojsonLoaded(true)
+        setIsError(false)
 
         // setting quiz list
         const areaNames =data.features.map((feature: any) => feature.properties.name || "Unknown")
         setAllAreas(areaNames)
       })
-      .catch((err) => console.error("Failed to load GeoJSON:", err));
+      .catch((err) => {
+        console.error("Failed to load GeoJSON:", err)
+        setIsError(true)
+      });
+  }
+
+  // setting geojson data and map bounds
+  useEffect(() => {
+    if (!decodedProvince) return;
+    fetchData()
   }, []);
 
   // used for state inside MapContainer
@@ -117,6 +124,7 @@ export default function Province(){
     gameModeRef.current = gameMode;
   }, [gameMode]);
 
+  // handle when game over
   useEffect(() => {
     if(geojsonLoaded && quizList.length === 0){
       setIsOpen(true)
@@ -141,7 +149,7 @@ export default function Province(){
 
   // prevent map rerendering when stopwatch started
   const MemoizedMap = useMemo(() => (
-    <MapContainer 
+    <MapContainer
       zoomControl={true} 
       dragging={true} 
       scrollWheelZoom={true}
@@ -155,12 +163,13 @@ export default function Province(){
       />
       {geojsonData && (
         <GeoJSON
+          key={mapKey}
           data={geojsonData}
           style={getFeatureStyle}
-          onEachFeature={(feature: any, layer: any) => {
+          onEachFeature={(feature, layer) => {
             const clickedName = feature.properties.name;            
             layer.on({
-              mouseover: (e: any) => {
+              mouseover: (e) => {
                 if(!answeredAreasRef.current[clickedName]){
                   e.target.setStyle({ fillColor: "red", fillOpacity: 0.3 })
                 } else{
@@ -169,97 +178,51 @@ export default function Province(){
                   }).openTooltip();
                 }
               },
-              mouseout: (e: any) => {
+              mouseout: (e) => {
                 if(!answeredAreasRef.current[clickedName]){
                   e.target.setStyle(getFeatureStyle(feature))
                 }
-                layer.unbindTooltip(); // type error when played the game twice, not breaking the apps (see console)
+                layer.unbindTooltip() // type error when played the game twice, not breaking the apps (see console)
               },
               click: () => {
                 if (answeredAreasRef.current[clickedName]) return;
                 if(isPlayingRef.current){
-                  switch (gameModeRef.current) {
-                    case GameMode.Casual:
-                      if(!answeredAreasRef.current[clickedName]){
-                        if (clickedName === currentQuestionRef.current) {
-                          console.log("correct");
-                          const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                          setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
-                          setQuizList(filtered);
-                          setCurrentQuestion(filtered[0] || null); 
-                        } else{
-                          console.log("wrong");
-                          const correctAnswer = currentQuestionRef.current!;
-                          const filtered = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
-                          setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
-                          setQuizList(filtered);
-                          setCurrentQuestion(filtered[0] || null);
-                        }
-                      }
-                      break;
-                    case GameMode.SuddenDeath:
-                      if(!answeredAreasRef.current[clickedName]){
-                        if (clickedName === currentQuestionRef.current) {
-                          console.log("correct");
-                          const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                          setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
-                          setQuizList(filtered);
-                          setCurrentQuestion(filtered[0] || null); 
-                        } else{
-                          console.log("wrong");
-                          const correctAnswer = currentQuestionRef.current!;
-                          const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                          const unsanswered = filtered.reduce((names, key) => {
-                            names[key] = 'unanswered'
-                            return names
-                          }, {} as Record<string, any>)
-                          setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
-                          setQuizList([]);
-                          setCurrentQuestion(null);
-                        }
-                      }
-                      break
-                    case GameMode.TimeTrial:
-                      if (clickedName === currentQuestionRef.current) {
-                        console.log("correct");
-                        const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
-                        setQuizList(filtered);
-                        setCurrentQuestion(filtered[0] || null); 
-                      } else{
-                        console.log("wrong");
-                        const correctAnswer = currentQuestionRef.current!;
-                        const filtered = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
+                  if (clickedName === currentQuestionRef.current) {
+                    const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                    setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
+                    setQuizList(filtered);
+                    setCurrentQuestion(filtered[0] || null); 
+                  } else {
+                    const correctAnswer = currentQuestionRef.current!;
+                    const filtered13 = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
+                    const filtered24 = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
+                    const unsanswered = filtered24.reduce((names, key) => {
+                      names[key] = 'unanswered'
+                      return names
+                    }, {} as Record<string, any>)
+                    switch (gameModeRef.current) {
+                      case GameMode.Casual:
                         setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
-                        setQuizList(filtered);
-                        setCurrentQuestion(filtered[0] || null);
+                        setQuizList(filtered13);
+                        setCurrentQuestion(filtered13[0] || null);
+                        break;
+                      case GameMode.SuddenDeath:
+                        setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
+                        setQuizList([]);
+                        setCurrentQuestion(null);
+                        break;
+                      case GameMode.TimeTrial:
+                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
+                        setQuizList(filtered13);
+                        setCurrentQuestion(filtered13[0] || null);
                         stopwatch.addTime(10)
-                      }
-                      break
-                    case GameMode.Mix:
-                      if(!answeredAreasRef.current[clickedName]){
-                        if (clickedName === currentQuestionRef.current) {
-                          console.log("correct");
-                          const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                          setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
-                          setQuizList(filtered);
-                          setCurrentQuestion(filtered[0] || null); 
-                        } else{
-                          console.log("wrong");
-                          const correctAnswer = currentQuestionRef.current!;
-                          const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                          const unsanswered = filtered.reduce((names, key) => {
-                            names[key] = 'unanswered'
-                            return names
-                          }, {} as Record<string, any>)
-                          setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
-                          setQuizList([]);
-                          setCurrentQuestion(null);
-                        }
-                      }
-                      break
-                    default:
-                      break;
+                        break;
+                      case GameMode.Mix:
+                        setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
+                        setQuizList([]);
+                        setCurrentQuestion(null);
+                        break;
+                    }
                   }
                 }
               }   
@@ -300,71 +263,82 @@ export default function Province(){
         <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
           <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{  opacity: 1, y:0 }} transition={{ duration: 0.3, ease: "easeOut" }} className='bg-white flex flex-col items-center p-6 rounded-lg shadow-xl w-fit border-4 relative'>
             <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${decodedProvince}` : 'Permainan selesai!'}</h2>
-            <motion.button whileHover={{ scale: 1.07 }} className='absolute top-2 right-2 text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000]' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
-            {!geojsonLoaded ? (
+            <motion.button disabled={!geojsonLoaded} whileHover={ geojsonLoaded ? { scale: 1.07 } : {}} className='absolute top-2 right-2 text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000] disabled:text-[#ff7979] disabled:cursor-auto' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
+            {(!geojsonLoaded && !isError) ? (
               <Spinner />
             ) : 
-            <>
-              {Object.values(answeredAreas).length === 0 ? (
-                <p className="text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
-              ) : (
-                <>
-                  <p className='text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
-                </>
-              )}
-              <div className='my-4 h-fit w-full max-h-56 overflow-y-auto'>
-                <ol className='list-decimal list-inside columns-2 pl-5 text-left'>
-                  {Object.keys(answeredAreas).length === 0 ? (
-                    allAreas.map((name, index) => (<li className='text-black font-medium' key={index}>{name}</li>))
-                  ) : 
-                  Object.keys(answeredAreas).map((key, index) => (
-                    <li className={`${answeredAreas[key] === "wrong" ? 'text-red-600' : answeredAreas[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium`} key={index}>{key}</li>
-                  ))}
-                </ol>
-              </div>
-            </>
-            }
-            <div className='p-2 mb-4 flex flex-col w-full gap-1'>
-              <div className='flex'>
-                <span>Mode:</span>
-                <div className='flex-1 flex justify-around'>
-                  <CheckLabel 
-                    checked={gameMode === GameMode.Casual ? true : false}
-                    onChange={() => setGameMode(GameMode.Casual)}
-                    title='Kasual'
-                  />
-                  <CheckLabel 
-                    checked={(gameMode === GameMode.SuddenDeath || gameMode === GameMode.Mix) ? true : false}
-                    onChange={() => {
-                      if(gameMode === GameMode.TimeTrial){
-                        setGameMode(GameMode.Mix)
-                      } else if(gameMode === GameMode.Mix){
-                        setGameMode(GameMode.TimeTrial)
-                      } else{
-                        setGameMode(GameMode.SuddenDeath)
-                      }
-                    }}
-                    title='Sudden-Death'
-                  />
-                  <CheckLabel 
-                    checked={(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix) ? true : false}
-                    onChange={() => {
-                      if(gameMode === GameMode.SuddenDeath){
-                        setGameMode(GameMode.Mix)
-                      } else if(gameMode === GameMode.Mix){
-                        setGameMode(GameMode.SuddenDeath)
-                      } else{
-                        setGameMode(GameMode.TimeTrial)
-                      }
-                    }}
-                    title='Time Trial'
-                  />
+            !isError ? (
+              <>
+                {Object.values(answeredAreas).length === 0 ? (
+                  <p className="text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
+                ) : (
+                  <>
+                    <p className='text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
+                  </>
+                )}
+                <div className='my-4 h-fit w-full max-h-56 overflow-y-auto'>
+                  <ol className='list-decimal list-inside columns-2 pl-5 text-left'>
+                    {Object.keys(answeredAreas).length === 0 ? (
+                      allAreas.map((name, index) => (<li className='text-black font-medium' key={index}>{name}</li>))
+                    ) : 
+                    Object.keys(answeredAreas).map((key, index) => (
+                      <li className={`${answeredAreas[key] === "wrong" ? 'text-red-600' : answeredAreas[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium`} key={index}>{key}</li>
+                    ))}
+                  </ol>
                 </div>
+                <div className='p-2 mb-4 flex flex-col w-full gap-1'>
+                  <div className='flex'>
+                    <span>Mode:</span>
+                    <div className='flex-1 flex justify-around'>
+                      <CheckLabel 
+                        checked={gameMode === GameMode.Casual ? true : false}
+                        onChange={() => setGameMode(GameMode.Casual)}
+                        title='Kasual'
+                      />
+                      <CheckLabel 
+                        checked={(gameMode === GameMode.SuddenDeath || gameMode === GameMode.Mix) ? true : false}
+                        onChange={() => {
+                          if(gameMode === GameMode.TimeTrial){
+                            setGameMode(GameMode.Mix)
+                          } else if(gameMode === GameMode.Mix){
+                            setGameMode(GameMode.TimeTrial)
+                          } else{
+                            setGameMode(GameMode.SuddenDeath)
+                          }
+                        }}
+                        title='Sudden-Death'
+                      />
+                      <CheckLabel 
+                        checked={(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix) ? true : false}
+                        onChange={() => {
+                          if(gameMode === GameMode.SuddenDeath){
+                            setGameMode(GameMode.Mix)
+                          } else if(gameMode === GameMode.Mix){
+                            setGameMode(GameMode.SuddenDeath)
+                          } else{
+                            setGameMode(GameMode.TimeTrial)
+                          }
+                        }}
+                        title='Time Trial'
+                      />
+                    </div>
+                  </div>
+                  <div className='w-full max-w-96 self-center font-bold italic'>
+                    <p>{gameMode === GameMode.Casual ? 'Tebak tanpa batasan waktu atau penalti. Cocok untuk belajar sambil santai!' : gameMode === GameMode.SuddenDeath ? 'Satu kesalahan, game over! Uji ketepatan tanpa ruang untuk salah.' : gameMode === GameMode.TimeTrial  ? 'Selesaikan secepat mungkin! Jika salah waktu bertambah 10 detik!' : 'Ultimate Challenge! Cepat dan tepat, atau game over!'}</p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className='my-7 flex flex-col gap-2'>
+                <p>Terjadi error...</p>
+                <Button 
+                  title='Coba Lagi'
+                  onClick={() => {
+                    fetchData()
+                  }}
+                />
               </div>
-              <div className='w-full max-w-96 self-center font-bold italic'>
-                <p>{gameMode === GameMode.Casual ? 'Tebak tanpa batasan waktu atau penalti. Cocok untuk belajar sambil santai!' : gameMode === GameMode.SuddenDeath ? 'Satu kesalahan, game over! Uji ketepatan tanpa ruang untuk salah.' : gameMode === GameMode.TimeTrial  ? 'Selesaikan secepat mungkin! Jika salah waktu bertambah 10 detik!' : 'Ultimate Challenge! Cepat dan tepat, atau game over!'}</p>
-              </div>
-            </div>
+            )}
             <div className='text-white w-11/12 flex justify-between'>
               <Button 
                 title='Kembali'
@@ -395,6 +369,7 @@ export default function Province(){
                     stopwatch.reset()
                     stopwatch.start()
                   }
+                  setMapKey((prevKey) => prevKey + 1);
                 }}
               />
             </div>
@@ -404,51 +379,3 @@ export default function Province(){
     </div>
   )
 }
-
-/** map bounds, min and max zoom setting */
-const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> = ({ bounds }) => {
-  const map = useMap();
-  useEffect(() => {
-    if (bounds) {
-      map.fitBounds(bounds, { padding: [50, 50] }); // Adjust padding for a better fit
-      // map.setMaxBounds(null);
-      map.setMaxBounds(undefined);
-      map.setMinZoom(1);
-      map.setMaxZoom(14);
-
-      const newMinZoom = map.getBoundsZoom(bounds);
-
-      map.flyToBounds(bounds, { duration: 1.5 });
-
-      map.setMinZoom(newMinZoom + 0.4);
-      map.setMaxBounds(bounds)
-    }
-  }, [map, bounds]);
-  return null;
-};
-
-/** setting for zoom out animation when going back to Home page */
-const MapZoomHandler = ({ zoomOut, bounds, onZoomComplete }: { zoomOut: boolean; bounds: [[number, number], [number, number]]; onZoomComplete: () => void }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (zoomOut) {
-      map.fitBounds(bounds, { padding: [50, 50] });
-      map.setMaxBounds(undefined);
-      map.setMinZoom(1);
-      map.setMaxZoom(14);
-      const newMinZoom = map.getBoundsZoom(bounds);
-
-      map.flyToBounds(bounds, { duration: 0.5 });
-
-      map.setMinZoom(newMinZoom + 0.4);
-      map.setMaxBounds(bounds)
-
-      setTimeout(() => {
-        onZoomComplete(); // Navigate home after animation
-      }, 500)
-    }
-  }, [zoomOut, map, bounds, onZoomComplete]);
-
-  return null;
-};
