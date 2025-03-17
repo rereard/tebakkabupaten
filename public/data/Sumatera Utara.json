@@ -468,7 +468,7 @@
         "@id": "relation/8483356",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Asahan",
+        "name": "Asahan",
         "type": "boundary",
         "wikidata": "Q1795"
       },
@@ -683,7 +683,7 @@
         "@id": "relation/8483355",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Batu Bara",
+        "name": "Batu Bara",
         "type": "boundary",
         "wikidata": "Q5797"
       },
@@ -1026,7 +1026,7 @@
         "@id": "relation/8483349",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Dairi",
+        "name": "Dairi",
         "type": "boundary",
         "wikidata": "Q5801"
       },
@@ -1607,7 +1607,7 @@
         "@id": "relation/8483353",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Deli Serdang",
+        "name": "Deli Serdang",
         "name:ms-Arab": "دلي سردڠ",
         "name:ta": "டெலி செர்டாங்",
         "name:zh-Hant": "日里雪冷",
@@ -1946,7 +1946,7 @@
         "@id": "relation/8483346",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Humbang Hasundutan",
+        "name": "Humbang Hasundutan",
         "type": "boundary",
         "wikidata": "Q5808"
       },
@@ -2361,7 +2361,7 @@
         "@id": "relation/8483350",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Karo",
+        "name": "Karo",
         "type": "boundary",
         "wikidata": "Q5810"
       },
@@ -2756,7 +2756,7 @@
         "@id": "relation/8483358",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Labuhanbatu",
+        "name": "Labuhanbatu",
         "type": "boundary",
         "wikidata": "Q5814"
       },
@@ -3219,7 +3219,7 @@
         "@id": "relation/8484426",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Labuhanbatu Selatan",
+        "name": "Labuhanbatu Selatan",
         "name:abbreviation": "Labusel",
         "name:en": "South Labuhanbatu",
         "type": "boundary",
@@ -3620,7 +3620,7 @@
         "@id": "relation/8483357",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Labuhanbatu Utara",
+        "name": "Labuhanbatu Utara",
         "name:abbreviation": "Labura",
         "name:en": "North Labuhanbatu",
         "type": "boundary",
@@ -4161,7 +4161,7 @@
         "@id": "relation/8483352",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Langkat",
+        "name": "Langkat",
         "type": "boundary",
         "wikidata": "Q5833"
       },
@@ -4704,7 +4704,7 @@
         "@id": "relation/8484429",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mandailing Natal",
+        "name": "Mandailing Natal",
         "name:abbreviation": "Madina",
         "type": "boundary",
         "wikidata": "Q5837"
@@ -4978,7 +4978,7 @@
         "@id": "relation/8484717",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nias",
+        "name": "Nias",
         "type": "boundary"
       },
       "id": "relation/8484717"
@@ -5176,7 +5176,7 @@
         "@id": "relation/8484719",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nias Barat",
+        "name": "Nias Barat",
         "name:en": "West Nias",
         "type": "boundary"
       },
@@ -5367,7 +5367,7 @@
         "@id": "relation/8484720",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nias Selatan",
+        "name": "Nias Selatan",
         "name:en": "South Nias",
         "type": "boundary",
         "wikidata": "Q5918"
@@ -5503,7 +5503,7 @@
         "@id": "relation/8484718",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nias Utara",
+        "name": "Nias Utara",
         "name:en": "North Nias",
         "type": "boundary",
         "wikidata": "Q5853"
@@ -5987,7 +5987,7 @@
         "@id": "relation/8484428",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Padang Lawas",
+        "name": "Padang Lawas",
         "name:abbreviation": "Palas",
         "type": "boundary",
         "wikidata": "Q5866"
@@ -6731,7 +6731,7 @@
         "@id": "relation/8484427",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Padang Lawas Utara",
+        "name": "Padang Lawas Utara",
         "name:abbreviation": "Paluta",
         "name:en": "Northern Padang Lawas",
         "type": "boundary",
@@ -6984,7 +6984,7 @@
         "@id": "relation/8483348",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pakpak Bharat",
+        "name": "Pakpak Bharat",
         "type": "boundary",
         "wikidata": "Q5872"
       },
@@ -7405,7 +7405,7 @@
         "@id": "relation/8483347",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Samosir",
+        "name": "Samosir",
         "type": "boundary",
         "wikidata": "Q5888"
       },
@@ -7786,7 +7786,7 @@
         "@id": "relation/8483354",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Serdang Bedagai",
+        "name": "Serdang Bedagai",
         "type": "boundary",
         "wikidata": "Q5899"
       },
@@ -8467,7 +8467,7 @@
         "@id": "relation/8483351",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Simalungun",
+        "name": "Simalungun",
         "type": "boundary"
       },
       "id": "relation/8483351"
@@ -9227,7 +9227,7 @@
         "@id": "relation/8484430",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tapanuli Selatan",
+        "name": "Tapanuli Selatan",
         "name:abbreviation": "Tapsel",
         "name:en": "South Tapanuli",
         "type": "boundary",
@@ -9682,7 +9682,7 @@
         "@id": "relation/8483345",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tapanuli Tengah",
+        "name": "Tapanuli Tengah",
         "name:abbreviation": "Tapteng",
         "name:en": "Central Tapanuli",
         "type": "boundary",
@@ -10173,7 +10173,7 @@
         "@id": "relation/8483344",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tapanuli Utara",
+        "name": "Tapanuli Utara",
         "name:abbreviation": "Taput",
         "name:en": "North Tapanuli",
         "type": "boundary",
@@ -10654,7 +10654,7 @@
         "@id": "relation/8483343",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Toba",
+        "name": "Toba",
         "type": "boundary",
         "wikidata": "Q5911"
       },

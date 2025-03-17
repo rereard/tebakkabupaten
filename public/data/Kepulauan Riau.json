@@ -2772,7 +2772,7 @@
         "@id": "relation/10660356",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bintan",
+        "name": "Bintan",
         "type": "boundary",
         "wikidata": "Q10097",
         "wikipedia": "id:Kabupaten Bintan"
@@ -5370,7 +5370,7 @@
         "@id": "relation/10660354",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Karimun",
+        "name": "Karimun",
         "type": "boundary",
         "wikidata": "Q10098",
         "wikipedia": "id:Kabupaten Karimun"
@@ -8688,7 +8688,7 @@
         "@id": "relation/10660358",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Anambas",
+        "name": "Kepulauan Anambas",
         "name:sk": "Anambaské ostrovy",
         "type": "boundary",
         "wikidata": "Q26759674",
@@ -13639,7 +13639,7 @@
         "@id": "relation/10660355",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lingga",
+        "name": "Lingga",
         "type": "boundary",
         "wikidata": "Q10099",
         "wikipedia": "id:Kabupaten Lingga"
@@ -16041,7 +16041,7 @@
         "@id": "relation/10660357",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Natuna",
+        "name": "Natuna",
         "type": "boundary",
         "wikidata": "Q10100",
         "wikipedia": "id:Kabupaten Natuna"

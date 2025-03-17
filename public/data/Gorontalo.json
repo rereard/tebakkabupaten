@@ -644,7 +644,7 @@
         "@id": "relation/14909130",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Boalemo",
+        "name": "Boalemo",
         "type": "boundary",
         "wikidata": "Q14508",
         "wikipedia": "id:Kabupaten Boalemo"
@@ -1176,7 +1176,7 @@
         "@id": "relation/14909127",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bone Bolango",
+        "name": "Bone Bolango",
         "type": "boundary",
         "wikidata": "Q14519",
         "wikipedia": "id:Kabupaten Bone Bolango"
@@ -2012,7 +2012,7 @@
         "@id": "relation/14909129",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Gorontalo",
+        "name": "Gorontalo",
         "type": "boundary",
         "wikidata": "Q14521",
         "wikipedia": "id:Kabupaten Gorontalo"
@@ -3326,7 +3326,7 @@
         "@id": "relation/14909125",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Gorontalo Utara",
+        "name": "Gorontalo Utara",
         "type": "boundary",
         "wikidata": "Q14522",
         "wikipedia": "id:Kabupaten Gorontalo Utara"
@@ -4252,7 +4252,7 @@
         "@id": "relation/14909126",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pohuwato",
+        "name": "Pohuwato",
         "type": "boundary",
         "wikidata": "Q14523",
         "wikipedia": "id:Kabupaten Pohuwato"

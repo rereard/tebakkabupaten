@@ -1244,7 +1244,7 @@
         "@id": "relation/14954918",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Fakfak",
+        "name": "Fakfak",
         "type": "boundary",
         "wikidata": "Q26727",
         "wikipedia": "id:Kabupaten Fakfak"
@@ -3636,7 +3636,7 @@
         "@id": "relation/14954917",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kaimana",
+        "name": "Kaimana",
         "type": "boundary",
         "wikidata": "Q26739",
         "wikipedia": "id:Kabupaten Kaimana"
@@ -4354,7 +4354,7 @@
         "@id": "relation/14905731",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Manokwari",
+        "name": "Manokwari",
         "type": "boundary",
         "wikidata": "Q26748",
         "wikipedia": "id:Kabupaten Manokwari"
@@ -4914,7 +4914,7 @@
         "@id": "relation/14905732",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Manokwari Selatan",
+        "name": "Manokwari Selatan",
         "type": "boundary",
         "wikidata": "Q12488351",
         "wikipedia": "id:Kabupaten Manokwari Selatan"
@@ -5610,7 +5610,7 @@
         "@id": "relation/14905733",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pegunungan Arfak",
+        "name": "Pegunungan Arfak",
         "type": "boundary",
         "wikidata": "Q16251650",
         "wikipedia": "id:Kabupaten Pegunungan Arfak"
@@ -7510,7 +7510,7 @@
         "@id": "relation/14954916",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Teluk Bintuni",
+        "name": "Teluk Bintuni",
         "type": "boundary",
         "wikidata": "Q26819",
         "wikipedia": "id:Kabupaten Teluk Bintuni"
@@ -8774,7 +8774,7 @@
         "@id": "relation/14954915",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Teluk Wondama",
+        "name": "Teluk Wondama",
         "type": "boundary",
         "wikidata": "Q26827",
         "wikipedia": "id:Kabupaten Teluk Wondama"

@@ -816,7 +816,7 @@
         "@id": "relation/10003084",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Banyuasin",
+        "name": "Banyuasin",
         "type": "boundary",
         "wikidata": "Q8107",
         "wikipedia": "id:Kabupaten Banyuasin"
@@ -1040,7 +1040,7 @@
         "@id": "relation/10005019",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Empat Lawang",
+        "name": "Empat Lawang",
         "type": "boundary",
         "wikidata": "Q8112",
         "wikipedia": "id:Kabupaten Empat Lawang"
@@ -1424,7 +1424,7 @@
         "@id": "relation/10005018",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lahat",
+        "name": "Lahat",
         "type": "boundary",
         "wikidata": "Q8117",
         "wikipedia": "id:Kabupaten Lahat"
@@ -2054,7 +2054,7 @@
         "@id": "relation/10713042",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Muara Enim",
+        "name": "Muara Enim",
         "type": "boundary",
         "wikidata": "Q8119",
         "wikipedia": "id:Kabupaten Muara Enim"
@@ -2694,7 +2694,7 @@
         "@id": "relation/10003083",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Musi Banyuasin",
+        "name": "Musi Banyuasin",
         "type": "boundary",
         "wikidata": "Q8120",
         "wikipedia": "id:Kabupaten Musi Banyuasin"
@@ -3046,7 +3046,7 @@
         "@id": "relation/10004782",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Musi Rawas",
+        "name": "Musi Rawas",
         "type": "boundary",
         "wikidata": "Q8121",
         "wikipedia": "id:Kabupaten Musi Rawas"
@@ -3430,7 +3430,7 @@
         "@id": "relation/10004783",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Musi Rawas Utara",
+        "name": "Musi Rawas Utara",
         "official_name": "Kabupaten Musi Rawas Utara",
         "ref": "16.13",
         "type": "boundary",
@@ -3708,7 +3708,7 @@
         "@id": "relation/10713041",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ogan Ilir",
+        "name": "Ogan Ilir",
         "type": "boundary",
         "wikidata": "Q8122",
         "wikipedia": "id:Kabupaten Ogan Ilir"
@@ -4424,7 +4424,7 @@
         "@id": "relation/9997288",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ogan Komering Ilir",
+        "name": "Ogan Komering Ilir",
         "type": "boundary",
         "wikidata": "Q8125",
         "wikipedia": "id:Kabupaten Ogan Komering Ilir"
@@ -4744,7 +4744,7 @@
         "@id": "relation/2657934",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ogan Komering Ulu",
+        "name": "Ogan Komering Ulu",
         "type": "boundary",
         "wikidata": "Q8126",
         "wikipedia": "id:Kabupaten Ogan Komering Ulu"
@@ -5076,7 +5076,7 @@
         "@id": "relation/2657935",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ogan Komering Ulu Selatan",
+        "name": "Ogan Komering Ulu Selatan",
         "type": "boundary",
         "wikidata": "Q8127",
         "wikipedia": "id:Kabupaten Ogan Komering Ulu Selatan"
@@ -5384,7 +5384,7 @@
         "@id": "relation/2657933",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ogan Komering Ulu Timur",
+        "name": "Ogan Komering Ulu Timur",
         "type": "boundary",
         "wikidata": "Q8110",
         "wikipedia": "id:Kabupaten Ogan Komering Ulu Timur"
@@ -5600,7 +5600,7 @@
         "@id": "relation/10004780",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Penukal Abab Lematang Ilir",
+        "name": "Penukal Abab Lematang Ilir",
         "type": "boundary",
         "wikidata": "Q15729116",
         "wikipedia": "id:Kabupaten Penukal Abab Lematang Ilir"

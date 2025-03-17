@@ -342,7 +342,7 @@
         "@id": "relation/11007420",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lampung Barat",
+        "name": "Lampung Barat",
         "type": "boundary",
         "wikidata": "Q8153",
         "wikipedia": "id:Kabupaten Lampung Barat"
@@ -872,7 +872,7 @@
         "@id": "relation/11007415",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lampung Selatan",
+        "name": "Lampung Selatan",
         "type": "boundary",
         "wikidata": "Q8147",
         "wikipedia": "id:Kabupaten Lampung Selatan"
@@ -1520,7 +1520,7 @@
         "@id": "relation/11007424",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lampung Tengah",
+        "name": "Lampung Tengah",
         "type": "boundary",
         "wikidata": "Q8135",
         "wikipedia": "id:Kabupaten Lampung Tengah"
@@ -2012,7 +2012,7 @@
         "@id": "relation/11007409",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lampung Timur",
+        "name": "Lampung Timur",
         "type": "boundary",
         "wikidata": "Q8136",
         "wikipedia": "id:Kabupaten Lampung Timur"
@@ -2356,7 +2356,7 @@
         "@id": "relation/11007421",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lampung Utara",
+        "name": "Lampung Utara",
         "type": "boundary",
         "wikidata": "Q8140",
         "wikipedia": "id:Kabupaten Lampung Utara"
@@ -2820,7 +2820,7 @@
         "@id": "relation/11007411",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mesuji",
+        "name": "Mesuji",
         "type": "boundary",
         "wikidata": "Q8139",
         "wikipedia": "id:Kabupaten Mesuji"
@@ -3262,7 +3262,7 @@
         "@id": "relation/11007413",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pesawaran",
+        "name": "Pesawaran",
         "type": "boundary",
         "wikidata": "Q8144",
         "wikipedia": "id:Kabupaten Pesawaran"
@@ -3762,7 +3762,7 @@
         "@id": "relation/11007416",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pesisir Barat",
+        "name": "Pesisir Barat",
         "type": "boundary",
         "wikidata": "Q46481",
         "wikipedia": "id:Kabupaten Pesisir Barat"
@@ -4010,7 +4010,7 @@
         "@id": "relation/11007422",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pringsewu",
+        "name": "Pringsewu",
         "type": "boundary",
         "wikidata": "Q8145",
         "wikipedia": "id:Kabupaten Pringsewu"
@@ -4616,7 +4616,7 @@
         "@id": "relation/11007412",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tanggamus",
+        "name": "Tanggamus",
         "type": "boundary",
         "wikidata": "Q8149",
         "wikipedia": "id:Kabupaten Tanggamus"
@@ -5112,7 +5112,7 @@
         "@id": "relation/11007410",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tulang Bawang",
+        "name": "Tulang Bawang",
         "type": "boundary",
         "wikidata": "Q8151",
         "wikipedia": "id:Kabupaten Tulang Bawang"
@@ -5432,7 +5432,7 @@
         "@id": "relation/11007418",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tulang Bawang Barat",
+        "name": "Tulang Bawang Barat",
         "type": "boundary",
         "wikidata": "Q8154",
         "wikipedia": "id:Kabupaten Tulang Bawang Barat"
@@ -5860,7 +5860,7 @@
         "@id": "relation/11007417",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Way Kanan",
+        "name": "Way Kanan",
         "type": "boundary",
         "wikidata": "Q8152",
         "wikipedia": "id:Kabupaten Way Kanan"

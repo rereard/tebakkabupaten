@@ -542,7 +542,7 @@
         "@id": "relation/9686816",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Banjarnegara",
+        "name": "Banjarnegara",
         "type": "boundary",
         "wikidata": "Q10604",
         "wikipedia": "id:Kabupaten Banjarnegara"
@@ -1030,7 +1030,7 @@
         "@id": "relation/9686820",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Banyumas",
+        "name": "Banyumas",
         "type": "boundary",
         "wikidata": "Q10605",
         "wikipedia": "id:Kabupaten Banyumas"
@@ -1410,7 +1410,7 @@
         "@id": "relation/9686825",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Batang",
+        "name": "Batang",
         "name:jv": "ꦧꦠꦁ",
         "type": "boundary"
       },
@@ -2021,7 +2021,7 @@
         "@id": "relation/9687050",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Blora",
+        "name": "Blora",
         "postal_code": "58211 - 58219",
         "type": "boundary",
         "wikidata": "Q10608",
@@ -2718,7 +2718,7 @@
         "@id": "relation/9687052",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Boyolali",
+        "name": "Boyolali",
         "type": "boundary",
         "wikidata": "Q10609",
         "wikipedia": "id:Kabupaten Boyolali"
@@ -3426,7 +3426,7 @@
         "@id": "relation/9686821",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Brebes",
+        "name": "Brebes",
         "type": "boundary",
         "wikidata": "Q10610",
         "wikipedia": "id:Kabupaten Brebes"
@@ -4226,7 +4226,7 @@
         "@id": "relation/9686822",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Cilacap",
+        "name": "Cilacap",
         "type": "boundary",
         "wikidata": "Q10612",
         "wikipedia": "id:Kabupaten Cilacap"
@@ -4772,7 +4772,7 @@
         "alt_name": "Kabupaten Demak",
         "boundary": "administrative",
         "is_in:province": "Jawa Tengah",
-        "name": "Kabupaten Demak",
+        "name": "Demak",
         "type": "boundary",
         "wikidata": "Q10613"
       },
@@ -5544,7 +5544,7 @@
         "admin_level": "5",
         "alt_name": "Kabupaten Grobogan",
         "boundary": "administrative",
-        "name": "Kabupaten Grobogan",
+        "name": "Grobogan",
         "type": "boundary",
         "wikidata": "Q10614",
         "wikipedia": "id:Kabupaten Grobogan"
@@ -6180,7 +6180,7 @@
         "alt_name": "Kabupaten Jepara",
         "boundary": "administrative",
         "is_in:province": "Jawa Tengah",
-        "name": "Kabupaten Jepara",
+        "name": "Jepara",
         "type": "boundary",
         "wikidata": "Q10615",
         "wikipedia": "id:Kabupaten Jepara"
@@ -6594,7 +6594,7 @@
         "@id": "relation/9687053",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Karanganyar",
+        "name": "Karanganyar",
         "type": "boundary",
         "wikidata": "Q10616",
         "wikipedia": "id:Kabupaten Karanganyar"
@@ -7034,7 +7034,7 @@
         "@id": "relation/9686815",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kebumen",
+        "name": "Kebumen",
         "type": "boundary",
         "wikidata": "Q10617",
         "wikipedia": "id:Kabupaten Kebumen"
@@ -7566,7 +7566,7 @@
         "@id": "relation/9686810",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kendal",
+        "name": "Kendal",
         "type": "boundary",
         "wikidata": "Q10618",
         "wikipedia": "id:Kabupaten Kendal"
@@ -7918,7 +7918,7 @@
         "@id": "relation/9687060",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Klaten",
+        "name": "Klaten",
         "type": "boundary",
         "wikidata": "Q10619",
         "wikipedia": "id:Kabupaten Klaten"
@@ -8255,7 +8255,7 @@
         "admin_level": "5",
         "alt_name": "Kabupaten Kudus",
         "boundary": "administrative",
-        "name": "Kabupaten Kudus",
+        "name": "Kudus",
         "type": "boundary",
         "wikidata": "Q10620",
         "wikipedia": "id:Kabupaten Kudus"
@@ -8717,7 +8717,7 @@
         "@id": "relation/9686814",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Magelang",
+        "name": "Magelang",
         "type": "boundary",
         "wikidata": "Q10621",
         "wikipedia": "id:Kabupaten Magelang"
@@ -9283,7 +9283,7 @@
         "@id": "relation/9687058",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pati",
+        "name": "Pati",
         "type": "boundary",
         "wikidata": "Q10622",
         "wikipedia": "id:Kabupaten Pati"
@@ -9679,7 +9679,7 @@
         "@id": "relation/9686827",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pekalongan",
+        "name": "Pekalongan",
         "type": "boundary",
         "wikidata": "Q10623",
         "wikipedia": "id:Kabupaten Pekalongan"
@@ -10107,7 +10107,7 @@
         "@id": "relation/9686818",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pemalang",
+        "name": "Pemalang",
         "type": "boundary",
         "wikidata": "Q10624",
         "wikipedia": "id:Kabupaten Pemalang"
@@ -10423,7 +10423,7 @@
         "@id": "relation/9686819",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Purbalingga",
+        "name": "Purbalingga",
         "type": "boundary",
         "wikidata": "Q10625",
         "wikipedia": "id:Kabupaten Purbalingga"
@@ -10823,7 +10823,7 @@
         "@id": "relation/9686809",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Purworejo",
+        "name": "Purworejo",
         "type": "boundary",
         "wikidata": "Q10674",
         "wikipedia": "id:Kabupaten Purworejo"
@@ -11163,7 +11163,7 @@
         "@id": "relation/9687055",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Rembang",
+        "name": "Rembang",
         "type": "boundary",
         "wikidata": "Q10684",
         "wikipedia": "id:Kabupaten Rembang"
@@ -11817,7 +11817,7 @@
         "@id": "relation/9686813",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Semarang",
+        "name": "Semarang",
         "type": "boundary",
         "wikidata": "Q10687",
         "wikipedia": "id:Kabupaten Semarang"
@@ -12221,7 +12221,7 @@
         "@id": "relation/6444214",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sragen",
+        "name": "Sragen",
         "name:jv": "Kabupatèn Sragèn",
         "name:map-bms": "Kabupaten Sragen",
         "name:su": "Kabupatén Sragén",
@@ -12596,7 +12596,7 @@
         "@id": "relation/9687061",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sukoharjo",
+        "name": "Sukoharjo",
         "type": "boundary",
         "wikidata": "Q10692",
         "wikipedia": "id:Kabupaten Sukoharjo"
@@ -13088,7 +13088,7 @@
         "@id": "relation/9686817",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tegal",
+        "name": "Tegal",
         "type": "boundary",
         "wikidata": "Q10705",
         "wikipedia": "id:Kabupaten Tegal"
@@ -13468,7 +13468,7 @@
         "@id": "relation/9686823",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Temanggung",
+        "name": "Temanggung",
         "type": "boundary",
         "wikidata": "Q10979",
         "wikipedia": "id:Kabupaten Temanggung"
@@ -14124,7 +14124,7 @@
         "@id": "relation/9687059",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Wonogiri",
+        "name": "Wonogiri",
         "type": "boundary",
         "wikidata": "Q10981",
         "wikipedia": "id:Kabupaten Wonogiri"
@@ -14560,7 +14560,7 @@
         "@id": "relation/9686824",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Wonosobo",
+        "name": "Wonosobo",
         "type": "boundary",
         "wikidata": "Q11013",
         "wikipedia": "id:Kabupaten Wonosobo"

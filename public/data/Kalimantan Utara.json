@@ -1136,7 +1136,7 @@
         "@id": "relation/9884462",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bulungan",
+        "name": "Bulungan",
         "type": "boundary",
         "wikidata": "Q14404",
         "wikipedia": "id:Kabupaten Bulungan"
@@ -2356,7 +2356,7 @@
         "@id": "relation/9884463",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Malinau",
+        "name": "Malinau",
         "type": "boundary",
         "wikidata": "Q14476",
         "wikipedia": "id:Kabupaten Malinau"
@@ -3342,7 +3342,7 @@
         "@id": "relation/9884464",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nunukan",
+        "name": "Nunukan",
         "type": "boundary",
         "wikidata": "Q14481",
         "wikipedia": "id:Kabupaten Nunukan"
@@ -3784,7 +3784,7 @@
         "@id": "relation/9884461",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tana Tidung",
+        "name": "Tana Tidung",
         "type": "boundary",
         "wikidata": "Q14487",
         "wikipedia": "id:Kabupaten Tana Tidung"

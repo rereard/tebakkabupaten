@@ -946,7 +946,7 @@
         "@id": "relation/14907630",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bolaang Mongondow",
+        "name": "Bolaang Mongondow",
         "type": "boundary",
         "wikidata": "Q15833",
         "wikipedia": "id:Kabupaten Bolaang Mongondow"
@@ -1962,7 +1962,7 @@
         "@id": "relation/14907633",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bolaang Mongondow Selatan",
+        "name": "Bolaang Mongondow Selatan",
         "type": "boundary",
         "wikidata": "Q15841",
         "wikipedia": "id:Kabupaten Bolaang Mongondow Selatan"
@@ -2564,7 +2564,7 @@
         "@id": "relation/14907632",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bolaang Mongondow Timur",
+        "name": "Bolaang Mongondow Timur",
         "type": "boundary",
         "wikidata": "Q15834",
         "wikipedia": "id:Kabupaten Bolaang Mongondow Timur"
@@ -3232,7 +3232,7 @@
         "@id": "relation/14907634",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bolaang Mongondow Utara",
+        "name": "Bolaang Mongondow Utara",
         "type": "boundary",
         "wikidata": "Q15837",
         "wikipedia": "id:Kabupaten Bolaang Mongondow Utara"
@@ -4078,7 +4078,7 @@
         "@id": "relation/9718592",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Sangihe",
+        "name": "Kepulauan Sangihe",
         "type": "boundary",
         "wikidata": "Q15839",
         "wikipedia": "id:Kabupaten Kepulauan Sangihe"
@@ -4604,7 +4604,7 @@
         "@id": "relation/14907627",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Siau Tagulandang Biaro",
+        "name": "Kepulauan Siau Tagulandang Biaro",
         "type": "boundary",
         "wikidata": "Q15840",
         "wikipedia": "id:Kabupaten Kepulauan Siau Tagulandang Biaro"
@@ -5691,7 +5691,7 @@
         "admin_level": "5",
         "alt_name": "Kepulauan Talaud",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Talaud",
+        "name": "Kepulauan Talaud",
         "name:en": "Talaud Islands",
         "name:ja": "タラウド諸島",
         "name:sk": "Talaudské ostrovy",
@@ -6453,7 +6453,7 @@
         "@id": "relation/14907628",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Minahasa",
+        "name": "Minahasa",
         "type": "boundary",
         "wikidata": "Q15836",
         "wikipedia": "id:Kabupaten Minahasa"
@@ -7189,7 +7189,7 @@
         "@id": "relation/14907631",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Minahasa Selatan",
+        "name": "Minahasa Selatan",
         "type": "boundary",
         "wikidata": "Q15842",
         "wikipedia": "id:Kabupaten Minahasa Selatan"
@@ -7565,7 +7565,7 @@
         "@id": "relation/14907629",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Minahasa Tenggara",
+        "name": "Minahasa Tenggara",
         "type": "boundary",
         "wikidata": "Q15843",
         "wikipedia": "id:Kabupaten Minahasa Tenggara"
@@ -8539,7 +8539,7 @@
         "@id": "relation/9722949",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Minahasa Utara",
+        "name": "Minahasa Utara",
         "name:de": "Nordminahasa",
         "type": "boundary",
         "wikidata": "Q15838",

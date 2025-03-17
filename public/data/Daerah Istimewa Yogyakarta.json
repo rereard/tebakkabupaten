@@ -238,7 +238,7 @@
         "@id": "relation/5615253",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bantul",
+        "name": "Bantul",
         "name:en": "Bantul Regency",
         "name:jv": "ꦧꦤ꧀ꦠꦸꦭ꧀",
         "type": "boundary"
@@ -572,7 +572,7 @@
         "alt_name": "Gunungkidul",
         "alt_name:jv": "ꦒꦸꦤꦸꦁꦏꦶꦢꦸꦭ꧀",
         "boundary": "administrative",
-        "name": "Kabupaten Gunung Kidul",
+        "name": "Gunung Kidul",
         "name:en": "Gunung Kidul Regency",
         "name:jv": "ꦏꦧꦸꦥꦠꦺꦤ꧀ꦒꦸꦤꦸꦁꦏꦶꦢꦸꦭ꧀",
         "type": "boundary"
@@ -760,7 +760,7 @@
         "@id": "relation/5615252",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kulon Progo",
+        "name": "Kulon Progo",
         "name:jv": "ꦏꦸꦭꦺꦴꦤ꧀ꦥꦿꦒ",
         "type": "boundary",
         "wikidata": "Q11479",
@@ -965,7 +965,7 @@
         "@id": "relation/5615254",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sleman",
+        "name": "Sleman",
         "name:en": "Sleman Regency",
         "name:jv": "ꦱ꧀ꦭꦺꦩꦤ꧀",
         "type": "boundary"

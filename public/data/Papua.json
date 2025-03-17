@@ -708,7 +708,7 @@
         "@id": "relation/7754459",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Biak Numfor",
+        "name": "Biak Numfor",
         "type": "boundary",
         "wikidata": "Q27246",
         "wikipedia": "en:Biak Numfor Regency"
@@ -1968,7 +1968,7 @@
         "@id": "relation/7754449",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Jayapura",
+        "name": "Jayapura",
         "type": "boundary",
         "wikidata": "Q27477",
         "wikipedia": "id:Kabupaten Jayapura"
@@ -2548,7 +2548,7 @@
         "@id": "relation/7754450",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Keerom",
+        "name": "Keerom",
         "type": "boundary",
         "wikidata": "Q27573",
         "wikipedia": "id:Kabupaten Keerom"
@@ -3554,7 +3554,7 @@
         "@id": "relation/7754458",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Yapen",
+        "name": "Kepulauan Yapen",
         "name:en": "Yapen Islands Regency",
         "name:fr": "Kabupaten des îles Yapen",
         "name:ms": "Kabupaten Kepulauan Yapen",
@@ -5330,7 +5330,7 @@
         "@id": "relation/7754447",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mamberamo Raya",
+        "name": "Mamberamo Raya",
         "type": "boundary",
         "wikidata": "Q27668",
         "wikipedia": "id:Kabupaten Mamberamo Raya"
@@ -6648,7 +6648,7 @@
         "@id": "relation/7754453",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sarmi",
+        "name": "Sarmi",
         "type": "boundary",
         "wikidata": "Q27784",
         "wikipedia": "id:Kabupaten Sarmi"
@@ -6970,7 +6970,7 @@
         "@id": "relation/7754460",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Supiori",
+        "name": "Supiori",
         "type": "boundary",
         "wikidata": "Q27793",
         "wikipedia": "en:Supiori Regency"
@@ -7942,7 +7942,7 @@
         "@id": "relation/7754448",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Waropen",
+        "name": "Waropen",
         "name:en": "Waropen Regency",
         "type": "boundary",
         "wikidata": "Q27815",

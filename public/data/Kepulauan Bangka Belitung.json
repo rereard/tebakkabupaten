@@ -774,7 +774,7 @@
         "@id": "relation/11018586",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bangka",
+        "name": "Bangka",
         "type": "boundary",
         "wikidata": "Q8163",
         "wikipedia": "id:Kabupaten Bangka"
@@ -1458,7 +1458,7 @@
         "@id": "relation/11018587",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bangka Barat",
+        "name": "Bangka Barat",
         "type": "boundary",
         "wikidata": "Q8176",
         "wikipedia": "id:Kabupaten Bangka Barat"
@@ -2560,7 +2560,7 @@
         "@id": "relation/11018583",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bangka Selatan",
+        "name": "Bangka Selatan",
         "type": "boundary",
         "wikidata": "Q8173",
         "wikipedia": "id:Kabupaten Bangka Selatan"
@@ -3350,7 +3350,7 @@
         "@id": "relation/11018584",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bangka Tengah",
+        "name": "Bangka Tengah",
         "type": "boundary",
         "wikidata": "Q8166",
         "wikipedia": "id:Kabupaten Bangka Tengah"
@@ -4588,7 +4588,7 @@
         "@id": "relation/11018582",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Belitung",
+        "name": "Belitung",
         "type": "boundary",
         "wikidata": "Q8164",
         "wikipedia": "id:Kabupaten Belitung"
@@ -5478,7 +5478,7 @@
         "@id": "relation/11018581",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Belitung Timur",
+        "name": "Belitung Timur",
         "type": "boundary",
         "wikidata": "Q8169",
         "wikipedia": "id:Kabupaten Belitung Timur"

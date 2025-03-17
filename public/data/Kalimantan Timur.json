@@ -1820,7 +1820,7 @@
         "@id": "relation/14921090",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Berau",
+        "name": "Berau",
         "type": "boundary",
         "wikidata": "Q14395",
         "wikipedia": "id:Kabupaten Berau"
@@ -2560,7 +2560,7 @@
         "@id": "relation/14921099",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kutai Barat",
+        "name": "Kutai Barat",
         "type": "boundary",
         "wikidata": "Q14489",
         "wikipedia": "id:Kabupaten Kutai Barat"
@@ -4510,7 +4510,7 @@
         "@id": "relation/14921092",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kutai Kartanegara",
+        "name": "Kutai Kartanegara",
         "type": "boundary",
         "wikidata": "Q14473",
         "wikipedia": "id:Kabupaten Kutai Kartanegara"
@@ -6348,7 +6348,7 @@
         "@id": "relation/14921091",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kutai Timur",
+        "name": "Kutai Timur",
         "type": "boundary",
         "wikidata": "Q14468",
         "wikipedia": "id:Kabupaten Kutai Timur"
@@ -7816,7 +7816,7 @@
         "@id": "relation/14921098",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mahakam Ulu",
+        "name": "Mahakam Ulu",
         "type": "boundary",
         "wikidata": "Q12488347",
         "wikipedia": "id:Kabupaten Mahakam Ulu"
@@ -8693,7 +8693,7 @@
         "admin_level": "5",
         "alt_name": "Kabupaten Paser",
         "boundary": "administrative",
-        "name": "Kabupaten Paser",
+        "name": "Paser",
         "official_name": "Kabupaten Paser",
         "type": "boundary",
         "wikidata": "Q14485",
@@ -9170,7 +9170,7 @@
         "@id": "relation/14921095",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Penajam Paser Utara",
+        "name": "Penajam Paser Utara",
         "type": "boundary",
         "wikidata": "Q14479",
         "wikipedia": "id:Kabupaten Penajam Paser Utara"

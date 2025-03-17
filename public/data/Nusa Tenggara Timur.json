@@ -1168,7 +1168,7 @@
         "@id": "relation/11225319",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Alor",
+        "name": "Alor",
         "type": "boundary",
         "wikidata": "Q14131",
         "wikipedia": "id:Kabupaten Alor"
@@ -1584,7 +1584,7 @@
         "@id": "relation/11226929",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Belu",
+        "name": "Belu",
         "type": "boundary",
         "wikidata": "Q14133",
         "wikipedia": "id:Kabupaten Belu"
@@ -2190,7 +2190,7 @@
         "@id": "relation/11228379",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ende",
+        "name": "Ende",
         "type": "boundary",
         "wikidata": "Q14140",
         "wikipedia": "id:Kabupaten Ende"
@@ -3112,7 +3112,7 @@
         "@id": "relation/11228386",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Flores Timur",
+        "name": "Flores Timur",
         "type": "boundary",
         "wikidata": "Q14136",
         "wikipedia": "id:Kabupaten Flores Timur"
@@ -4302,7 +4302,7 @@
         "@id": "relation/11226927",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kupang",
+        "name": "Kupang",
         "type": "boundary",
         "wikidata": "Q14141",
         "wikipedia": "id:Kabupaten Kupang"
@@ -5024,7 +5024,7 @@
         "@id": "relation/11225318",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lembata",
+        "name": "Lembata",
         "type": "boundary",
         "wikidata": "Q14142",
         "wikipedia": "id:Kabupaten Lembata"
@@ -5432,7 +5432,7 @@
         "@id": "relation/11226930",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Malaka",
+        "name": "Malaka",
         "type": "boundary",
         "wikidata": "Q4069046",
         "wikipedia": "id:Kabupaten Malaka"
@@ -5974,7 +5974,7 @@
         "@id": "relation/11228382",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Manggarai",
+        "name": "Manggarai",
         "type": "boundary",
         "wikidata": "Q14143",
         "wikipedia": "id:Kabupaten Manggarai"
@@ -7456,7 +7456,7 @@
         "@id": "relation/11228381",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Manggarai Barat",
+        "name": "Manggarai Barat",
         "type": "boundary",
         "wikidata": "Q14153",
         "wikipedia": "id:Kabupaten Manggarai Barat"
@@ -7980,7 +7980,7 @@
         "@id": "relation/11228383",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Manggarai Timur",
+        "name": "Manggarai Timur",
         "type": "boundary",
         "wikidata": "Q14137",
         "wikipedia": "id:Kabupaten Manggarai Timur"
@@ -8416,7 +8416,7 @@
         "@id": "relation/11228385",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nagekeo",
+        "name": "Nagekeo",
         "type": "boundary",
         "wikidata": "Q14144",
         "wikipedia": "id:Kabupaten Nagekeo"
@@ -8922,7 +8922,7 @@
         "@id": "relation/11228384",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ngada",
+        "name": "Ngada",
         "type": "boundary",
         "wikidata": "Q14145",
         "wikipedia": "id:Kabupaten Ngada"
@@ -9708,7 +9708,7 @@
         "@id": "relation/11225324",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Rote Ndao",
+        "name": "Rote Ndao",
         "type": "boundary",
         "wikidata": "Q14147",
         "wikipedia": "id:Kabupaten Rote Ndao"
@@ -9966,7 +9966,7 @@
         "@id": "relation/11225325",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sabu Raijua",
+        "name": "Sabu Raijua",
         "type": "boundary",
         "wikidata": "Q14148",
         "wikipedia": "id:Kabupaten Sabu Raijua"
@@ -10756,7 +10756,7 @@
         "@id": "relation/11228380",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sikka",
+        "name": "Sikka",
         "type": "boundary",
         "wikidata": "Q14150",
         "wikipedia": "id:Kabupaten Sikka"
@@ -11140,7 +11140,7 @@
         "@id": "relation/11225334",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sumba Barat",
+        "name": "Sumba Barat",
         "type": "boundary",
         "wikidata": "Q14154",
         "wikipedia": "id:Kabupaten Sumba Barat"
@@ -11424,7 +11424,7 @@
         "@id": "relation/11225333",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sumba Barat Daya",
+        "name": "Sumba Barat Daya",
         "type": "boundary",
         "wikidata": "Q14152",
         "wikipedia": "id:Kabupaten Sumba Barat Daya"
@@ -11880,7 +11880,7 @@
         "@id": "relation/11225332",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sumba Tengah",
+        "name": "Sumba Tengah",
         "type": "boundary",
         "wikidata": "Q14134",
         "wikipedia": "id:Kabupaten Sumba Tengah"
@@ -12710,7 +12710,7 @@
         "@id": "relation/7239089",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sumba Timur",
+        "name": "Sumba Timur",
         "type": "boundary",
         "wikidata": "Q14139",
         "wikipedia": "id:Kabupaten Sumba Timur"
@@ -13346,7 +13346,7 @@
         "@id": "relation/11226932",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Timor Tengah Selatan",
+        "name": "Timor Tengah Selatan",
         "type": "boundary",
         "wikidata": "Q14151",
         "wikipedia": "id:Kabupaten Timor Tengah Selatan"
@@ -14054,7 +14054,7 @@
         "@id": "relation/11226928",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Timor Tengah Utara",
+        "name": "Timor Tengah Utara",
         "type": "boundary",
         "wikidata": "Q14146",
         "wikipedia": "id:Kabupaten Timor Tengah Utara"

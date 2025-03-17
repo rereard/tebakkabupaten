@@ -1120,7 +1120,7 @@
         "@id": "relation/13263675",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Halmahera Barat",
+        "name": "Halmahera Barat",
         "type": "boundary",
         "wikidata": "Q19150",
         "wikipedia": "id:Kabupaten Halmahera Barat"
@@ -6330,7 +6330,7 @@
         "@id": "relation/13263671",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Halmahera Selatan",
+        "name": "Halmahera Selatan",
         "type": "boundary",
         "wikidata": "Q19148",
         "wikipedia": "id:Kabupaten Halmahera Selatan"
@@ -7952,7 +7952,7 @@
         "@id": "relation/13263673",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Halmahera Tengah",
+        "name": "Halmahera Tengah",
         "type": "boundary",
         "wikidata": "Q19144",
         "wikipedia": "id:Kabupaten Halmahera Tengah"
@@ -9478,7 +9478,7 @@
         "@id": "relation/13263674",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Halmahera Timur",
+        "name": "Halmahera Timur",
         "type": "boundary",
         "wikidata": "Q19145",
         "wikipedia": "id:Kabupaten Halmahera Timur"
@@ -10712,7 +10712,7 @@
         "@id": "relation/13263672",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Halmahera Utara",
+        "name": "Halmahera Utara",
         "type": "boundary",
         "wikidata": "Q19147",
         "wikipedia": "id:Kabupaten Halmahera Utara"
@@ -11862,7 +11862,7 @@
         "@id": "relation/4286275",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Sula",
+        "name": "Kepulauan Sula",
         "name:en": "Sula Islands",
         "name:sk": "Sulské ostrovy",
         "official_name": "Kabupaten Kepulauan Sula",
@@ -12583,7 +12583,7 @@
         "@id": "relation/13263678",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pulau Morotai",
+        "name": "Pulau Morotai",
         "type": "boundary",
         "wikidata": "Q17053892",
         "wikipedia": "id:Kabupaten Pulau Morotai"
@@ -13749,7 +13749,7 @@
         "@id": "relation/13263670",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pulau Taliabu",
+        "name": "Pulau Taliabu",
         "type": "boundary",
         "wikidata": "Q676084",
         "wikipedia": "id:Kabupaten Pulau Taliabu"

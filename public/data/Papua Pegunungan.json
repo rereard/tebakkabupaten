@@ -354,7 +354,7 @@
         "@id": "relation/7754470",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Jayawijaya",
+        "name": "Jayawijaya",
         "type": "boundary",
         "wikidata": "Q27529",
         "wikipedia": "id:Kabupaten Jayawijaya"
@@ -662,7 +662,7 @@
         "@id": "relation/7754469",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lanny Jaya",
+        "name": "Lanny Jaya",
         "type": "boundary",
         "wikidata": "Q27594",
         "wikipedia": "id:Kabupaten Lanny Jaya"
@@ -1154,7 +1154,7 @@
         "@id": "relation/7754456",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mamberamo Tengah",
+        "name": "Mamberamo Tengah",
         "type": "boundary",
         "wikipedia": "id:Kabupaten Mamberamo Tengah"
       },
@@ -1593,7 +1593,7 @@
         "@id": "relation/7754471",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nduga",
+        "name": "Nduga",
         "type": "boundary",
         "wikidata": "Q27724",
         "wikipedia": "id:Kabupaten Nduga"
@@ -2069,7 +2069,7 @@
         "@id": "relation/7754452",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pegunungan Bintang",
+        "name": "Pegunungan Bintang",
         "type": "boundary",
         "wikidata": "Q27750",
         "wikipedia": "id:Kabupaten Pegunungan Bintang"
@@ -2433,7 +2433,7 @@
         "@id": "relation/7754467",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tolikara",
+        "name": "Tolikara",
         "type": "boundary",
         "wikidata": "Q27802",
         "wikipedia": "id:Kabupaten Tolikara"
@@ -3093,7 +3093,7 @@
         "@id": "relation/7754454",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Yahukimo",
+        "name": "Yahukimo",
         "type": "boundary",
         "wikidata": "Q27825",
         "wikipedia": "id:Kabupaten Yahukimo"
@@ -3629,7 +3629,7 @@
         "@id": "relation/7754455",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Yalimo",
+        "name": "Yalimo",
         "type": "boundary",
         "wikipedia": "id:Kabupaten Yalimo"
       },

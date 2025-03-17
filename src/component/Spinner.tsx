@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export default function Spinner() {
   return (
-    <div className="flex justify-center items-center w-96 h-full">
+    <div className="flex justify-center items-center w-full h-full">
       <motion.div
         className="w-12 h-12 border-8 my-5 border-t-transparent border-blue-500 rounded-full"
         animate={{ rotate: 360 }}

@@ -330,7 +330,7 @@
         "@id": "relation/7754462",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Deiyai",
+        "name": "Deiyai",
         "type": "boundary",
         "wikidata": "Q27386",
         "wikipedia": "id:Kabupaten Deiyai"
@@ -766,7 +766,7 @@
         "@id": "relation/7754463",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Dogiyai",
+        "name": "Dogiyai",
         "type": "boundary",
         "wikidata": "Q27413",
         "wikipedia": "id:Kabupaten Dogiyai"
@@ -1242,7 +1242,7 @@
         "@id": "relation/7754465",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Intan Jaya",
+        "name": "Intan Jaya",
         "type": "boundary",
         "wikidata": "Q27458",
         "wikipedia": "id:Kabupaten Intan Jaya"
@@ -2210,7 +2210,7 @@
         "@id": "relation/7754461",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mimika",
+        "name": "Mimika",
         "type": "boundary",
         "wikidata": "Q27700",
         "wikipedia": "id:Kabupaten Mimika"
@@ -3140,7 +3140,7 @@
         "@id": "relation/7754457",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nabire",
+        "name": "Nabire",
         "type": "boundary",
         "wikidata": "Q27708",
         "wikipedia": "id:Kabupaten Nabire"
@@ -3552,7 +3552,7 @@
         "@id": "relation/7754464",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Paniai",
+        "name": "Paniai",
         "type": "boundary",
         "wikidata": "Q27738",
         "wikipedia": "id:Kabupaten Paniai"
@@ -4212,7 +4212,7 @@
         "@id": "relation/7754466",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Puncak",
+        "name": "Puncak",
         "type": "boundary",
         "wikidata": "Q27761",
         "wikipedia": "id:Kabupaten Puncak"
@@ -4692,7 +4692,7 @@
         "@id": "relation/7754468",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Puncak Jaya",
+        "name": "Puncak Jaya",
         "type": "boundary",
         "wikidata": "Q27771",
         "wikipedia": "id:Kabupaten Puncak Jaya"

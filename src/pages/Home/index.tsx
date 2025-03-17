@@ -103,9 +103,9 @@ function Home() {
                 initial={{ opacity: 0, y: -80 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ ease: "easeInOut" }}
-                className='text-xl md:text-2xl lg:text-5xl z-20 font-bold absolute top-10 right-0 text-black left-0 flex justify-center items-center'
+                className='text-base sm:text-xl md:text-2xl lg:text-5xl z-20 font-bold absolute top-10 right-0 text-black left-0 flex justify-center items-center'
               >
-                <img loading='lazy' src="/thumbnail.png" alt="Website's Icon" className='w-24 md:w-36 lg:w-52' /> <span className='text-left'><p>TEBAK KABUPATEN & KOTA</p><p>INDONESIA</p></span>
+                <img loading='lazy' src="/thumbnail.png" alt="Website's Icon" className='w-20 sm:w-24 md:w-36 lg:w-52' /> <span className='text-left'><p>TEBAK KABUPATEN & KOTA</p><p>INDONESIA</p></span>
               </motion.h1>
               <Button 
                 title='Mulai Main!'
@@ -142,14 +142,11 @@ function Home() {
           </div>
         )}
       </section>
-      <footer className='flex p-4 bg-gray-800 text-white flex-col items-start gap-y-2'>
-        <p>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a> | Project's repo <a href='https://github.com/rereard/tebakkabupaten' target='_blank'>here</a></p>
+      <footer className='flex text-xs md:text-sm lg:text-base  p-4 bg-gray-800 text-white flex-col items-start gap-y-2'>
+        <p className='text-left'>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a> | Project's repo <a href='https://github.com/rereard/tebakkabupaten' target='_blank'>here</a></p>
         <p className='text-justify'>
-          Website ini menggunakan data dari <a className='hover:underline text-blue-400' href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>, 
-          diekstrak menggunakan <a href="https://overpass-turbo.eu/" target="_blank">Overpass Turbo</a>, 
-          disederhanakan dengan <a href="https://mapshaper.org/" target="_blank">Mapshaper</a>, 
-          ditampilkan menggunakan <a href="https://leafletjs.com/" target="_blank">Leaflet</a>, 
-          dan menggunakan map tiles dari <a href="https://carto.com/" target="_blank">Carto Voyager (no labels)</a>.
+          Website ini menggunakan data <a className='hover:underline text-blue-400' href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> (extracted via <a href="https://overpass-turbo.eu/" target="_blank">Overpass Turbo</a>) 
+          dan menggunakan map tiles <a href="https://carto.com/" target="_blank">Carto Voyager (no labels)</a>.
         </p>
         <p className='self-center'>Work in Progress~</p>
       </footer>

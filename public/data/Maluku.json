@@ -934,7 +934,7 @@
         "@id": "relation/13262347",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Buru",
+        "name": "Buru",
         "type": "boundary",
         "wikidata": "Q16564",
         "wikipedia": "id:Kabupaten Buru"
@@ -2088,7 +2088,7 @@
         "@id": "relation/13262348",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Buru Selatan",
+        "name": "Buru Selatan",
         "type": "boundary",
         "wikidata": "Q16583",
         "wikipedia": "id:Kabupaten Buru Selatan"
@@ -7202,7 +7202,7 @@
         "@id": "relation/13262357",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Aru",
+        "name": "Kepulauan Aru",
         "name:de": "Aru-Inseln",
         "name:en": "Aru Islands",
         "name:es": "Islas Aru",
@@ -10279,7 +10279,7 @@
         "@id": "relation/13262356",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kepulauan Tanimbar",
+        "name": "Kepulauan Tanimbar",
         "name:sk": "Tanimbarské ostrovy",
         "type": "boundary",
         "wikidata": "Q18961",
@@ -12942,7 +12942,7 @@
         "@id": "relation/13262355",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Maluku Barat Daya",
+        "name": "Maluku Barat Daya",
         "type": "boundary",
         "wikidata": "Q18935",
         "wikipedia": "id:Kabupaten Maluku Barat Daya"
@@ -15428,7 +15428,7 @@
         "@id": "relation/13262350",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Maluku Tengah",
+        "name": "Maluku Tengah",
         "type": "boundary",
         "wikidata": "Q4201768",
         "wikipedia": "id:Kabupaten Maluku Tengah"
@@ -16798,7 +16798,7 @@
         "@id": "relation/13262354",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Maluku Tenggara",
+        "name": "Maluku Tenggara",
         "type": "boundary",
         "wikidata": "Q18849",
         "wikipedia": "id:Kabupaten Maluku Tenggara"
@@ -18392,7 +18392,7 @@
         "@id": "relation/13262349",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Seram Bagian Barat",
+        "name": "Seram Bagian Barat",
         "type": "boundary",
         "wikidata": "Q18942",
         "wikipedia": "id:Kabupaten Seram Bagian Barat"
@@ -19834,7 +19834,7 @@
         "@id": "relation/13262352",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Seram Bagian Timur",
+        "name": "Seram Bagian Timur",
         "type": "boundary",
         "wikidata": "Q16569",
         "wikipedia": "id:Kabupaten Seram Bagian Timur"

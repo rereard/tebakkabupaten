@@ -182,7 +182,7 @@ export default function Province(){
                 if(!answeredAreasRef.current[clickedName]){
                   e.target.setStyle(getFeatureStyle(feature))
                 }
-                layer.unbindTooltip() // type error when played the game twice, not breaking the apps (see console)
+                layer.unbindTooltip();
               },
               click: () => {
                 if (answeredAreasRef.current[clickedName]) return;
@@ -262,34 +262,34 @@ export default function Province(){
       {modalIsOpen && (
         <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
           <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{  opacity: 1, y:0 }} transition={{ duration: 0.3, ease: "easeOut" }} className='bg-white flex flex-col items-center p-6 rounded-lg shadow-xl w-fit border-4 relative'>
-            <h2 className="text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${decodedProvince}` : 'Permainan selesai!'}</h2>
-            <motion.button disabled={!geojsonLoaded} whileHover={ geojsonLoaded ? { scale: 1.07 } : {}} className='absolute top-2 right-2 text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000] disabled:text-[#ff7979] disabled:cursor-auto' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
+            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${decodedProvince}` : 'Permainan selesai!'}</h2>
+            <motion.button disabled={!geojsonLoaded} whileHover={ geojsonLoaded ? { scale: 1.07 } : {}} className='absolute top-2 right-2 text-xs md:text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000] disabled:text-[#ff7979] disabled:cursor-auto' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
             {(!geojsonLoaded && !isError) ? (
               <Spinner />
             ) : 
             !isError ? (
               <>
                 {Object.values(answeredAreas).length === 0 ? (
-                  <p className="text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
+                  <p className="text-base md:text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
                 ) : (
                   <>
-                    <p className='text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
+                    <p className='text-base md:text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
                   </>
                 )}
                 <div className='my-4 h-fit w-full max-h-56 overflow-y-auto'>
-                  <ol className='list-decimal list-inside columns-2 pl-5 text-left'>
+                  <ol className='list-decimal list-inside sm:columns-2 pl-5 text-left'>
                     {Object.keys(answeredAreas).length === 0 ? (
-                      allAreas.map((name, index) => (<li className='text-black font-medium' key={index}>{name}</li>))
+                      allAreas.map((name, index) => (<li className='text-black font-medium text-base md:text-lg' key={index}>{name}</li>))
                     ) : 
                     Object.keys(answeredAreas).map((key, index) => (
-                      <li className={`${answeredAreas[key] === "wrong" ? 'text-red-600' : answeredAreas[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium`} key={index}>{key}</li>
+                      <li className={`${answeredAreas[key] === "wrong" ? 'text-red-600' : answeredAreas[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium text-base md:text-lg`} key={index}>{key}</li>
                     ))}
                   </ol>
                 </div>
                 <div className='p-2 mb-4 flex flex-col w-full gap-1'>
-                  <div className='flex'>
-                    <span>Mode:</span>
-                    <div className='flex-1 flex justify-around'>
+                  <div className='flex items-center text-sm md:text-base'>
+                    <span className='flex-1 md:flex-0'>Mode:</span>
+                    <div className='flex-1 flex flex-col sm:flex-row justify-around'>
                       <CheckLabel 
                         checked={gameMode === GameMode.Casual ? true : false}
                         onChange={() => setGameMode(GameMode.Casual)}
@@ -323,7 +323,7 @@ export default function Province(){
                       />
                     </div>
                   </div>
-                  <div className='w-full max-w-96 self-center font-bold italic'>
+                  <div className='w-full max-w-96 self-center font-bold italic text-xs md:text-sm'>
                     <p>{gameMode === GameMode.Casual ? 'Tebak tanpa batasan waktu atau penalti. Cocok untuk belajar sambil santai!' : gameMode === GameMode.SuddenDeath ? 'Satu kesalahan, game over! Uji ketepatan tanpa ruang untuk salah.' : gameMode === GameMode.TimeTrial  ? 'Selesaikan secepat mungkin! Jika salah waktu bertambah 10 detik!' : 'Ultimate Challenge! Cepat dan tepat, atau game over!'}</p>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ export default function Province(){
                 />
               </div>
             )}
-            <div className='text-white w-11/12 flex justify-between'>
+            <div className='text-white w-11/12 flex gap-2 justify-between'>
               <Button 
                 title='Kembali'
                 onClick={() => {

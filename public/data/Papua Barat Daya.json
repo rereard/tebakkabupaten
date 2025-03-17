@@ -558,7 +558,7 @@
         "@id": "relation/14905624",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Maybrat",
+        "name": "Maybrat",
         "type": "boundary",
         "wikidata": "Q26759",
         "wikipedia": "id:Kabupaten Maybrat"
@@ -794,7 +794,7 @@
         "@id": "relation/14954983",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Raja Ampat",
+        "name": "Raja Ampat",
         "type": "boundary",
         "wikidata": "Q26785",
         "wikipedia": "id:Kabupaten Raja Ampat"
@@ -2136,7 +2136,7 @@
         "@id": "relation/14954913",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sorong",
+        "name": "Sorong",
         "type": "boundary",
         "wikidata": "Q26792",
         "wikipedia": "id:Kabupaten Sorong"
@@ -3110,7 +3110,7 @@
         "@id": "relation/14954914",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sorong Selatan",
+        "name": "Sorong Selatan",
         "type": "boundary",
         "wikidata": "Q26802",
         "wikipedia": "id:Kabupaten Sorong Selatan"
@@ -4042,7 +4042,7 @@
         "@id": "relation/14905730",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tambrauw",
+        "name": "Tambrauw",
         "type": "boundary",
         "wikidata": "Q26810",
         "wikipedia": "id:Kabupaten Tambrauw"

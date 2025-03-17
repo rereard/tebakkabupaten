@@ -362,7 +362,7 @@
         "@id": "relation/14956263",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Majene",
+        "name": "Majene",
         "type": "boundary",
         "wikidata": "Q15344",
         "wikipedia": "id:Kabupaten Majene"
@@ -850,7 +850,7 @@
         "@id": "relation/14956261",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mamasa",
+        "name": "Mamasa",
         "type": "boundary",
         "wikidata": "Q15347",
         "wikipedia": "id:Kabupaten Mamasa"
@@ -1540,7 +1540,7 @@
         "@id": "relation/14956264",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mamuju",
+        "name": "Mamuju",
         "type": "boundary",
         "wikidata": "Q15349",
         "wikipedia": "id:Kabupaten Mamuju"
@@ -2000,7 +2000,7 @@
         "@id": "relation/14956266",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mamuju Tengah",
+        "name": "Mamuju Tengah",
         "type": "boundary",
         "wikidata": "Q12488349",
         "wikipedia": "id:Kabupaten Mamuju Tengah"
@@ -2584,7 +2584,7 @@
         "@id": "relation/14956265",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pasangkayu",
+        "name": "Pasangkayu",
         "type": "boundary",
         "wikidata": "Q15350",
         "wikipedia": "id:Kabupaten Pasangkayu"
@@ -2968,7 +2968,7 @@
         "@id": "relation/14956262",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Polewali Mandar",
+        "name": "Polewali Mandar",
         "type": "boundary",
         "wikidata": "Q15353",
         "wikipedia": "id:Kabupaten Polewali Mandar"

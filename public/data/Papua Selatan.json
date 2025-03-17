@@ -454,7 +454,7 @@
         "@id": "relation/7754473",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Asmat",
+        "name": "Asmat",
         "type": "boundary",
         "wikidata": "Q27228",
         "wikipedia": "id:Kabupaten Asmat"
@@ -766,7 +766,7 @@
         "@id": "relation/7754474",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Boven Digoel",
+        "name": "Boven Digoel",
         "type": "boundary",
         "wikidata": "Q27262",
         "wikipedia": "id:Kabupaten Boven Digoel"
@@ -1200,7 +1200,7 @@
         "@id": "relation/7754472",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mappi",
+        "name": "Mappi",
         "type": "boundary",
         "wikidata": "Q27679",
         "wikipedia": "id:Kabupaten Mappi"
@@ -2034,7 +2034,7 @@
         "@id": "relation/7754475",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Merauke",
+        "name": "Merauke",
         "type": "boundary",
         "wikidata": "Q27693",
         "wikipedia": "id:Kabupaten Merauke"

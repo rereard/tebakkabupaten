@@ -250,7 +250,7 @@
         "@id": "relation/9674056",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bangkalan",
+        "name": "Bangkalan",
         "type": "boundary",
         "wikidata": "Q11066",
         "wikipedia": "id:Kabupaten Bangkalan"
@@ -838,7 +838,7 @@
         "@id": "relation/9674156",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Banyuwangi",
+        "name": "Banyuwangi",
         "type": "boundary",
         "wikidata": "Q11067",
         "wikipedia": "id:Kabupaten Banyuwangi"
@@ -1208,7 +1208,7 @@
         "@id": "relation/9676377",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Blitar",
+        "name": "Blitar",
         "type": "boundary",
         "wikidata": "Q11069",
         "wikipedia": "id:Kabupaten Blitar"
@@ -1612,7 +1612,7 @@
         "@id": "relation/9676650",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bojonegoro",
+        "name": "Bojonegoro",
         "type": "boundary",
         "wikidata": "Q11071",
         "wikipedia": "id:Kabupaten Bojonegoro"
@@ -1936,7 +1936,7 @@
         "@id": "relation/9674159",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Bondowoso",
+        "name": "Bondowoso",
         "type": "boundary",
         "wikidata": "Q11076",
         "wikipedia": "id:Kabupaten Bondowoso"
@@ -2438,7 +2438,7 @@
         "@id": "relation/9677344",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Gresik",
+        "name": "Gresik",
         "type": "boundary",
         "wikidata": "Q11077",
         "wikipedia": "id:Kabupaten Gresik"
@@ -2988,7 +2988,7 @@
         "@id": "relation/9674158",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Jember",
+        "name": "Jember",
         "type": "boundary",
         "wikidata": "Q11080",
         "wikipedia": "id:Kabupaten Jember"
@@ -3253,7 +3253,7 @@
         "admin_level": "5",
         "boundary": "administrative",
         "is_in:province": "Jawa Timur",
-        "name": "Kabupaten Jombang",
+        "name": "Jombang",
         "type": "boundary",
         "wikidata": "Q11082",
         "wikipedia": "id:Kabupaten Jombang"
@@ -3659,7 +3659,7 @@
         "@id": "relation/9676374",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Kediri",
+        "name": "Kediri",
         "name:en": "Kediri Regency",
         "type": "boundary",
         "wikidata": "Q11084",
@@ -4048,7 +4048,7 @@
         "@id": "relation/9676366",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lamongan",
+        "name": "Lamongan",
         "type": "boundary",
         "wikidata": "Q11086",
         "wikipedia": "id:Kabupaten Lamongan"
@@ -4344,7 +4344,7 @@
         "@id": "relation/9674157",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lumajang",
+        "name": "Lumajang",
         "type": "boundary",
         "wikidata": "Q11087",
         "wikipedia": "id:Kabupaten Lumajang"
@@ -4664,7 +4664,7 @@
         "@id": "relation/9676371",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Madiun",
+        "name": "Madiun",
         "type": "boundary",
         "wikidata": "Q11091",
         "wikipedia": "id:Kabupaten Madiun"
@@ -4896,7 +4896,7 @@
         "@id": "relation/9676652",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Magetan",
+        "name": "Magetan",
         "type": "boundary",
         "wikidata": "Q11092",
         "wikipedia": "id:Kabupaten Magetan"
@@ -5576,7 +5576,7 @@
         "@id": "relation/9674152",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Malang",
+        "name": "Malang",
         "type": "boundary",
         "wikidata": "Q11095",
         "wikipedia": "id:Kabupaten Malang"
@@ -5854,7 +5854,7 @@
         "@id": "relation/9676367",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Mojokerto",
+        "name": "Mojokerto",
         "type": "boundary",
         "wikidata": "Q11096",
         "wikipedia": "id:Kabupaten Mojokerto"
@@ -6146,7 +6146,7 @@
         "@id": "relation/9676372",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Nganjuk",
+        "name": "Nganjuk",
         "type": "boundary",
         "wikidata": "Q11098",
         "wikipedia": "id:Kabupaten Nganjuk"
@@ -6430,7 +6430,7 @@
         "@id": "relation/9676651",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ngawi",
+        "name": "Ngawi",
         "type": "boundary",
         "wikidata": "Q11108",
         "wikipedia": "id:Kabupaten Ngawi"
@@ -6762,7 +6762,7 @@
         "@id": "relation/9676654",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pacitan",
+        "name": "Pacitan",
         "type": "boundary",
         "wikidata": "Q11111",
         "wikipedia": "id:Kabupaten Pacitan"
@@ -6970,7 +6970,7 @@
         "@id": "relation/9674058",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pamekasan",
+        "name": "Pamekasan",
         "type": "boundary",
         "wikidata": "Q11112",
         "wikipedia": "id:Kabupaten Pamekasan"
@@ -7270,7 +7270,7 @@
         "@id": "relation/9674154",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pasuruan",
+        "name": "Pasuruan",
         "type": "boundary",
         "wikidata": "Q11115",
         "wikipedia": "id:Kabupaten Pasuruan"
@@ -7626,7 +7626,7 @@
         "@id": "relation/9676653",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Ponorogo",
+        "name": "Ponorogo",
         "name:uk": "Понороґо",
         "type": "boundary",
         "wikidata": "Q11118",
@@ -8067,7 +8067,7 @@
         "@id": "relation/9674162",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Probolinggo",
+        "name": "Probolinggo",
         "type": "boundary",
         "wikidata": "Q11121",
         "wikipedia": "id:Kabupaten Probolinggo"
@@ -8359,7 +8359,7 @@
         "@id": "relation/9674057",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sampang",
+        "name": "Sampang",
         "type": "boundary",
         "wikidata": "Q11127",
         "wikipedia": "id:Kabupaten Sampang"
@@ -8543,7 +8543,7 @@
         "@id": "relation/9677345",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sidoarjo",
+        "name": "Sidoarjo",
         "type": "boundary",
         "wikidata": "Q11129",
         "wikipedia": "id:Kabupaten Sidoarjo"
@@ -8967,7 +8967,7 @@
         "@id": "relation/9674160",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Situbondo",
+        "name": "Situbondo",
         "type": "boundary",
         "wikidata": "Q11134",
         "wikipedia": "id:Kabupaten Situbondo"
@@ -10061,7 +10061,7 @@
         "@id": "relation/9674059",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Sumenep",
+        "name": "Sumenep",
         "type": "boundary",
         "wikidata": "Q11137",
         "wikipedia": "id:Kabupaten Sumenep"
@@ -10453,7 +10453,7 @@
         "@id": "relation/9676368",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Trenggalek",
+        "name": "Trenggalek",
         "type": "boundary",
         "wikidata": "Q11139",
         "wikipedia": "id:Kabupaten Trenggalek"
@@ -10811,7 +10811,7 @@
         "boundary": "administrative",
         "is_in:country": "Indonesia",
         "is_in:province": "Jawa Timur",
-        "name": "Kabupaten Tuban",
+        "name": "Tuban",
         "type": "boundary",
         "wikidata": "Q11141",
         "wikipedia": "en:Tuban Regency",
@@ -11140,7 +11140,7 @@
         "@id": "relation/9676369",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tulungagung",
+        "name": "Tulungagung",
         "type": "boundary",
         "wikidata": "Q11143",
         "wikipedia": "id:Kabupaten Tulungagung"

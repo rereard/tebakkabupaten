@@ -410,7 +410,7 @@
         "@id": "relation/7641586",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Lebak",
+        "name": "Lebak",
         "type": "boundary",
         "wikidata": "Q10119",
         "wikipedia": "id:Kabupaten Lebak"
@@ -1148,7 +1148,7 @@
         "@id": "relation/7641585",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Pandeglang",
+        "name": "Pandeglang",
         "type": "boundary",
         "wikidata": "Q10121",
         "wikipedia": "id:Kabupaten Pandeglang"
@@ -1730,7 +1730,7 @@
         "@id": "relation/7641587",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Serang",
+        "name": "Serang",
         "type": "boundary",
         "wikidata": "Q10122",
         "wikipedia": "id:Kabupaten Serang"
@@ -2030,7 +2030,7 @@
         "@id": "relation/7641584",
         "admin_level": "5",
         "boundary": "administrative",
-        "name": "Kabupaten Tangerang",
+        "name": "Tangerang",
         "type": "boundary",
         "wikidata": "Q10123",
         "wikipedia": "id:Kabupaten Tangerang"
