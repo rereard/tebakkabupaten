@@ -41,5 +41,6 @@ export default function useStopwatch() {
     addTime: (n: number) => {
       setTime((prev) => prev + n);
     },
+    timeFormatting: (t: number) => formatTime(t)
   };
 }
