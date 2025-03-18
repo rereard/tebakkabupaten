@@ -142,7 +142,17 @@ function Home() {
           </div>
         )}
       </section>
-      <footer className='flex text-xs md:text-sm lg:text-base  p-4 bg-gray-800 text-white flex-col items-start gap-y-2'>
+      <section className='bg-[#f6f6f6] flex flex-col items-start text-justify p-10 text-sm md:text-base'>
+        <h1 className='text-xl md:text-2xl lg:text-3xl border-l-4 pl-2 mb-4'>Tentang</h1>
+        <p>Tebak Kabupaten & Kota Indonesia adalah website interaktif yang menguji pengetahuanmu tentang letak geografis kabupaten dan kota di Indonesia. Pilih salah satu dari 38 provinsi Indonesia lalu kamu akan diberikan nama sebuah kabupaten atau kota dan tugasmu adalah mengklik lokasi yang benar di peta. Setiap sesi permainan akan mencatat riwayat skor terbaru, sehingga kamu bisa melihat perkembanganmu dari waktu ke waktu. Selamat bermain dan uji seberapa baik kamu mengenal peta Indonesia!</p>
+        <p className='mt-2'>Fitur:</p>
+        <ul className='list-disc list-inside'>
+          <li>Semua kabupaten dan kota di seluruh 38 Provinsi Indonesia</li>
+          <li>Empat mode permainan (Kasual, Sudden Death, Time Trial, Ultimate Challenge)</li>
+          <li>Riwayat bermain</li>
+        </ul>
+      </section>
+      <footer className='flex text-xs md:text-sm lg:text-base p-5 bg-gray-800 text-white flex-col items-start gap-y-2'>
         <p className='text-left'>Created by <a href="https://github.com/rereard" target='_blank'>rereard</a> | Project's repo <a href='https://github.com/rereard/tebakkabupaten' target='_blank'>here</a></p>
         <p className='text-justify'>
           Website ini menggunakan data <a className='hover:underline text-blue-400' href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> (extracted via <a href="https://overpass-turbo.eu/" target="_blank">Overpass Turbo</a>) 
