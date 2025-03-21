@@ -36,7 +36,7 @@ export default function Button({ onClick, width = 128, className, animate, exit,
       transition={transition}
       onClick={onClick}
       style={{ width, zIndex, position }}
-      className={`bg-[#00bcff] text-white p-1 md:p-2 border-t-2 border-l-2 border-b-4 border-r-4 border-sky-800 outline-sky-800 rounded-lg shadow-2xl cursor-pointer ${className}`}
+      className={`bg-[#00bcff] text-white p-1 md:p-2 border-t-2 border-l-2 border-b-4 border-r-4 border-sky-800 outline-sky-800 rounded-lg shadow-2xl cursor-pointer disabled:bg-sky-200 disabled:cursor-auto disabled:border-sky-900 ${className}`}
     >
       {title}
     </motion.button>

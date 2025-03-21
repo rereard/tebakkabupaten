@@ -13,6 +13,10 @@ import expandBBox from '../../utils/expandBbox';
 import FitMapBounds from './FitMapBounds';
 import MapZoomHandler from './MapZoomHandler';
 import { GameHistoryItem, getGameHistory, saveGame } from '../../utils/gameHistory';
+import ModalContainer from '../../component/ModalContainer';
+import NavComponent from '../../component/NavComponent';
+import AreaList from '../../component/AreaList';
+import { GameHistoryComponent } from '../../component/GameHistoryComponent';
 
 enum GameMode {
   Casual = 1,
@@ -49,12 +53,6 @@ export default function Province(){
   const [isError, setIsError] = useState<boolean>(false)
   const [mapKey, setMapKey] = useState<number>(0)
   const [gameNav, setGameNav] = useState<number>(0)
-  const [openListIndex, setOpenListIndex] = useState<number | null>(null);
-  
-  /** toggle the answered areas list result in play history */
-  const toggleOpenList = (index: number) => {
-    setOpenListIndex(openListIndex === index ? null : index);
-  };
 
   const fetchData = () => {
     setGeojsonData(null); // Reset while loading new data
@@ -270,175 +268,134 @@ export default function Province(){
       )}
 
       {/* Modal Component */}
-      {modalIsOpen && (
-        <div className='absolute bg-black/40 bg-op z-[9999] top-0 w-full h-screen flex justify-center items-center'>
-          <motion.div initial={{ opacity: 0, y: 100 }} whileInView={{  opacity: 1, y:0 }} transition={{ duration: 0.3, ease: "easeOut" }} className='bg-white flex flex-col items-center p-6 rounded-lg shadow-xl w-fit border-4 relative'>
-            <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">{Object.values(answeredAreas).length === 0 ? `Provinsi ${decodedProvince}` : 'Permainan selesai!'}</h2>
-            <motion.button disabled={!geojsonLoaded} whileHover={ geojsonLoaded ? { scale: 1.07 } : {}} className='absolute top-2 right-2 text-xs md:text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000] disabled:text-[#ff7979] disabled:cursor-auto' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
-            {(!geojsonLoaded && !isError) ? (
-              <Spinner />
-            ) : 
-            !isError ? (
+      <ModalContainer
+        isOpen={modalIsOpen}
+        leftButtonTitle='Kembali'
+        leftButtonFunction={() => {
+          setZoomOut(true)
+          setIsOpen(false)
+          const shuffleAreaList = shuffleArray([...allAreas])
+          setQuizList(shuffleAreaList)
+          setCurrentQuestion(shuffleAreaList[0])
+          setAnsweredAreas({})
+        }}
+        rightButtonTitle={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
+        rightButtonDisabled={!geojsonLoaded}
+        rightButtonFunction={() => {
+          const shuffleAreaList = shuffleArray([...allAreas])
+          setQuizList(shuffleAreaList)
+          setCurrentQuestion(shuffleAreaList[0] || null)
+          if(Object.keys(answeredAreas).length !== 0){
+            setAnsweredAreas({})
+            setSavedTime(null)
+          }
+          setIsOpen(false)
+          setIsPlaying(true)
+          if(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix){
+            stopwatch.reset()
+            stopwatch.start()
+          }
+          setMapKey((prevKey) => prevKey + 1);
+        }}
+      >
+        <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2">{Object.values(answeredAreas).length === 0 ? `Provinsi ${decodedProvince}` : 'Permainan selesai!'}</h2>
+        <motion.button disabled={!geojsonLoaded} whileHover={ geojsonLoaded ? { scale: 1.07 } : {}} className='absolute top-2 right-2 text-xs md:text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000] disabled:text-[#ff7979] disabled:cursor-auto' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
+        {(!geojsonLoaded && !isError) ? (
+          <Spinner />
+        ) : 
+        !isError ? (
+          <>
+            <NavComponent 
+              setNavIndex={setGameNav}
+              navIndex={gameNav}
+              navList={['Permainan', 'Riwayat']}
+            />
+            {gameNav === 1 && (
+              gameHistory.length === 0 ? (
+                <div className='my-7'>
+                  <p className=' italic'>Belum ada riwayat bermain di provinsi ini...</p>
+                </div>
+              ) : (
+                <>
+                  <GameHistoryComponent 
+                    data={gameHistory}
+                    className='max-h-56 overflow-y-auto'
+                  />
+                  <p className='text-gray-400 my-2 italic'>Hanya 5 permainan terakhir yang disimpan...</p>
+                </>
+              )
+            )}
+            {gameNav === 0 && (
               <>
-                <nav className='mt-2 w-full flex'>
-                  {Array.from({ length: 2 }).map((_, index) => (
-                    <button key={index} onClick={() => setGameNav(index)} className={`${gameNav === index ? 'bg-[#00bcff] text-white' : 'hover:underline'} border-black flex-1 cursor-pointer ${index === 0 ? 'border-2 rounded-l-full' :'border-y-2 border-r-2 rounded-r-full'}`}>{index === 0 ? 'Permainan' : 'Riwayat'}</button>
-                  ))}
-                </nav>
-                {gameNav === 1 && (
-                  gameHistory.length === 0 ? (
-                    <div className='my-7'>
-                      <p className=' italic'>Belum ada riwayat bermain di provinsi ini...</p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className='my-2 flex flex-col w-full max-h-56 overflow-y-auto gap-2'>
-                        {gameHistory.map((item, index) => (
-                          <div onClick={() => toggleOpenList(index)} className='border-b w-full text-start py-2 cursor-pointer' key={index}>
-                            <div className='flex justify-between items-center'>
-                              <span>
-                                <p>{item.mode === GameMode.Casual ? 'Kasual' : item.mode === GameMode.Mix ? 'Mix' : item.mode === GameMode.SuddenDeath ? 'Sudden-Death' : item.mode === GameMode.TimeTrial && 'Time Trial'}</p>
-                                <p>Hasil: {Object.values(item.result).filter(v => v === "correct").length}/{allAreas.length} {item.time && `| Waktu: ${stopwatch.timeFormatting(item.time)}`}</p>
-                                <p className='text-sm'>{item.date}</p>
-                              </span>
-                              <motion.span 
-                                animate={{ rotate: openListIndex === index ? 180 : 0 }}
-                                transition={{ duration: 0.3 }}
-                                className='text mr-2'
-                              >
-                                ⮟
-                              </motion.span>
-                            </div>
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: openListIndex === index ? "auto" : 0, opacity: openListIndex === index ? 1 : 0 }}
-                              transition={{ duration: 0.3, ease: "easeInOut" }}
-                              className="overflow-hidden mt-2"
-                            >
-                              <ol className='list-decimal list-inside sm:columns-2 text-left'>
-                                {Object.keys(item.result).map((key, index) => (
-                                  <li className={`${item.result[key] === "wrong" ? 'text-red-600' : item.result[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium`} key={index}>{key}</li>
-                                ))}
-                              </ol>
-                            </motion.div>
-                          </div>
-                        ))}
-                      </div>
-                      <p className='text-gray-400 my-2 italic'>Hanya 5 permainan terakhir yang disimpan...</p>
-                    </>
-                  )
-                )}
-                {gameNav === 0 && (
+                {Object.values(answeredAreas).length === 0 ? (
+                  <p className="text-base md:text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
+                ) : (
                   <>
-                    {Object.values(answeredAreas).length === 0 ? (
-                      <p className="text-base md:text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
-                    ) : (
-                      <>
-                        <p className='text-base md:text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
-                      </>
-                    )}
-                    <div className='my-4 h-fit w-full max-h-56 overflow-y-auto'>
-                      <ol className='list-decimal list-inside sm:columns-2 pl-5 text-left'>
-                        {Object.keys(answeredAreas).length === 0 ? (
-                          allAreas.map((name, index) => (<li className='text-black font-medium text-base md:text-lg' key={index}>{name}</li>))
-                        ) : 
-                        Object.keys(answeredAreas).map((key, index) => (
-                          <li className={`${answeredAreas[key] === "wrong" ? 'text-red-600' : answeredAreas[key] === "correct" ? 'text-green-600' : 'text-black' } font-medium text-base md:text-lg`} key={index}>{key}</li>
-                        ))}
-                      </ol>
-                    </div>
-                    <div className='p-2 mb-4 flex flex-col w-full gap-1'>
-                      <div className='flex items-center text-sm md:text-base'>
-                        <span className='flex-1 md:flex-0'>Mode:</span>
-                        <div className='flex-1 flex flex-col sm:flex-row justify-around'>
-                          <CheckLabel 
-                            checked={gameMode === GameMode.Casual ? true : false}
-                            onChange={() => setGameMode(GameMode.Casual)}
-                            title='Kasual'
-                          />
-                          <CheckLabel 
-                            checked={(gameMode === GameMode.SuddenDeath || gameMode === GameMode.Mix) ? true : false}
-                            onChange={() => {
-                              if(gameMode === GameMode.TimeTrial){
-                                setGameMode(GameMode.Mix)
-                              } else if(gameMode === GameMode.Mix){
-                                setGameMode(GameMode.TimeTrial)
-                              } else{
-                                setGameMode(GameMode.SuddenDeath)
-                              }
-                            }}
-                            title='Sudden-Death'
-                          />
-                          <CheckLabel 
-                            checked={(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix) ? true : false}
-                            onChange={() => {
-                              if(gameMode === GameMode.SuddenDeath){
-                                setGameMode(GameMode.Mix)
-                              } else if(gameMode === GameMode.Mix){
-                                setGameMode(GameMode.SuddenDeath)
-                              } else{
-                                setGameMode(GameMode.TimeTrial)
-                              }
-                            }}
-                            title='Time Trial'
-                          />
-                        </div>
-                      </div>
-                      <div className='w-full max-w-96 self-center font-bold italic text-xs md:text-sm'>
-                        <p>{gameMode === GameMode.Casual ? 'Tebak tanpa batasan waktu atau penalti. Cocok untuk belajar sambil santai!' : gameMode === GameMode.SuddenDeath ? 'Satu kesalahan, game over! Uji ketepatan tanpa ruang untuk salah.' : gameMode === GameMode.TimeTrial  ? 'Selesaikan secepat mungkin! Jika salah waktu bertambah 10 detik!' : 'Ultimate Challenge! Cepat dan tepat, atau game over!'}</p>
-                      </div>
-                    </div>
+                    <p className='text-base md:text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
                   </>
                 )}
+                <div className='my-4 h-fit w-full max-h-56 overflow-y-auto'>
+                  <AreaList 
+                    allAreas={allAreas}
+                    answeredAreas={answeredAreas}
+                  />
+                </div>
+                <div className='p-2 mb-4 flex flex-col w-full gap-1'>
+                  <div className='flex items-center text-sm md:text-base'>
+                    <span className='flex-1 md:flex-0'>Mode:</span>
+                    <div className='flex-1 flex flex-col sm:flex-row justify-around'>
+                      <CheckLabel 
+                        checked={gameMode === GameMode.Casual ? true : false}
+                        onChange={() => setGameMode(GameMode.Casual)}
+                        title='Kasual'
+                      />
+                      <CheckLabel 
+                        checked={(gameMode === GameMode.SuddenDeath || gameMode === GameMode.Mix) ? true : false}
+                        onChange={() => {
+                          if(gameMode === GameMode.TimeTrial){
+                            setGameMode(GameMode.Mix)
+                          } else if(gameMode === GameMode.Mix){
+                            setGameMode(GameMode.TimeTrial)
+                          } else{
+                            setGameMode(GameMode.SuddenDeath)
+                          }
+                        }}
+                        title='Sudden-Death'
+                      />
+                      <CheckLabel 
+                        checked={(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix) ? true : false}
+                        onChange={() => {
+                          if(gameMode === GameMode.SuddenDeath){
+                            setGameMode(GameMode.Mix)
+                          } else if(gameMode === GameMode.Mix){
+                            setGameMode(GameMode.SuddenDeath)
+                          } else{
+                            setGameMode(GameMode.TimeTrial)
+                          }
+                        }}
+                        title='Time Trial'
+                      />
+                    </div>
+                  </div>
+                  <div className='w-full max-w-96 self-center font-bold italic text-xs md:text-sm'>
+                    <p>{gameMode === GameMode.Casual ? 'Tebak tanpa batasan waktu atau penalti. Cocok untuk belajar sambil santai!' : gameMode === GameMode.SuddenDeath ? 'Satu kesalahan, game over! Uji ketepatan tanpa ruang untuk salah.' : gameMode === GameMode.TimeTrial  ? 'Selesaikan secepat mungkin! Jika salah waktu bertambah 10 detik!' : 'Ultimate Challenge! Cepat dan tepat, atau game over!'}</p>
+                  </div>
+                </div>
               </>
-            ) : (
-              <div className='my-7 flex flex-col gap-2'>
-                <p>Gagal memuat...</p>
-                <Button 
-                  title='Coba Lagi'
-                  onClick={() => {
-                    fetchData()
-                  }}
-                />
-              </div>
             )}
-            <div className='text-white w-11/12 flex gap-2 justify-between'>
-              <Button 
-                title='Kembali'
-                onClick={() => {
-                  setZoomOut(true)
-                  setIsOpen(false)
-                  const shuffleAreaList = shuffleArray([...allAreas])
-                  setQuizList(shuffleAreaList)
-                  setCurrentQuestion(shuffleAreaList[0])
-                  setAnsweredAreas({})
-                }}
-              />
-              <Button 
-                disabled={!geojsonLoaded}
-                className=' disabled:bg-sky-200 disabled:cursor-auto disabled:border-sky-900'
-                title={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
-                onClick={() => {
-                  const shuffleAreaList = shuffleArray([...allAreas])
-                  setQuizList(shuffleAreaList)
-                  setCurrentQuestion(shuffleAreaList[0] || null)
-                  if(Object.keys(answeredAreas).length !== 0){
-                    setAnsweredAreas({})
-                    setSavedTime(null)
-                  }
-                  setIsOpen(false)
-                  setIsPlaying(true)
-                  if(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix){
-                    stopwatch.reset()
-                    stopwatch.start()
-                  }
-                  setMapKey((prevKey) => prevKey + 1);
-                }}
-              />
-            </div>
-          </motion.div>
-        </div>
-      )}
+          </>
+        ) : (
+          <div className='my-7 flex flex-col gap-2'>
+            <p>Gagal memuat...</p>
+            <Button 
+              title='Coba Lagi'
+              onClick={() => {
+                fetchData()
+              }}
+            />
+          </div>
+        )}
+      </ModalContainer>
     </div>
   )
 }

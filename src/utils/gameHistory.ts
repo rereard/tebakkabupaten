@@ -1,3 +1,5 @@
+import { FeatureCollection } from 'geojson';
+
 enum GameMode {
   Casual = 1,
   SuddenDeath = 2,
@@ -41,7 +43,7 @@ export const saveGame = (provinceName: string, gameMode: GameMode, answeredAreas
 export interface GameHistoryItem {
   mode: GameMode; // e.g., "Casual", "Time Trial", etc.
   date: string; // ISO date string when the game finished
-  result: Record<string, "correct" | "wrong" | "unanswered">; // The answered areas result
+  result: {[key: string]: "wrong" | "correct"}; // The answered areas result
   time?: number; // Optional: Only provided for Time Trial mode (time in seconds)
 }
 
@@ -59,4 +61,15 @@ export const getGameHistory = (provinceName: string): GameHistoryItem[] => {
     }
   }
   return [];
+};
+
+export const getStoredProvinces = (data: FeatureCollection): string[] => {
+  // Get all keys from localStorage
+  const allKeys = Object.keys(localStorage);
+
+  // Extract province names from the GeoJSON file
+  const provinceNames = data?.features?.map(feature => feature?.properties?.name);
+
+  // Filter only the keys that match province names
+  return allKeys.filter(key => provinceNames.includes(key));
 };
