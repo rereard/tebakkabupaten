@@ -36,7 +36,7 @@ export default function Province(){
   const { provinceName } = useParams<{ provinceName: string }>();
   const decodedProvince = provinceName?.replace(/_/g, " ");
   const stopwatch = useStopwatch()
-  const gameHistory: GameHistoryItem[] = getGameHistory(decodedProvince!)
+  // const gameHistory: GameHistoryItem[] = await getGameHistory(decodedProvince!)
 
   const [geojsonData, setGeojsonData] = useState<FeatureCollection | null>(null);
   const [bounds, setBounds] = useState<[[number, number], [number, number]] | null>(null)
@@ -53,6 +53,13 @@ export default function Province(){
   const [isError, setIsError] = useState<boolean>(false)
   const [mapKey, setMapKey] = useState<number>(0)
   const [gameNav, setGameNav] = useState<number>(0)
+  const [gameHistory, setGameHistory] = useState<GameHistoryItem[]>([]);
+
+  const fetchGameHistory = async () => {
+    const history = await getGameHistory(decodedProvince!)
+    console.log("fetching game history", history);
+    setGameHistory(history)
+  }
 
   const fetchData = () => {
     setGeojsonData(null); // Reset while loading new data
@@ -65,6 +72,7 @@ export default function Province(){
       })
       .then((data) => {
         setGeojsonData(data)
+        fetchGameHistory()
 
         // merge geojson feature to calculate bounds
         const mergedFeatureCollection = turf.combine(data as FeatureCollection<Polygon | MultiPolygon>)
@@ -140,7 +148,7 @@ export default function Province(){
         stopwatch.stop()
         setSavedTime(stopwatch.formattedTime)
       }
-      saveGame(decodedProvince!, gameMode, answeredAreas, stopwatch.time)
+      saveGame(decodedProvince!, gameMode, answeredAreas, stopwatch.time).then(() => fetchGameHistory())
       setGameNav(0)
     }
   }, [quizList]);

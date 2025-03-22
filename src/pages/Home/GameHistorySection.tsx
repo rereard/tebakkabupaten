@@ -6,14 +6,25 @@ import { GameHistoryComponent } from "../../component/GameHistoryComponent";
 
 export default function GameHistorySection(){
 
-  const storedProvincesHistories = getStoredProvinces(indonesiaGeoJson)
-
   const [historyNavIndex, setHistoryNavIndex] = useState<number>(0)
   const [gameHistory, setGameHistory] = useState<GameHistoryItem[]>([])
+  const [storedProvincesHistories, setStoredProvincesHistories] = useState<string[]>([])
 
   useEffect(() => {
-      setGameHistory(getGameHistory(storedProvincesHistories[historyNavIndex]))
-    }, [historyNavIndex])
+    const fetchStoredProvince = async () => {
+      const stored = await getStoredProvinces(indonesiaGeoJson)
+      setStoredProvincesHistories(stored)
+    }
+    fetchStoredProvince()
+  }, []);
+
+  useEffect(() => {
+    const fetchGameHistory = async () => {
+      const history = await getGameHistory(storedProvincesHistories[historyNavIndex])
+      setGameHistory(history)
+    }
+    fetchGameHistory()
+  }, [storedProvincesHistories, historyNavIndex])
 
   return(
     <section className='flex justify-center mt-10 px-10 text-sm md:text-base'>

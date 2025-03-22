@@ -29,7 +29,7 @@ export const GameHistoryComponent: FC<GameHistoryComponentProps> = ({ className,
         <div className='flex justify-between items-center'>
           <span>
             <p>{item.mode === GameMode.Casual ? 'Kasual' : item.mode === GameMode.Mix ? 'Ultimate' : item.mode === GameMode.SuddenDeath ? 'Sudden-Death' : item.mode === GameMode.TimeTrial && 'Time Trial'}</p>
-            <p>Hasil: {Object.values(item.result).filter(v => v === "correct").length}/{Object.values(item.result).length} {item.time && `| Waktu: ${stopwatch.timeFormatting(item.time)}`}</p>
+            <p>Hasil: {Object.values(item.result).filter(v => v === "correct").length}/{Object.values(item.result).length} {item.time !== undefined && `| Waktu: ${stopwatch.timeFormatting(item.time)}`}</p>
             <p className='text-sm'>{item.date}</p>
           </span>
           <motion.span 

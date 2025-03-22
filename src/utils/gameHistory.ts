@@ -1,11 +1,6 @@
 import { FeatureCollection } from 'geojson';
-
-enum GameMode {
-  Casual = 1,
-  SuddenDeath = 2,
-  TimeTrial = 3,
-  Mix = 4,
-}
+import { GameMode } from './gameMode';
+import { decryptJSON, encryptJSON, encryptKey } from './cryptoUtils';
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
@@ -25,7 +20,7 @@ const formatDate = (dateString: string): string => {
 /** save game result into local storage
  * only 5 latest game is saved
  */
-export const saveGame = (provinceName: string, gameMode: GameMode, answeredAreas: Record<string, string>, timeTaken?: number) => {
+export const saveGame = async (provinceName: string, gameMode: GameMode, answeredAreas: Record<string, string>, timeTaken?: number) => {
   const gameResult = {
     mode: gameMode,
     date: formatDate(new Date().toISOString()),
@@ -33,11 +28,12 @@ export const saveGame = (provinceName: string, gameMode: GameMode, answeredAreas
     ...((gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix) && timeTaken !== undefined && { time: timeTaken })
   };
 
-  const existingHistory = JSON.parse(localStorage.getItem(provinceName) || "[]");
+  const encryptedKey = await encryptKey(provinceName);
+  const existingHistory = await decryptJSON(localStorage.getItem(encryptedKey) || "[]") as GameHistoryItem[];
 
-  const updatedHistory = [gameResult, ...existingHistory].slice(0, 5);
+  const updatedHistory = [gameResult, ...(existingHistory || [])].slice(0, 5);
 
-  localStorage.setItem(provinceName, JSON.stringify(updatedHistory));
+  localStorage.setItem(encryptedKey, await encryptJSON(updatedHistory));
 };
 
 export interface GameHistoryItem {
@@ -48,13 +44,12 @@ export interface GameHistoryItem {
 }
 
 /** get province game history */
-export const getGameHistory = (provinceName: string): GameHistoryItem[] => {
-  const historyStr = localStorage.getItem(provinceName);
-  if (historyStr) {
+export const getGameHistory = async (provinceName: string): Promise<GameHistoryItem[]> => {
+  const encryptedKey = await encryptKey(provinceName);
+  const encryptedData = localStorage.getItem(encryptedKey);
+  if (encryptedData) {
     try {
-      const parsedHistory = JSON.parse(historyStr);
-      // You might want to add further runtime checks here if needed.
-      return parsedHistory as GameHistoryItem[];
+      return await decryptJSON(encryptedData) as GameHistoryItem[]
     } catch (error) {
       console.error("Error parsing game history:", error);
       return [];
@@ -63,13 +58,23 @@ export const getGameHistory = (provinceName: string): GameHistoryItem[] => {
   return [];
 };
 
-export const getStoredProvinces = (data: FeatureCollection): string[] => {
+export const getStoredProvinces = async (data: FeatureCollection): Promise<string[]> => {
   // Get all keys from localStorage
   const allKeys = Object.keys(localStorage);
-
+  
+  
   // Extract province names from the GeoJSON file
   const provinceNames = data?.features?.map(feature => feature?.properties?.name);
+  
+  const storedProvinces: string[] = [];
+  
+  for (const province of provinceNames) {
+    const encryptedKey = await encryptKey(province); // Encrypt the province name to match stored keys
+    
+    if (allKeys.includes(encryptedKey)) {
+      storedProvinces.push(province); // Add province to result list if it exists
+    }
+  }
 
-  // Filter only the keys that match province names
-  return allKeys.filter(key => provinceNames.includes(key));
-};
+  return storedProvinces
+}
