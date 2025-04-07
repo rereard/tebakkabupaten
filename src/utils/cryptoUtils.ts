@@ -8,25 +8,36 @@ const getDeviceFingerprint = async (): Promise<CryptoKey> => {
 };
 
 // Generate or retrieve the encryption key (encrypted with the fingerprint)
-export const getEncryptionKey = async (): Promise<CryptoKey> => {
+export const getEncryptionKey = async (): Promise<any> => {
   let storedKey = localStorage.getItem("encryptedEncryptionKey");
-
   if (!storedKey) {
     const newKey = await crypto.subtle.generateKey({ name: "AES-GCM", length: 256 }, true, ["encrypt", "decrypt"]);
     const fingerprint = await getDeviceFingerprint();
-    const encryptedKey = await crypto.subtle.encrypt({ name: "AES-GCM", iv: new Uint8Array(12) }, fingerprint, await crypto.subtle.exportKey("raw", newKey));
-    localStorage.setItem("encryptedEncryptionKey", btoa(String.fromCharCode(...new Uint8Array(encryptedKey))));
+    const rawKey = await crypto.subtle.exportKey("raw", newKey);
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const encryptedKey = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, fingerprint, rawKey);
+    const combined = new Uint8Array(iv.length + encryptedKey.byteLength);
+    combined.set(iv);
+    combined.set(new Uint8Array(encryptedKey), iv.length);
+    localStorage.setItem("encryptedEncryptionKey", btoa(String.fromCharCode(...combined)));
     return newKey;
   }
 
   try {
     const fingerprint = await getDeviceFingerprint();
-    const encryptedKeyBytes = new Uint8Array(atob(storedKey).split("").map((c) => c.charCodeAt(0)));
-    const decryptedKey = await crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(12) }, fingerprint, encryptedKeyBytes);
+    const combined = new Uint8Array(atob(storedKey).split("").map(c => c.charCodeAt(0)));
+    // console.log("fingerprint", fingerprint);
+    const iv = combined.slice(0, 12);
+    const encryptedData = combined.slice(12);
+    const decryptedKey = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, fingerprint, encryptedData);
+    // const encryptedKeyBytes = new Uint8Array(atob(storedKey).split("").map((c) => c.charCodeAt(0)));
+    // console.log("encryptedKeyBytes", encryptedKeyBytes);
+    // const decryptedKey = await crypto.subtle.decrypt({ name: "AES-GCM", iv: new Uint8Array(12) }, fingerprint, encryptedKeyBytes);
     return crypto.subtle.importKey("raw", decryptedKey, { name: "AES-GCM" }, true, ["encrypt", "decrypt"]);
-  } catch {
+  } catch (e) {
     console.error("Failed to decrypt the stored encryption key.");
-    return getEncryptionKey(); // Regenerate the key if decryption fails
+    console.log("e", e);
+    return []
   }
 };
 
