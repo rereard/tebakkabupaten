@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import { Route, Routes } from 'react-router';
 import Home from './pages/Home';
 import Province from './pages/Province';
-import Survival from './pages/Survival';
+// import Survival from './pages/Survival';
 import { useEffect } from 'react';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/:provinceName' element={<Province />} />
-      <Route path='/survival' element={<Survival />} />
+      {/* <Route path='/survival' element={<Survival />} /> */}
     </Routes>
   )
 }
