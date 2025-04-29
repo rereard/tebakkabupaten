@@ -10,23 +10,17 @@ import Spinner from '../../component/Spinner';
 import CheckLabel from '../../component/CheckLabel';
 import useStopwatch from '../../utils/useStopwatch';
 import expandBBox from '../../utils/expandBbox';
-import FitMapBounds from './FitMapBounds';
+import FitMapBounds from '../../component/FitMapBounds';
 import MapZoomHandler from './MapZoomHandler';
 import { GameHistoryItem, getGameHistory, saveGame } from '../../utils/gameHistory';
 import ModalContainer from '../../component/ModalContainer';
 import NavComponent from '../../component/NavComponent';
 import AreaList from '../../component/AreaList';
 import { GameHistoryComponent } from '../../component/GameHistoryComponent';
+import { GameMode } from '../../utils/gameMode';
+import { shuffleArray } from '../../utils/shuffleArray';
 
-enum GameMode {
-  Casual = 1,
-  SuddenDeath = 2,
-  TimeTrial = 3,
-  Mix = 4,
-}
 
-/** shuffling array */
-const shuffleArray = (array: string[]) => array.sort(() => Math.random() - 0.5);
 
 export default function Province(){
 
@@ -36,7 +30,6 @@ export default function Province(){
   const { provinceName } = useParams<{ provinceName: string }>();
   const decodedProvince = provinceName?.replace(/_/g, " ");
   const stopwatch = useStopwatch()
-  // const gameHistory: GameHistoryItem[] = await getGameHistory(decodedProvince!)
 
   const [geojsonData, setGeojsonData] = useState<FeatureCollection | null>(null);
   const [bounds, setBounds] = useState<[[number, number], [number, number]] | null>(null)
@@ -57,7 +50,6 @@ export default function Province(){
 
   const fetchGameHistory = async () => {
     const history = await getGameHistory(decodedProvince!)
-    console.log("fetching game history", history);
     setGameHistory(history)
   }
 
@@ -338,9 +330,7 @@ export default function Province(){
                 {Object.values(answeredAreas).length === 0 ? (
                   <p className="text-base md:text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
                 ) : (
-                  <>
-                    <p className='text-base md:text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
-                  </>
+                  <p className='text-base md:text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
                 )}
                 <div className='my-4 h-fit w-full max-h-56 overflow-y-auto'>
                   <AreaList 

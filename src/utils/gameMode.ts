@@ -3,4 +3,5 @@ export enum GameMode {
   SuddenDeath = 2,
   TimeTrial = 3,
   Mix = 4,
+  Survival = 5
 }

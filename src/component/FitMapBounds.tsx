@@ -7,11 +7,9 @@ const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> =
   useEffect(() => {
     if (bounds) {
       map.fitBounds(bounds, { padding: [50, 50] }); // Adjust padding for a better fit
-      map.setMaxBounds(undefined);
-      map.setMinZoom(1);
       map.setMaxZoom(14);
       const newMinZoom = map.getBoundsZoom(bounds);
-      map.flyToBounds(bounds, { duration: 1.5 });
+      // map.flyToBounds(bounds, { duration: 10 });
       map.setMinZoom(newMinZoom + 0.4);
       map.setMaxBounds(bounds)
     }

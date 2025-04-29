@@ -1,5 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet'
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
 import { indonesiaGeoJson } from '../../utils/indonesiaJSONdata';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -8,6 +8,7 @@ import expandBBox from '../../utils/expandBbox';
 import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import { AnimatePresence, motion } from 'motion/react';
 import Button from '../../component/Button';
+import FitMapBounds from "../../component/FitMapBounds";
 
 type MainSectionProps = {
   scrollable: boolean
@@ -46,16 +47,16 @@ export default function MainSection({ scrollable, setScrollable }: MainSectionPr
   };
 
   /** zoom animate to bounds and navigate to /provinceName */
-    function animateZoomToProvince(map: L.Map,bounds: L.LatLngBounds, provinceName: string) {
-      map.flyToBounds(bounds, { duration: 0.7 }); // ✅ Smooth zoom-in animation
-      setZoomIn(true)
-      const encodedProvince = provinceName.replace(/ /g, "_");
-      console.log("encodedprov", encodedProvince);
-      
-      setTimeout(() => {
-        navigate(`/${encodedProvince}`, { state: bounds }); // ✅ Change route AFTER animation
-      }, 700);
-    }
+  function animateZoomToProvince(map: L.Map,bounds: L.LatLngBounds, provinceName: string) {
+    map.flyToBounds(bounds, { duration: 0.7 }); // ✅ Smooth zoom-in animation
+    setZoomIn(true)
+    const encodedProvince = provinceName.replace(/ /g, "_");
+    console.log("encodedprov", encodedProvince);
+    
+    setTimeout(() => {
+      navigate(`/${encodedProvince}`, { state: bounds }); // ✅ Change route AFTER animation
+    }, 700);
+  }
 
   return(
     <section className={`w-full h-full relative`}>
@@ -138,25 +139,18 @@ export default function MainSection({ scrollable, setScrollable }: MainSectionPr
             zIndex={9999}
             position='absolute'
           />
+          <Button 
+            title='Survival Mode'
+            onClick={() => {
+              navigate('/survival')
+            }}
+            className='top-20 md:top-8 md:right-12'
+            width={160}
+            zIndex={9999}
+            position='absolute'
+          />
         </div>
       )}
     </section>
   )
 }
-
-/** map bounds, min and max zoom setting */
-const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]] }> = ({ bounds }) => {
-  const map = useMap();
-  useEffect(() => {
-    if (bounds) {
-      map.fitBounds(bounds, { padding: [50, 50] }); // Adjust padding for a better fit
-      map.setMaxZoom(14);
-
-      const newMinZoom = map.getBoundsZoom(bounds);
-
-      map.setMinZoom(newMinZoom + 0.3);
-      map.setMaxBounds(bounds)
-    }
-  }, [map, bounds]);
-  return null;
-};
