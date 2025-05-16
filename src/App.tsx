@@ -10,9 +10,9 @@ function App() {
 
   useEffect(() => {
     const historyVer = localStorage.getItem('ver')
-    if(!historyVer && historyVer !== '0.5'){
+    if(!historyVer || historyVer !== '1'){
       localStorage.clear()
-      localStorage.setItem('ver', '0.5')
+      localStorage.setItem('ver', '1')
     }
   }, []);
 

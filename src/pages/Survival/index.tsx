@@ -105,10 +105,10 @@ export default function Survival(){
         const areaList: string[] = data.features.map((feature: any) => feature.properties.name || "Unknown")
         const shuffleAreaList: string[] = shuffleArray(areaList)
         setProvinceAreas(areaList)
-        setQuizList(shuffleAreaList)
-        setCurrentQuestion(shuffleAreaList[0])
         setLoading(false)
         setZooming(true)
+        setQuizList(shuffleAreaList)
+        setCurrentQuestion(shuffleAreaList[0])
         setStarting(true)
       })
   }
