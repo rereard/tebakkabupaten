@@ -94,7 +94,7 @@ export default function Survival(){
 
   const handleFetchSetData = (provinceName: string) => {
     setLoading(true)
-    fetch(`data/${provinceName}.json`)
+    fetch(`https://tebakkabupaten-backend-production.up.railway.app/api/province/${provinceName}`)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to load ${provinceName}.json`);
         return res.json();
