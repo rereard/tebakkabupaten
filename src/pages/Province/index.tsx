@@ -57,7 +57,7 @@ export default function Province(){
     setGeojsonData(null); // Reset while loading new data
     setGeojsonLoaded(false)
 
-    fetch(`https://tebakkabupaten-backend-production.up.railway.app/api/province/${decodedProvince}`)
+    fetch(`/geojson/${decodedProvince}.json`)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to load ${decodedProvince} data`);
         return res.json();
