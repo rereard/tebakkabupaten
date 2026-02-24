@@ -1,24 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
-import * as turf from "@turf/turf";
 import "leaflet/dist/leaflet.css";
-import { Feature, FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import { motion } from "motion/react"
 import { useLocation, useNavigate, useParams } from 'react-router';
 import Button from '../../component/Button';
 import Spinner from '../../component/Spinner';
 import CheckLabel from '../../component/CheckLabel';
-import useStopwatch from '../../utils/useStopwatch';
-import expandBBox from '../../utils/expandBbox';
 import FitMapBounds from '../../component/FitMapBounds';
 import MapZoomHandler from './MapZoomHandler';
-import { GameHistoryItem, getGameHistory, saveGame } from '../../utils/gameHistory';
 import ModalContainer from '../../component/ModalContainer';
 import NavComponent from '../../component/NavComponent';
 import AreaList from '../../component/AreaList';
 import { GameHistoryComponent } from '../../component/GameHistoryComponent';
 import { GameMode } from '../../utils/gameMode';
-import { shuffleArray } from '../../utils/shuffleArray';
+import { useProvinceGame } from '../../utils/useProvinceGame';
 
 
 
@@ -29,122 +24,17 @@ export default function Province(){
   const indonesiaBounds = location.state?.bounds || [[-11, 94], [6, 141]];
   const { provinceName } = useParams<{ provinceName: string }>();
   const decodedProvince = provinceName?.replace(/_/g, " ");
-  const stopwatch = useStopwatch()
+  
+  const { state, refs, actions, stopwatch } = useProvinceGame(decodedProvince);
 
-  const [geojsonData, setGeojsonData] = useState<FeatureCollection | null>(null);
-  const [bounds, setBounds] = useState<[[number, number], [number, number]] | null>(null)
-  const [zoomOut, setZoomOut] = useState<boolean>(false);
-  const [geojsonLoaded, setGeojsonLoaded] = useState<boolean>(false);
-  const [allAreas, setAllAreas] = useState<string[]>([])
-  const [quizList, setQuizList] = useState<string[]>([]);
-  const [currentQuestion, setCurrentQuestion] = useState<string | null>(quizList[0]); // First question
-  const [answeredAreas, setAnsweredAreas] = useState<{ [key: string]: "correct" | "wrong" }>({});
-  const [modalIsOpen, setIsOpen] = useState<boolean>(true);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [gameMode, setGameMode] = useState<GameMode>(GameMode.Casual)
-  const [savedTime, setSavedTime] = useState<string | null>(null)
-  const [isError, setIsError] = useState<boolean>(false)
-  const [mapKey, setMapKey] = useState<number>(0)
-  const [gameNav, setGameNav] = useState<number>(0)
-  const [gameHistory, setGameHistory] = useState<GameHistoryItem[]>([]);
+  const {
+      geojsonData, bounds, zoomOut, geojsonLoaded, allAreas, currentQuestion, answeredAreas,
+      modalIsOpen, setIsOpen, isPlaying, gameMode, setGameMode, savedTime, isError, mapKey, gameNav,
+      setGameNav, gameHistory
+  } = state;
 
-  const fetchGameHistory = async () => {
-    const history = await getGameHistory(decodedProvince!)
-    setGameHistory(history)
-  }
-
-  const fetchData = () => {
-    setGeojsonData(null); // Reset while loading new data
-    setGeojsonLoaded(false)
-
-    fetch(`/geojson/${decodedProvince}.json`)
-      .then((res) => {
-        if (!res.ok) throw new Error(`Failed to load ${decodedProvince} data`);
-        return res.json();
-      })
-      .then((data) => {
-        
-        setGeojsonData(data)
-        fetchGameHistory()
-
-        // merge geojson feature to calculate bounds
-        const mergedFeatureCollection = turf.combine(data as FeatureCollection<Polygon | MultiPolygon>)
-        const mergedFeature = mergedFeatureCollection.features[0] as Feature<Polygon | MultiPolygon>;
-        if (!mergedFeature) {
-          console.error("Failed to merge features.");
-          return <p>Error loading map</p>;
-        }
-        const bbox = turf.bbox(mergedFeature); // [minX, minY, maxX, maxY]
-        const expandedBBox = expandBBox(bbox, 0.5);
-        setBounds([
-          [expandedBBox[1], expandedBBox[0]], // Southwest corner (lat, lon)
-          [expandedBBox[3], expandedBBox[2]], // Northeast corner (lat, lon)
-        ])
-
-        setGeojsonLoaded(true)
-        setIsError(false)
-
-        // setting quiz list
-        const areaNames =data.features.map((feature: any) => feature.properties.name || "Unknown")
-        setAllAreas(areaNames)
-      })
-      .catch((err) => {
-        console.error("Failed to load GeoJSON:", err)
-        setIsError(true)
-      });
-  }
-
-  // setting geojson data and map bounds
-  useEffect(() => {
-    if (!decodedProvince) return;
-    fetchData()
-  }, []);
-
-  // used for state inside MapContainer
-  const currentQuestionRef = useRef(currentQuestion);
-  const quizListRef = useRef(quizList);
-  const answeredAreasRef = useRef(answeredAreas);
-  const boundsRef = useRef(bounds);
-  const isPlayingRef = useRef(isPlaying);
-  const gameModeRef = useRef(gameMode)
-
-  useEffect(() => {
-    currentQuestionRef.current = currentQuestion;
-  }, [currentQuestion]);
-
-  useEffect(() => {
-    quizListRef.current = quizList;
-  }, [quizList]);
-
-  useEffect(() => {
-    boundsRef.current = bounds;
-  }, [bounds]);
-
-  useEffect(() => {
-    answeredAreasRef.current = answeredAreas;
-  }, [answeredAreas]);
-
-  useEffect(() => {
-    isPlayingRef.current = isPlaying;
-  }, [isPlaying]);
-
-  useEffect(() => {
-    gameModeRef.current = gameMode;
-  }, [gameMode]);
-
-  // handle when game over
-  useEffect(() => {
-    if(geojsonLoaded && quizList.length === 0){
-      setIsOpen(true)
-      setIsPlaying(false)
-      if(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix){
-        stopwatch.stop()
-        setSavedTime(stopwatch.formattedTime)
-      }
-      saveGame(decodedProvince!, gameMode, answeredAreas, stopwatch.time).then(() => fetchGameHistory())
-      setGameNav(0)
-    }
-  }, [quizList]);
+  const { answeredAreasRef } = refs;
+  const { handleAreaClick, startGame, backToMap, fetchMapData } = actions;
 
   /** setting style for each area, hover style, and fill area if wrong or correct */
   const getFeatureStyle = (feature: any) => {
@@ -195,46 +85,7 @@ export default function Province(){
                 layer.unbindTooltip();
               },
               click: () => {
-                if (answeredAreasRef.current[clickedName]) return;
-                if(isPlayingRef.current){
-                  if (clickedName === currentQuestionRef.current) {
-                    const filtered = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                    setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "correct" })); 
-                    setQuizList(filtered);
-                    setCurrentQuestion(filtered[0] || null); 
-                  } else {
-                    const correctAnswer = currentQuestionRef.current!;
-                    const filtered13 = quizListRef.current.filter((name) => name !== clickedName && name !== currentQuestionRef.current)
-                    const filtered24 = quizListRef.current.filter((name) => name !== currentQuestionRef.current)
-                    const unsanswered = filtered24.reduce((names, key) => {
-                      names[key] = 'unanswered'
-                      return names
-                    }, {} as Record<string, any>)
-                    switch (gameModeRef.current) {
-                      case GameMode.Casual:
-                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
-                        setQuizList(filtered13);
-                        setCurrentQuestion(filtered13[0] || null);
-                        break;
-                      case GameMode.SuddenDeath:
-                        setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
-                        setQuizList([]);
-                        setCurrentQuestion(null);
-                        break;
-                      case GameMode.TimeTrial:
-                        setAnsweredAreas((prev) => ({ ...prev, [clickedName]: "wrong", [correctAnswer]: "wrong", }));
-                        setQuizList(filtered13);
-                        setCurrentQuestion(filtered13[0] || null);
-                        stopwatch.addTime(10)
-                        break;
-                      case GameMode.Mix:
-                        setAnsweredAreas((prev) => ({ ...prev, [correctAnswer]: "wrong", ...unsanswered }));
-                        setQuizList([]);
-                        setCurrentQuestion(null);
-                        break;
-                    }
-                  }
-                }
+                handleAreaClick(clickedName)
               }   
             })
           }}
@@ -243,7 +94,7 @@ export default function Province(){
       {bounds && <FitMapBounds bounds={bounds} />}
       <MapZoomHandler zoomOut={zoomOut} bounds={indonesiaBounds} onZoomComplete={() => navigate("/", { state: { scrollable: false } })} />
     </MapContainer>
-  ), [answeredAreas, geojsonData]);
+  ), [answeredAreas, geojsonData, mapKey]);
 
   return(
     <div className='w-full h-screen relative flex items-center justify-center'>
@@ -272,32 +123,10 @@ export default function Province(){
       <ModalContainer
         isOpen={modalIsOpen}
         leftButtonTitle='Kembali'
-        leftButtonFunction={() => {
-          setZoomOut(true)
-          setIsOpen(false)
-          const shuffleAreaList = shuffleArray([...allAreas])
-          setQuizList(shuffleAreaList)
-          setCurrentQuestion(shuffleAreaList[0])
-          setAnsweredAreas({})
-        }}
+        leftButtonFunction={backToMap}
         rightButtonTitle={Object.keys(answeredAreas).length === 0 ? 'Main' : 'Ulang'}
         rightButtonDisabled={!geojsonLoaded}
-        rightButtonFunction={() => {
-          const shuffleAreaList = shuffleArray([...allAreas])
-          setQuizList(shuffleAreaList)
-          setCurrentQuestion(shuffleAreaList[0] || null)
-          if(Object.keys(answeredAreas).length !== 0){
-            setAnsweredAreas({})
-            setSavedTime(null)
-          }
-          setIsOpen(false)
-          setIsPlaying(true)
-          if(gameMode === GameMode.TimeTrial || gameMode === GameMode.Mix){
-            stopwatch.reset()
-            stopwatch.start()
-          }
-          setMapKey((prevKey) => prevKey + 1);
-        }}
+        rightButtonFunction={startGame}
       >
         <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold mb-2">{Object.values(answeredAreas).length === 0 ? `Provinsi ${decodedProvince}` : 'Permainan selesai!'}</h2>
         <motion.button disabled={!geojsonLoaded} whileHover={ geojsonLoaded ? { scale: 1.07 } : {}} className='absolute top-2 right-2 text-xs md:text-sm border rounded-2xl px-2 font-bold cursor-pointer text-[#ff0000] disabled:text-[#ff7979] disabled:cursor-auto' onClick={() => setIsOpen(false)}>lihat peta</motion.button>
@@ -389,7 +218,7 @@ export default function Province(){
             <Button 
               title='Coba Lagi'
               onClick={() => {
-                fetchData()
+                fetchMapData()
               }}
             />
           </div>
