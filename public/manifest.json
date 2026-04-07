@@ -1,5 +1,6 @@
 {
- "name": "App",
+ "name": "Tebak Kabupaten & Kota",
+ "short_name": "Tebak Kabupaten",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
