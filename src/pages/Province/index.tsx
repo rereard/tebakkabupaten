@@ -99,6 +99,7 @@ export default function Province(){
   return(
     <div className='w-full h-screen relative flex items-center justify-center'>
       <title>{`${decodedProvince} - Tebak Kabupaten & Kota Indonesia`}</title>
+      <meta name="description" content={`Tebak semua kabupaten dan kota di Provinsi ${decodedProvince}! Uji pengetahuan geografi Indonesia-mu dengan kuis peta interaktif. ${allAreas.length} daerah untuk ditebak.`} />
       {MemoizedMap}
       {(geojsonLoaded && !zoomOut) && (
         <>

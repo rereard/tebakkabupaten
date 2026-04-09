@@ -1,6 +1,6 @@
 import { Feature, FeatureCollection, MultiPolygon, Polygon } from "geojson";
 import { useEffect, useMemo, useRef, useState } from "react"
-import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet"
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet"
 import { indonesiaGeoJson } from "../../utils/indonesiaJSONdata";
 import * as turf from "@turf/turf";
 import expandBBox from "../../utils/expandBbox";
@@ -10,6 +10,7 @@ import { shuffleArray } from "../../utils/shuffleArray";
 import useStopwatch from "../../utils/useStopwatch";
 import AreaList from "../../component/AreaList";
 import { GameHistoryComponent } from "../../component/GameHistoryComponent";
+import FitMapBounds from "../../component/FitMapBounds";
 
 export default function Survival(){
 
@@ -224,6 +225,8 @@ export default function Survival(){
 
   return(
     <div className='w-full h-screen relative flex items-center justify-center'>
+      <title>Survival Mode - Tebak Kabupaten & Kota Indonesia</title>
+      <meta name="description" content="Tantang dirimu di Survival Mode! Tebak seluruh kabupaten & kota di 38 provinsi Indonesia dengan cepat dan tepat. Satu kesalahan dan game over!" />
       {MemoizedMap}
       {isPlaying && (
         <>
@@ -322,29 +325,3 @@ export default function Survival(){
     </div>
   )
 }
-
-/** map bounds, min and max zoom setting */
-const FitMapBounds: React.FC<{ bounds: [[number, number], [number, number]]; onZoomComplete: () => void; zooming: boolean }> = ({ bounds, onZoomComplete, zooming }) => {
-  const map = useMap();
-  useEffect(() => {
-    if (zooming) {
-      map.flyToBounds(bounds, { duration: 0.5 });
-      setTimeout(() => {
-        map.fitBounds(bounds, { padding: [50, 50] }); // Adjust padding for a better fit
-        map.setMaxZoom(14);
-        const newMinZoom = map.getBoundsZoom(bounds);
-        map.setMinZoom(newMinZoom);
-        map.setMaxBounds(bounds)
-        onZoomComplete()
-      }, 490);
-    } else{
-      map.fitBounds(bounds, { padding: [50, 50] }); // Adjust padding for a better fit
-      map.setMaxZoom(14);
-      const newMinZoom = map.getBoundsZoom(bounds);
-      map.setMinZoom(newMinZoom);
-      map.setMaxBounds(bounds)
-      onZoomComplete()
-    }
-  }, [map, bounds]);
-  return null;
-};
