@@ -159,7 +159,12 @@ export default function Province(){
             {gameNav === 0 && (
               <>
                 {Object.values(answeredAreas).length === 0 ? (
-                  <p className="text-base md:text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
+                  <>
+                    <p className="text-base md:text-lg mt-2">{allAreas.length} Kabupaten dan Kota</p>
+                    <p className="text-xs md:text-sm text-gray-500 mt-1 italic">
+                      Tebak lokasi semua kabupaten dan kota di Provinsi {decodedProvince} pada peta interaktif!
+                    </p>
+                  </>
                 ) : (
                   <p className='text-base md:text-lg mt-2'>Hasil: {Object.values(answeredAreas).filter(v => v === "correct").length}/{allAreas.length}{savedTime && ` | Waktu ${savedTime}`}</p>
                 )}

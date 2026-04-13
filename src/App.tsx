@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import Province from './pages/Province';
 import Survival from './pages/Survival';
 import { useEffect } from 'react';
+import About from './pages/About';
+import HowToPlay from './pages/HowToPlay';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
 
@@ -19,8 +22,11 @@ function App() {
   return(
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/:provinceName' element={<Province />} />
       <Route path='/survival' element={<Survival />} />
+      <Route path='/tentang' element={<About />} />
+      <Route path='/cara-bermain' element={<HowToPlay />} />
+      <Route path='/kebijakan-privasi' element={<PrivacyPolicy />} />
+      <Route path='/:provinceName' element={<Province />} />
     </Routes>
   )
 }
